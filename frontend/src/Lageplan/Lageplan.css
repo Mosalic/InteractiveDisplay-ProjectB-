@@ -1,0 +1,17 @@
+.lageplan-wrapper{
+    width: 100%;
+    height: 100%;
+}
+
+.lageplan-wrapper svg{
+    width: 100%;
+    height: 100%;
+}
+
+.room{
+    opacity: 0;
+}
+
+.no-room{
+    opacity: 0.5;
+}

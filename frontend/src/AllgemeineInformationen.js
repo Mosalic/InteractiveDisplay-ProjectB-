@@ -4,7 +4,7 @@ import './App.css';
 class AllgemeineInformationen extends Component {
   render() {
     return (
-        <div>
+        <div className="wrapper">
             <div className="button">
                 Speiseplan
             </div>
