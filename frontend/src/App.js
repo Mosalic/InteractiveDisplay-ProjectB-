@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './Home';
 import AllgemeineInformationen from './AllgemeineInformationen';
 import Lageplan from './Lageplan/index';
+import Header from './Header/Header';
 import './App.css';
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
     return (
         <Router>
           <div className="App">
+            <Header />
             <Route exact path="/" component={Home}/>
             <Route path="/allgemeineInformationen" component={AllgemeineInformationen}/>
             <Route path="/lageplan" component={Lageplan}/>
