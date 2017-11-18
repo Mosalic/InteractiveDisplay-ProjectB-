@@ -12,6 +12,10 @@
     opacity: 0;
 }
 
+.selected-room{
+    opacity: 0.5;
+}
+
 .no-room{
     opacity: 0.5;
 }
