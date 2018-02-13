@@ -36,7 +36,7 @@ class FirstFloorAltbau extends Component {
 
   render() {
     return (
-        <div className="lageplan-wrapper">
+        <div className="svg-wrapper">
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1199 676">
                 <title>first_floor</title>
                 <image href={firstFloor} />
