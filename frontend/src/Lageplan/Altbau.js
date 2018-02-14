@@ -4,6 +4,7 @@ import firstFloor from './first_floor.svg';
 import './Lageplan.css';
 import FirstFloorAltbau from './FirstFloorAltbau';
 import BasementFloorAltbau from './BasementFloorAltbau';
+import SecondFloorAltbau from './SecondFloorAltbau';
 
 class Altbau extends Component {
     constructor(props){
@@ -25,6 +26,7 @@ class Altbau extends Component {
       const getFloorPlan = (search) => ({
         0: <BasementFloorAltbau search={search} />,
         1: <FirstFloorAltbau search={search} />,
+        2: <SecondFloorAltbau search={search} />
       });
       return getFloorPlan(search)[floor];
     }
