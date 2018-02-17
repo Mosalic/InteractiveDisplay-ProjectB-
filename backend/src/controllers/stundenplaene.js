@@ -16,8 +16,8 @@ export const postStundenplan = (req, res, next) => {
 export const getStundenplan = (req, res, next) => {
   Stundenplan.find((err, doc) => {
     if(err === null){
-      res.json({stundenplaene: doc});
-      res.end("added");
+      res.json({data: {stundenplaene: doc}});
+      res.end("found");
     }
   });
 };
@@ -36,4 +36,16 @@ export const putStundenplan = (req, res, next) => {
       res.end(`${err}`);
     }
   })
+};
+
+export const getStundenplanById = (req, res, next) => {
+  Stundenplan.find({ "id" : req.params.id }, (err, doc) => {
+    if(err === null){
+      res.json({data: {stundenplan: doc[0]}});
+      res.end("found");
+    } else {
+      res.writeHead(500, {'Content-Type': 'text/html'});
+      res.end(`${err}`);
+    }
+  });
 };

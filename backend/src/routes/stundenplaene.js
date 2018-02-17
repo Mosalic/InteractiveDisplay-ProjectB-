@@ -1,5 +1,5 @@
 import express, {Router} from 'express';
-import { postStundenplan, getStundenplan, putStundenplan } from '../controllers/stundenplaene';
+import { postStundenplan, getStundenplan, putStundenplan, getStundenplanById } from '../controllers/stundenplaene';
 
 const stundenplaene = Router();
 
@@ -15,5 +15,6 @@ stundenplaene.route('/')
 
 stundenplaene.route('/:id')
   .put(putStundenplan)
+  .get(getStundenplanById)
 
 export default stundenplaene;
