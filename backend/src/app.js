@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import stundenplaene from './routes/stundenplaene';
+import admin from './routes/admin';
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/stundenplaene', stundenplaene);
+app.use('/admin', admin);
 
 // app.get('/', function (req, res) {
 //  res.send('Hello World!')
