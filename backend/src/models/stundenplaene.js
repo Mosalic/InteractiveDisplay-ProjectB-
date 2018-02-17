@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 let stundenplanSchema = new Schema({
+  id: Number,
   studiengang: String,
   zeiten: [{
     semester: String,

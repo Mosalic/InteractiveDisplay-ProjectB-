@@ -21,3 +21,19 @@ export const getStundenplan = (req, res, next) => {
     }
   });
 };
+
+export const putStundenplan = (req, res, next) => {
+  // console.log(req.body);
+  Stundenplan.findOneAndUpdate(
+    { "id" : req.params.id },
+    req.body,
+  (err, doc) => {
+    if(err === null){
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.end("updated");
+    } else {
+      res.writeHead(500, {'Content-Type': 'text/html'});
+      res.end(`${err}`);
+    }
+  })
+};
