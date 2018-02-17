@@ -1,5 +1,5 @@
 import express, {Router} from 'express';
-import { postStundenplan } from '../controllers/stundenplaene';
+import { postStundenplan, getStundenplan } from '../controllers/stundenplaene';
 
 const stundenplaene = Router();
 
@@ -10,9 +10,7 @@ stundenplaene.use(function (req, res, next) {
 });
 
 stundenplaene.route('/')
-  .get((req, res) => {
-    res.json({ response: 'a GET request for LOOKING at questions' });
-  })
+  .get(getStundenplan)
   .post(postStundenplan);
 
 export default stundenplaene;

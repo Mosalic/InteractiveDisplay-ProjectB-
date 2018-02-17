@@ -11,5 +11,13 @@ export const postStundenplan = (req, res, next) => {
       res.end(`${err}`);
     }
   });
-  // console.log(req.body);
+};
+
+export const getStundenplan = (req, res, next) => {
+  Stundenplan.find((err, doc) => {
+    if(err === null){
+      res.json({stundenplaene: doc});
+      res.end("added");
+    }
+  });
 };
