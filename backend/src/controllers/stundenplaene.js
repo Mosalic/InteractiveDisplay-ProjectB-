@@ -32,18 +32,25 @@ export const getStundenplan = (req, res, next) => {
 
 export const putStundenplan = (req, res, next) => {
   // console.log(req.body);
-  Stundenplan.findOneAndUpdate(
-    { "id" : req.params.id },
-    req.body,
-  (err, doc) => {
-    if(err === null){
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.end("updated");
+  jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
+    if(err === null) {
+      Stundenplan.findOneAndUpdate(
+        { "id" : req.params.id },
+        req.body,
+      (err, doc) => {
+        if(err === null){
+          res.writeHead(200, {'Content-Type': 'text/html'});
+          res.end("updated");
+        } else {
+          res.writeHead(500, {'Content-Type': 'text/html'});
+          res.end(`${err}`);
+        }
+      });
     } else {
-      res.writeHead(500, {'Content-Type': 'text/html'});
-      res.end(`${err}`);
+      res.writeHead(400, {'Content-Type': 'text/html'});
+      res.end("forbidden");
     }
-  })
+  });
 };
 
 export const getStundenplanById = (req, res, next) => {
@@ -59,13 +66,20 @@ export const getStundenplanById = (req, res, next) => {
 };
 
 export const deleteStundenplan = (req, res, next) => {
-  Stundenplan.remove({ "id" : req.params.id}, (err, doc) => {
-    if(err === null){
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.end("deleted");
+  jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
+    if(err === null) {
+      Stundenplan.remove({ "id" : req.params.id}, (err, doc) => {
+        if(err === null){
+          res.writeHead(200, {'Content-Type': 'text/html'});
+          res.end("deleted");
+        } else {
+          res.writeHead(500, {'Content-Type': 'text/html'});
+          res.end(`${err}`);
+        }
+      });
     } else {
-      res.writeHead(500, {'Content-Type': 'text/html'});
-      res.end(`${err}`);
+      res.writeHead(400, {'Content-Type': 'text/html'});
+      res.end("forbidden");
     }
-  })
+  });
 };
