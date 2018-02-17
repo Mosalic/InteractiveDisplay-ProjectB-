@@ -1,14 +1,22 @@
 import Stundenplan from '../models/stundenplaene';
+import jwt from 'jsonwebtoken';
 
 export const postStundenplan = (req, res, next) => {
-  const stundenplan = new Stundenplan(req.body);
-  stundenplan.save(req.body, (err, doc) => {
-    if(err === null){
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.end("added");
+  jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
+    if(err === null) {
+      const stundenplan = new Stundenplan(req.body);
+      stundenplan.save(req.body, (err, doc) => {
+        if(err === null){
+          res.writeHead(200, {'Content-Type': 'text/html'});
+          res.end("added");
+        } else {
+          res.writeHead(500, {'Content-Type': 'text/html'});
+          res.end(`${err}`);
+        }
+      });
     } else {
-      res.writeHead(500, {'Content-Type': 'text/html'});
-      res.end(`${err}`);
+      res.writeHead(400, {'Content-Type': 'text/html'});
+      res.end("forbidden");
     }
   });
 };
