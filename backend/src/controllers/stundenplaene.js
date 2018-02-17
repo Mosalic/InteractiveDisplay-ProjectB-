@@ -49,3 +49,15 @@ export const getStundenplanById = (req, res, next) => {
     }
   });
 };
+
+export const deleteStundenplan = (req, res, next) => {
+  Stundenplan.remove({ "id" : req.params.id}, (err, doc) => {
+    if(err === null){
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.end("deleted");
+    } else {
+      res.writeHead(500, {'Content-Type': 'text/html'});
+      res.end(`${err}`);
+    }
+  })
+};
