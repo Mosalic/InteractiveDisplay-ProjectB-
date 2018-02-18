@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './Home';
 import './App.css';
-import Login from './Admin/Login';
+import Admin from './Admin';
 
 class App extends Component {
   render() {
@@ -10,7 +10,7 @@ class App extends Component {
         <Router>
           <div>
             <Route path="/home" component={Home}/>
-            <Route path="/admin" component={Login}/>
+            <Route path="/admin" component={Admin}/>
           </div>
         </Router>
     );

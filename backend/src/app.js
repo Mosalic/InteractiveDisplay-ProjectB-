@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import stundenplaene from './routes/stundenplaene';
 import admin from './routes/admin';
@@ -11,6 +12,8 @@ mongoose.connect('mongodb://localhost/haw');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.use('/stundenplaene', stundenplaene);
 app.use('/admin', admin);
