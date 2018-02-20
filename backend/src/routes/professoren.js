@@ -1,5 +1,5 @@
 import express, {Router} from 'express';
-import { getProfessoren, postProfessoren, putProfessoren, getProfessorenById, deleteProfessoren } from '../controllers/stundenplaene';
+import { getProfessoren, postProfessoren, putProfessoren, getProfessorenById, deleteProfessoren } from '../controllers/professoren';
 
 const professoren = Router();
 
