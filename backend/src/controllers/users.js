@@ -10,8 +10,9 @@ export const getUser = (req, res, next) => {
     if(err === null && doc.length !== 0){
       console.log(doc);
       var token = jwt.sign({ role: doc[0].role }, 'shhhhh', { expiresIn: '1h' } );
-      console.log(token);
-      res.writeHead(200, {'Content-Type': 'text/html'});
+      // console.log(token);
+      // res.writeHead(200, {'Content-Type': 'text/html'});
+      res.json({token: token});
       res.end("foundUser");
     } else if(err === null && doc.length === 0){
       res.writeHead(400, {'Content-Type': 'text/html'});

@@ -23,7 +23,11 @@ class Login extends Component {
       password: this.state.password,
     })
     .then((response) => {
-      console.log(response);
+      localStorage.setItem('JWTToken', response.data.token)
+      this.props.history.push('/admin/admin-area');
+    })
+    .catch((error) => {
+      console.log('error', error);
     })
     console.log(this.state.username, this.state.password);
   }
