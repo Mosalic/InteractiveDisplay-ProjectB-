@@ -4,6 +4,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import stundenplaene from './routes/stundenplaene';
 import admin from './routes/admin';
+import professoren from './routes/professoren';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cors());
 
 app.use('/stundenplaene', stundenplaene);
 app.use('/admin', admin);
+app.use('/professoren', professoren);
 
 // app.get('/', function (req, res) {
 //  res.send('Hello World!')
