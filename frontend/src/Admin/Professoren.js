@@ -45,13 +45,23 @@ class Professoren extends Component {
         <div>
           <div className="professoren-wrapper">
             <h1>Professoren</h1>
-            <button type="button" onClick={() => this.toggleAddProfessor()}>+</button>
+            <button type="button" className="add" onClick={() => this.toggleAddProfessor()}>+</button>
             <div className="professoren">
               {this.state.professoren.map((professor, index) =>
                 <div className="professor" key={index}>
-                  <h2>{professor.name}</h2>
-                  <span className="funktion">{professor.funktion}</span>
-                  <img src={professor.img && `data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')}`}/>
+                  <div className="foto">
+                    <img src={professor.img && `data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')}`}/>
+                  </div>
+                  <div className="professor-information">
+                    <div className="professor-heading">
+                      <h2>{professor.name}</h2>
+                      <span className="funktion">{professor.funktion}</span><br />
+                    </div>
+                    Raum: {professor.raum}<br />
+                    Email: {professor.email}<br />
+                    Telefonnummer: {professor.telefonnummer}<br />
+                    Sprechzeiten: {professor.sprechzeiten}<br />
+                  </div>
                 </div>
               )}
             </div>

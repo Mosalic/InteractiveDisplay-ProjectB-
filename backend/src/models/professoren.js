@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 let professorenSchema = new Schema({
   id: Number,
   name: String,
-  buero: String,
+  raum: String,
   img: { data: Buffer, contentType: String },
   telefonnummer: String,
   email: String,
