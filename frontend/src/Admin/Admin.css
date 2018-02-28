@@ -1,0 +1,57 @@
+.main{
+  min-height: 100vh;
+  width: 100%;
+  background: #F3F4F6;
+}
+
+.professoren-wrapper{
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.professoren{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: start;
+  margin: 0 auto;
+}
+
+.professor{
+  width: 40%;
+  background: #fff;
+  box-shadow: 0px 0px 4px 0px #CACACA;
+  padding: 20px;
+  margin: 10px 0px;
+}
+
+h2{
+  margin: 0;
+}
+
+.funktion{
+  color: #8D8A8A;
+  font-weight: 300;
+}
+
+.backdrop{
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.modal{
+  background: #fff;
+  width: 50%;
+  height: 30%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  padding: 20px;
+}

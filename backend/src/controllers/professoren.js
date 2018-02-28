@@ -1,10 +1,15 @@
 import Professor from '../models/professoren';
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
 
 export const postProfessoren = (req, res, next) => {
   jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
     if(err === null) {
       const professor = new Professor(req.body);
+      console.log(req.file.path);
+      if (req.file != undefined){
+        professor.img = {data: fs.readFileSync(req.file.path), contentType: 'image/png'};
+      }
       professor.save(req.body, (err, doc) => {
         if(err === null){
           res.writeHead(200, {'Content-Type': 'text/html'});

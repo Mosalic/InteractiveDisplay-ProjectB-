@@ -4,11 +4,11 @@ import Login from './Login';
 import AdminArea from './AdminArea';
 
 class Admin extends Component {
-  componentWillMount(){
-    if(localStorage.getItem('JWTToken')){
-      this.props.history.push('/admin/admin-area');
-    }
-  }
+  // componentWillMount(){
+  //   if(localStorage.getItem('JWTToken')){
+  //     this.props.history.push('/admin/admin-area');
+  //   }
+  // }
 
   render() {
     return (
