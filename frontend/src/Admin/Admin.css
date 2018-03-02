@@ -140,9 +140,17 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 }
 
 .professor-information{
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .professor-heading{
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.professor-main div{
+  margin: 10px 0px;
+}
+
+.professor-main div span{
+  font-weight: 300;
 }
