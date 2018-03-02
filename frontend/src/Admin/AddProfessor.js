@@ -37,6 +37,9 @@ class AddProfessor extends Component {
     axios.post('http://localhost:3001/professoren', formData, {headers:{ Authorization: localStorage.getItem('JWTToken'), 'Content-Type': 'multipart/form-data'}})
     .then((response) => {
       console.log('Professor added');
+      if(response.status === 200){
+        this.props.close();
+      }
     })
     .catch((error) => {
       console.log('error', error);

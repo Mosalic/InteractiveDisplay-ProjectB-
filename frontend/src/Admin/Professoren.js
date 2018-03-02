@@ -49,8 +49,9 @@ class Professoren extends Component {
             <div className="professoren">
               {this.state.professoren.map((professor, index) =>
                 <div className="professor" key={index}>
-                  <div className="foto">
-                    <img src={professor.img ? `data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg')}/>
+                  <div className="professor-foto" style={{backgroundImage: `${professor.img ? `url(data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')})`: `url(${require('./dummy-image.jpeg')})`}`}}>
+                    {/* <div style={{height: '30px', width: '30px', background: `${professor.img ? `url(data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')})`: `url(${require('./dummy-image.jpeg')})`}`}}></div> */}
+                    {/* <img src={professor.img ? `data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg')}/> */}
                   </div>
                   <div className="professor-information">
                     <div className="professor-heading">
