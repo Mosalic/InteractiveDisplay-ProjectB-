@@ -44,7 +44,7 @@ class Professoren extends Component {
     return (
         <div>
           <div className="professoren-wrapper">
-            <h1>Professoren</h1>
+            {/* <h1>Professoren</h1> */}
             <button type="button" className="add" onClick={() => this.toggleAddProfessor()}>+</button>
             <div className="professoren">
               {this.state.professoren.map((professor, index) =>

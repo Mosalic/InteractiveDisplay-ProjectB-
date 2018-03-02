@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Professoren from './Professoren';
 
@@ -19,10 +19,15 @@ class AdminArea extends Component {
 
   render() {
     return (
-        <div className="main">
-          <Link to="/admin/admin-area/professoren">
-            <button>Professoren</button>
-          </Link>
+        <div className="admin-area">
+          <div className="admin-area__nav">
+            <NavLink activeClassName="active" to="/admin/admin-area/professoren">
+              Professoren
+            </NavLink>
+            <NavLink activeClassName="active" to="/admin/admin-area/stundenplaene">
+              Stundenpläne
+            </NavLink>
+          </div>
           <Route path="/admin/admin-area/professoren" component={Professoren} />
           {/* <button>Stundenplan hinzufügen</button> */}
         </div>

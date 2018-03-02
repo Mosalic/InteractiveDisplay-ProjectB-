@@ -24,7 +24,7 @@ class Login extends Component {
     })
     .then((response) => {
       localStorage.setItem('JWTToken', response.data.token)
-      this.props.history.push('/admin/admin-area');
+      this.props.history.push('/admin/admin-area/professoren');
     })
     .catch((error) => {
       console.log('error', error);

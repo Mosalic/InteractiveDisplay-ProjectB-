@@ -1,7 +1,30 @@
-.main{
+.admin-area{
   min-height: 100vh;
   width: 100%;
   background: #F3F4F6;
+}
+
+.admin-area__nav{
+  padding-top: 70px;
+  padding-bottom: 20px;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.admin-area__nav a{
+  margin: 0px 10px;
+  color: #0f0f0f;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.admin-area__nav a:hover{
+  border-bottom: 3px solid rgb(0, 150, 210);
+}
+
+.active{
+  border-bottom: 3px solid rgb(0, 150, 210);
 }
 
 .professoren-wrapper{
@@ -31,6 +54,7 @@
   text-align: center;
   font-weight: 300;
   cursor: pointer;
+  margin-bottom: 10px;
   align-self: flex-end;
 }
 
