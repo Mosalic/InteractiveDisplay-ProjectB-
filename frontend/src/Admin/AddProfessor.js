@@ -34,6 +34,7 @@ class AddProfessor extends Component {
     formData.append('email', this.state.email);
     formData.append('telefonnummer', this.state.telefonnummer);
     formData.append('sprechzeiten', this.state.sprechzeiten);
+    formData.append('id', this.props.nextProfessorId);
     axios.post('http://localhost:3001/professoren', formData, {headers:{ Authorization: localStorage.getItem('JWTToken'), 'Content-Type': 'multipart/form-data'}})
     .then((response) => {
       console.log('Professor added');
