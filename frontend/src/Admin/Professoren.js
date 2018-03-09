@@ -24,7 +24,7 @@ class Professoren extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:3001/professoren', {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+    axios.get('http://localhost:3001/professoren')
     .then((response) => {
       this.setState({
         professoren: response.data.professoren,

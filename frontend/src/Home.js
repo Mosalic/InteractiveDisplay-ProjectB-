@@ -15,9 +15,9 @@ class Home extends Component {
       <Header />
       <div className="main">
         <div className="wrapper">
-          <Route path={`${this.props.match.url}/lageplan`} component={Lageplan}/>
-          <Route path="/home/allgemeineInformationen" component={AllgemeineInformationen}/>
-          <Route path="/home/altbau" component={Altbau}/>
+          <Route exact path={`${this.props.match.url}/lageplan`} component={Lageplan}/>
+          <Route exact path="/home/allgemeineInformationen" component={AllgemeineInformationen}/>
+          <Route exact path="/home/altbau" component={Altbau}/>
             <Link to="/home/allgemeineInformationen">
                 <div className="button">
                     Allgemeine Informationen
