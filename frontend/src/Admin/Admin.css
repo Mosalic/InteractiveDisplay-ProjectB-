@@ -229,6 +229,14 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
   top: 10px;
 }
 
+.professor__edit button{
+  border: none;
+  padding: 0px;
+  font-size: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
 .icn-delete{
   color: red;
   margin-left: 10px;

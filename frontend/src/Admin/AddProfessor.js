@@ -3,8 +3,8 @@ import axios from 'axios';
 import './Admin.css'
 
 class AddProfessor extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
       name: '',
@@ -18,6 +18,21 @@ class AddProfessor extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props !== nextProps && Object.keys(nextProps.professor).length !== 0){
+      this.setState({
+        name: nextProps.professor.name,
+        funktion: nextProps.professor.funktion,
+        raum: nextProps.professor.raum,
+        email: nextProps.professor.email,
+        telefonnummer: nextProps.professor.telefonnummer,
+        sprechzeiten: nextProps.professor.sprechzeiten,
+        imgUrl: nextProps.professor.imgUrl,
+        base64: nextProps.professor.img ? `data:image/png;base64,${new Buffer(nextProps.professor.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg'),
+      });
+    }
+  }
+
   handleChange(e){
     this.setState({
       [e.target.name]: e.target.value,
@@ -25,7 +40,14 @@ class AddProfessor extends Component {
   }
 
   save(){
-    console.log(this.state.imgUrl);
+    if(Object.keys(this.props.professor).length !== 0){
+      this.update();
+    } else {
+      this.create();
+    }
+  }
+
+  create(){
     let formData = new FormData();
     formData.append('img', this.state.imgUrl);
     formData.append('name', this.state.name);
@@ -38,6 +60,28 @@ class AddProfessor extends Component {
     axios.post('http://localhost:3001/professoren', formData, {headers:{ Authorization: localStorage.getItem('JWTToken'), 'Content-Type': 'multipart/form-data'}})
     .then((response) => {
       console.log('Professor added');
+      if(response.status === 200){
+        this.props.close();
+      }
+    })
+    .catch((error) => {
+      console.log('error', error);
+    })
+  }
+
+  update(){
+    let formData = new FormData();
+    formData.append('img', this.state.imgUrl);
+    formData.append('name', this.state.name);
+    formData.append('funktion', this.state.funktion);
+    formData.append('raum', this.state.raum);
+    formData.append('email', this.state.email);
+    formData.append('telefonnummer', this.state.telefonnummer);
+    formData.append('sprechzeiten', this.state.sprechzeiten);
+    formData.append('id', this.props.professor.id);
+    axios.put(`http://localhost:3001/professoren/${this.props.professor.id}`, formData, {headers:{ Authorization: localStorage.getItem('JWTToken'), 'Content-Type': 'multipart/form-data'}})
+    .then((response) => {
+      console.log('Professor updated');
       if(response.status === 200){
         this.props.close();
       }

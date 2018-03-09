@@ -11,7 +11,7 @@ professoren.route('/')
   .post(upload.single("img"), postProfessoren);
 
 professoren.route('/:id')
-  .put(putProfessoren)
+  .put(upload.single("img"), putProfessoren)
   .get(getProfessorenById)
   .delete(deleteProfessoren);
 

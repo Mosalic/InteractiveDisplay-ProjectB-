@@ -35,7 +35,7 @@ export const getProfessoren = (req, res, next) => {
 };
 
 export const putProfessoren = (req, res, next) => {
-  // console.log(req.body);
+  console.log(req.body);
   jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
     if(err === null) {
       Professor.findOneAndUpdate(

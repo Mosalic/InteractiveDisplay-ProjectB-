@@ -13,6 +13,7 @@ class Professoren extends Component {
       professoren: [],
       addProfessor: false,
       nextProfessorId: null,
+      editProfessor: {},
     }
   }
 
@@ -46,9 +47,17 @@ class Professoren extends Component {
     })
   }
 
+  editProfessor(professor){
+    this.setState({
+      addProfessor: true,
+      editProfessor: professor,
+    })
+  }
+
   toggleAddProfessor(){
     this.setState({
-      addProfessor: !this.state.addProfessor
+      addProfessor: !this.state.addProfessor,
+      editProfessor: {},
     })
   }
 
@@ -62,14 +71,14 @@ class Professoren extends Component {
               {this.state.professoren.map((professor, index) =>
                 <div className="professor" key={index}>
                   <div className="professor__edit">
-                    <FontAwesome name="edit" className="icn-edit"/>
-                    <span onClick={(id) => this.deleteProfessor(professor.id)}>
-                    <FontAwesome name="trash" className="icn-delete"/>
-                    </span>
+                    <button onClick={() => this.editProfessor(professor)}>
+                      <FontAwesome name="edit" className="icn-edit"/>
+                    </button>
+                    <button onClick={(id) => this.deleteProfessor(professor.id)}>
+                      <FontAwesome name="trash" className="icn-delete"/>
+                    </button>
                   </div>
                   <div className="professor-foto" style={{backgroundImage: `${professor.img ? `url(data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')})`: `url(${require('./dummy-image.jpeg')})`}`}}>
-                    {/* <div style={{height: '30px', width: '30px', background: `${professor.img ? `url(data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')})`: `url(${require('./dummy-image.jpeg')})`}`}}></div> */}
-                    {/* <img src={professor.img ? `data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg')}/> */}
                   </div>
                   <div className="professor-information">
                     <div className="professor-heading">
@@ -86,14 +95,12 @@ class Professoren extends Component {
                 </div>
               )}
             </div>
-            <AddProfessor nextProfessorId={this.state.nextProfessorId} show={this.state.addProfessor} close={() => this.toggleAddProfessor()}/>
-            {/* <label>Name</label>
-            <input name="name" type="text" value={this.state.name} onChange={(e) => this.handleChange(e)} />
-            <label>Büro</label>
-            <input name="buero" type="text" value={this.state.buero} onChange={(e) => this.handleChange(e)} />
-            <label>Telefonnummer</label>
-            <input name="telefonnummer" type="text" value={this.state.telefonnummer} onChange={(e) => this.handleChange(e)} />
-            <button onClick={() => this.addProfessor()}>Professor hinzufügen</button> */}
+            <AddProfessor
+              nextProfessorId={this.state.nextProfessorId}
+              show={this.state.addProfessor}
+              close={() => this.toggleAddProfessor()}
+              professor={this.state.editProfessor}
+            />
           </div>
         </div>
     );
