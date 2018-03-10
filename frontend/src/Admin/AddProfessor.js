@@ -19,17 +19,30 @@ class AddProfessor extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props !== nextProps && Object.keys(nextProps.professor).length !== 0){
-      this.setState({
-        name: nextProps.professor.name,
-        funktion: nextProps.professor.funktion,
-        raum: nextProps.professor.raum,
-        email: nextProps.professor.email,
-        telefonnummer: nextProps.professor.telefonnummer,
-        sprechzeiten: nextProps.professor.sprechzeiten,
-        imgUrl: nextProps.professor.imgUrl,
-        base64: nextProps.professor.img ? `data:image/png;base64,${new Buffer(nextProps.professor.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg'),
-      });
+    if(this.props !== nextProps){
+      if(Object.keys(nextProps.professor).length !== 0){
+        this.setState({
+          name: nextProps.professor.name,
+          funktion: nextProps.professor.funktion,
+          raum: nextProps.professor.raum,
+          email: nextProps.professor.email,
+          telefonnummer: nextProps.professor.telefonnummer,
+          sprechzeiten: nextProps.professor.sprechzeiten,
+          imgUrl: nextProps.professor.imgUrl,
+          base64: nextProps.professor.img ? `data:image/png;base64,${new Buffer(nextProps.professor.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg'),
+        });
+      } else {
+        this.setState({
+          name: '',
+          funktion: '',
+          raum: '',
+          email: '',
+          telefonnummer: '',
+          sprechzeiten: '',
+          imgUrl: '',
+          base64: require('./dummy-image.jpeg'),
+        });
+      }
     }
   }
 
@@ -104,6 +117,21 @@ class AddProfessor extends Component {
       //   console.log('RESULT', reader.result)
       }.bind(this)
       reader.readAsDataURL(file);
+
+      if(Object.keys(this.props.professor).length !== 0){
+        let formData = new FormData();
+        formData.append('img', element.target.files[0]);
+        axios.put(`http://localhost:3001/professoren/${this.props.professor.id}/image`, formData, {headers:{ Authorization: localStorage.getItem('JWTToken'), 'Content-Type': 'multipart/form-data'}})
+        .then((response) => {
+          console.log('Picture updated');
+          if(response.status === 200){
+
+          }
+        })
+        .catch((error) => {
+          console.log('error', error);
+        })
+      }
   }
 
   render() {
@@ -118,7 +146,7 @@ class AddProfessor extends Component {
             <form>
               <div className="foto">
                 <input id="foto" name="foto" type="file" onChange={(event) => this.encodeImageFileAsURL(event)} accept="image/x-png,image/gif,image/jpeg" />
-                <label htmlFor="foto"><img src={this.state.base64}/></label>
+                <label htmlFor="foto"><div className="professor-foto" style={{backgroundImage: `url(${this.state.base64})`}}></div></label>
               </div>
               <div className="input-fields">
                 <input name="name" type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.handleChange(e)} />

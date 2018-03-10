@@ -87,3 +87,29 @@ export const deleteProfessoren = (req, res, next) => {
     }
   });
 };
+
+export const putProfessorenImage = (req, res, next) => {
+  console.log(req.body);
+  jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
+    if(err === null) {
+      // if (req.file != undefined){
+      //   professor.img = {data: fs.readFileSync(req.file.path), contentType: 'image/png'};
+      // }
+      Professor.findOneAndUpdate(
+        { "id" : req.params.id },
+        { img: {data: fs.readFileSync(req.file.path), contentType: 'image/png'} },
+      (err, doc) => {
+        if(err === null){
+          res.writeHead(200, {'Content-Type': 'text/html'});
+          res.end("updated");
+        } else {
+          res.writeHead(500, {'Content-Type': 'text/html'});
+          res.end(`${err}`);
+        }
+      });
+    } else {
+      res.writeHead(400, {'Content-Type': 'text/html'});
+      res.end("forbidden");
+    }
+  });
+};
