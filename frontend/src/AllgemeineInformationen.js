@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ProfessorenListe from './ProfessorenListe';
+
+
+import Lageplan from './Lageplan/index';
+
+import Header from './Header/Header';
+import Altbau from './Lageplan/Altbau';
+
 
 class AllgemeineInformationen extends Component {
   render() {
     return (
         <div className="wrapper">
+        
+        <Route exact path="/home/allgemeineInformationen/professorenListe" component={ProfessorenListe}/>
+           
             <div className="button">
                 Speiseplan
             </div>
-            <div className="button">
-                Professoren
-            </div>
+            <Link to="/home/allgemeineInformationen/professorenListe">
+                <div className="button">
+                    Professoren
+                </div>
+            </Link>
             <div className="button">
                 Stundenplan
             </div>
             <div className="button">
-                Spiele
+                Veranstaltungen
             </div>
         </div>
     );
