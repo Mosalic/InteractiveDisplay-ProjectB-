@@ -229,6 +229,14 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
   top: 10px;
 }
 
+.professor__edit button{
+  border: none;
+  padding: 0px;
+  font-size: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
 .icn-delete{
   color: red;
   margin-left: 10px;
@@ -236,4 +244,27 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 
 .icn-edit{
   color: rgb(0, 150, 210);
+}
+
+.professor-main input{
+  border: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0 0 0 3px;
+  width: 100%;
+  padding: 5px;
+}
+
+.professor-main input:hover{
+  background: #e8e8e8;
+}
+
+.professor-main input:focus{
+  background: #fff;
+}
+
+.professor__row{
+  display: flex;
+  align-items: center;
 }

@@ -1,6 +1,6 @@
 import express, {Router} from 'express';
 import multer from 'multer';
-import { getProfessoren, postProfessoren, putProfessoren, getProfessorenById, deleteProfessoren } from '../controllers/professoren';
+import { getProfessoren, postProfessoren, putProfessoren, getProfessorenById, deleteProfessoren, putProfessorenImage } from '../controllers/professoren';
 
 var upload = multer({ dest: './uploads/' })
 
@@ -14,5 +14,8 @@ professoren.route('/:id')
   .put(putProfessoren)
   .get(getProfessorenById)
   .delete(deleteProfessoren);
+
+professoren.route('/:id/image')
+  .put(upload.single("img"), putProfessorenImage);
 
 export default professoren;
