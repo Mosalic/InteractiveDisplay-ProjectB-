@@ -6,6 +6,7 @@ import Lageplan from './Lageplan/index';
 import AllgemeineInformationen from './AllgemeineInformationen';
 import Header from './Header/Header';
 import Altbau from './Lageplan/Altbau';
+import Spiele from './Spiele';
 
 class Home extends Component {
   render() {
@@ -18,6 +19,7 @@ class Home extends Component {
           <Route path={`${this.props.match.url}/lageplan`} component={Lageplan}/>
           <Route path="/home/allgemeineInformationen" component={AllgemeineInformationen}/>
           <Route path="/home/altbau" component={Altbau}/>
+          <Route path="/home/spiele" component={Spiele}/>
             <Link to="/home/allgemeineInformationen">
                 <div className="button">
                     Allgemeine Informationen
@@ -31,9 +33,12 @@ class Home extends Component {
             <div className="button">
                 Schwarzes Brett
             </div>
-            <div className="button">
-                Spiele
-            </div>
+            <Link to="/home/spiele">
+                <div className="button">
+                    Spiele
+
+                </div>
+            </Link>
         </div>
       </div>
     </div>
