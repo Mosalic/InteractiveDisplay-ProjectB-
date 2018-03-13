@@ -6,6 +6,7 @@ class Spiele extends Component{
             /*Hier normal HTML programmieren*/
             <div>
                 <h2>Hallo</h2>
+                <button> Suchen </button>
             </div>
         );
     }

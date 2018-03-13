@@ -7,12 +7,14 @@ import AllgemeineInformationen from './AllgemeineInformationen';
 import Header from './Header/Header';
 import Altbau from './Lageplan/Altbau';
 import Spiele from './Spiele';
+import ProfessorenListe from './ProfessorenListe';
+
 
 class Home extends Component {
   render() {
     console.log(this.props);
     return (
-        <div className="App">
+    <div className="App">
       <Header />
       <div className="main">
         <div className="wrapper">
@@ -21,7 +23,8 @@ class Home extends Component {
           <Route exact path="/home/allgemeineInformationen" component={AllgemeineInformationen}/>
           <Route exact path="/home/altbau" component={Altbau}/>
           <Route exact path="/home/spiele" component={Spiele}/>
-
+          <Route exact path="/home/professorenListe" component={ProfessorenListe}/>
+        
         
             <Link to="/home/allgemeineInformationen">
                 <div className="button">
@@ -36,9 +39,9 @@ class Home extends Component {
                 <div className="button">
                     Schwarzes Brett
                 </div>
-            <Link to="/home/spiele">
+            <Link to="/home/professorenListe">
                 <div className="button">
-                    Spiele
+                    Spiele/TestProfessoren
                 </div>
             </Link>
         </div>
