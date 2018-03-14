@@ -20,12 +20,12 @@ class Home extends Component {
         <div className="wrapper">
 
           <Route exact path={`${this.props.match.url}/lageplan`} component={Lageplan}/>
-          <Route exact path="/home/allgemeineInformationen" component={AllgemeineInformationen}/>
+          <Route path="/home/allgemeineInformationen" component={AllgemeineInformationen}/>
           <Route exact path="/home/altbau" component={Altbau}/>
           <Route exact path="/home/spiele" component={Spiele}/>
           <Route exact path="/home/professorenListe" component={ProfessorenListe}/>
-        
-        
+
+
             <Link to="/home/allgemeineInformationen">
                 <div className="button">
                     Allgemeine Informationen

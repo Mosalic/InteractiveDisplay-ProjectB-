@@ -13,20 +13,20 @@ import Altbau from './Lageplan/Altbau';
 class AllgemeineInformationen extends Component {
   render() {
     return (
-      
+
         <div className="wrapper">
-        
-            <Route exact path="../allgemeineInformationen/professorenListe" component={ProfessorenListe}/>
-           
+
+            <Route exact path="/home/allgemeineInformationen/professorenListe" component={ProfessorenListe}/>
+
             <div className="button">
                 Speiseplan
             </div>
-            <NavLink activeClassName="active" to="../allgemeineInformationen/professorenListe">
+            <Link to="/home/allgemeineInformationen/professorenListe">
                 <div className="button">
                     Professoren
                 </div>
-            </NavLink>
-            
+            </Link>
+
             <div className="button">
                 Stundenplan
             </div>
@@ -34,8 +34,8 @@ class AllgemeineInformationen extends Component {
                 Veranstaltungen
             </div>
         </div>
-         
-    
+
+
     );
   }
 }
