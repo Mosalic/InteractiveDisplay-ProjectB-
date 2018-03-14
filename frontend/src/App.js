@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Home from './Home';
+import Main from './Main';
 import './App.css';
 import Admin from './Admin';
 
@@ -9,7 +9,7 @@ class App extends Component {
     return (
         <Router>
           <div>
-            <Route path="/home" component={Home}/>
+            <Route path="/home" component={Main}/>
             <Route path="/admin" component={Admin}/>
           </div>
         </Router>
