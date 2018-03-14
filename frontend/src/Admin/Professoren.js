@@ -90,10 +90,6 @@ class Professoren extends Component {
                       <div>Email: <span>{professor.email}</span></div>
                       <div>Telefonnummer: <span>{professor.telefonnummer}</span></div>
                       <div>Sprechzeiten: <span>{professor.sprechzeiten}</span></div>
-                      {/* <div className="professor__row">Raum: <input value={professor.raum} type="text" onChange={() => this.handleChange()}/></div>
-                      <div className="professor__row">Email: <input value={professor.email} type="text" onChange={() => this.handleChange()}/></div>
-                      <div className="professor__row">Telefonnummer: <input value={professor.telefonnummer} type="text" onChange={() => this.handleChange()}/></div>
-                      <div className="professor__row">Sprechzeiten: <input value={professor.sprechzeiten} type="text" onChange={() => this.handleChange()}/></div> */}
                     </div>
                   </div>
                 </div>

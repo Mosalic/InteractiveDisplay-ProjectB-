@@ -84,15 +84,6 @@ class AddProfessor extends Component {
   }
 
   update(){
-    // let formData = new FormData();
-    // formData.append('img', this.state.imgUrl);
-    // formData.append('name', this.state.name);
-    // formData.append('funktion', this.state.funktion);
-    // formData.append('raum', this.state.raum);
-    // formData.append('email', this.state.email);
-    // formData.append('telefonnummer', this.state.telefonnummer);
-    // formData.append('sprechzeiten', this.state.sprechzeiten);
-    // formData.append('id', this.props.professor.id);
     axios.put(`http://localhost:3001/professoren/${this.props.professor.id}`, {
       name: this.state.name,
       funktion: this.state.funktion,
@@ -138,7 +129,6 @@ class AddProfessor extends Component {
           this.setState({
               base64: reader.result,
           })
-      //   console.log('RESULT', reader.result)
       }.bind(this)
       reader.readAsDataURL(file);
   }
