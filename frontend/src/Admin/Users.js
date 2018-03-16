@@ -14,6 +14,7 @@ class Users extends Component {
       password: '',
       email: '',
       role: '',
+      addUserVisible: false,
     }
   }
 
@@ -40,6 +41,7 @@ class Users extends Component {
   editUser(id, username, password, email, role){
     this.setState({
       editUser: id,
+      addUserVisible: false,
       username,
       password,
       email,
@@ -86,11 +88,45 @@ class Users extends Component {
     })
   }
 
+  addUser(){
+    this.setState({
+      addUserVisible: true,
+      username: '',
+      password: '',
+      email: '',
+      role: '',
+    });
+  }
+
+  cancelAddUser(){
+    this.setState({
+      addUserVisible: false,
+    });
+  }
+
+  saveNewUser(){
+    axios.post(`http://localhost:3001/admin/user`, {
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      role: this.state.role,
+      id: this.state.users[this.state.users.length - 1].id + 1
+    }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+    .then((response) => {
+      this.setState({
+        editUser: '',
+      })
+    })
+    .catch((error) => {
+      console.log('error', error);
+    })
+  }
+
   render() {
     return (
         <div>
           <div className="userlist">
-            {/* <button type="button" className="add" onClick={() => this.toggleAddProfessor()}>+</button> */}
+            <button type="button" className="add" onClick={() => this.addUser()}>+</button>
             <div className="userlist__table">
               <div className="userlist__table__header">
                 <div>Username</div>
@@ -123,6 +159,16 @@ class Users extends Component {
                   );
                 }
               })}
+              {this.state.addUserVisible &&
+                <div className="userlist__table__row edit">
+                  <input value={this.state.username} name="username" onChange={(e) => this.handleChange(e)}/>
+                  <input value={this.state.password} name="password" onChange={(e) => this.handleChange(e)}/>
+                  <input value={this.state.email} name="email" onChange={(e) => this.handleChange(e)}/>
+                  <input value={this.state.role} name="role" onChange={(e) => this.handleChange(e)}/>
+                  <div onClick={() => this.saveNewUser()}><FontAwesome name="check-circle" className="icn-accept" /></div>
+                  <div onClick={() => this.cancelAddUser()}><FontAwesome name="times-circle" className="icn-delete"/></div>
+                </div>
+              }
             </div>
           </div>
         </div>
