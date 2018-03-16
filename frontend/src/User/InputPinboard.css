@@ -25,6 +25,8 @@
 .pinboard-foto{
   height: 200px;
   width: 200px;
+    margin: 10px;
+    margin-bottom: 15px;
   background-size: cover;
   flex: 0 0 auto;
   background-position: center;
