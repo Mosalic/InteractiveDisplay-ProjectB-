@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { NavLink, Route } from 'react-router-dom';
 
 
-import ProfessorenListe from './ProfessorenListe';
+import ProfessorenListe from './Professoren/ProfessorenListe';
 import Lageplan from './Lageplan/index';
 import Header from './Header/Header';
 import Altbau from './Lageplan/Altbau';
