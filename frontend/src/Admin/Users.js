@@ -9,7 +9,10 @@ class Users extends Component {
 
     this.state = {
       users: [],
-      editUser: ''
+      editUser: '',
+      username: '',
+      email: '',
+      role: '',
     }
   }
 
@@ -33,9 +36,12 @@ class Users extends Component {
     })
   }
 
-  editUser(userEmail){
+  editUser(id, username, email, role){
     this.setState({
-      editUser: userEmail,
+      editUser: id,
+      username,
+      email,
+      role,
     });
   }
 
@@ -51,10 +57,26 @@ class Users extends Component {
     });
   }
 
-  deleteUser(email){
-    axios.delete(`http://localhost:3001/admin/user/${email}`, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+  deleteUser(id){
+    axios.delete(`http://localhost:3001/admin/user/${id}`, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
     .then((response) => {
       console.log('deleted');
+    })
+    .catch((error) => {
+      console.log('error', error);
+    })
+  }
+
+  saveChangedUser(id){
+    axios.put(`http://localhost:3001/admin/user/${id}`, {
+      username: this.state.username,
+      email: this.state.email,
+      role: this.state.role,
+    }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+    .then((response) => {
+      this.setState({
+        editUser: '',
+      })
     })
     .catch((error) => {
       console.log('error', error);
@@ -73,13 +95,13 @@ class Users extends Component {
                 <div>Role</div>
               </div>
               {this.state.users.map((user, index) => {
-                if(this.state.editUser === user.email){
+                if(this.state.editUser === user.id){
                   return(
                     <div className="userlist__table__row edit" key={index}>
-                      <input defaultValue={user.username} value={this.state.username} onChange={(e) => this.handleChange(e)}/>
-                      <input defaultValue={user.email} value={this.state.email} onChange={(e) => this.handleChange(e)}/>
-                      <input defaultValue={user.role} value={this.state.role} onChange={(e) => this.handleChange(e)}/>
-                      <div><FontAwesome name="check-circle" className="icn-accept" /></div>
+                      <input value={this.state.username} name="username" onChange={(e) => this.handleChange(e)}/>
+                      <input value={this.state.email} name="email" onChange={(e) => this.handleChange(e)}/>
+                      <input value={this.state.role} name="role" onChange={(e) => this.handleChange(e)}/>
+                      <div onClick={() => this.saveChangedUser(user.id)}><FontAwesome name="check-circle" className="icn-accept" /></div>
                       <div onClick={() => this.cancelEdit()}><FontAwesome name="times-circle" className="icn-delete"/></div>
                     </div>
                   );
@@ -89,8 +111,8 @@ class Users extends Component {
                       <div>{user.username}</div>
                       <div>{user.email}</div>
                       <div>{user.role}</div>
-                      <button onClick={() => this.editUser(user.email)}><FontAwesome name="pencil-alt" className="icn-edit"/></button>
-                      <button onClick={() => this.deleteUser(user.email)}><FontAwesome name="trash" className="icn-delete"/></button>
+                      <button onClick={() => this.editUser(user.id, user.username, user.email, user.role)}><FontAwesome name="pencil-alt" className="icn-edit"/></button>
+                      <button onClick={() => this.deleteUser(user.id)}><FontAwesome name="trash" className="icn-delete"/></button>
                     </div>
                   );
                 }

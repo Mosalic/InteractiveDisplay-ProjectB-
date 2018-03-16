@@ -1,5 +1,5 @@
 import express, {Router} from 'express';
-import { getUser, postUser, getUsers, deleteUser } from '../controllers/users';
+import { getUser, postUser, getUsers, deleteUser, updateUser } from '../controllers/users';
 
 const admin = Router();
 
@@ -10,7 +10,8 @@ admin.route('/user')
   .post(postUser)
   .get(getUsers);
 
-admin.route('/user/:email')
-  .delete(deleteUser);
+admin.route('/user/:id')
+  .delete(deleteUser)
+  .put(updateUser);
 
 export default admin;

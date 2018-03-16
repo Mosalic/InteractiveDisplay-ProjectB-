@@ -5,6 +5,7 @@ let userSchema = new Schema({
   password: String,
   email: String,
   role: Number,
+  id: Number,
 })
 
 export default mongoose.model('user', userSchema);
