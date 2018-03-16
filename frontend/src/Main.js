@@ -8,7 +8,7 @@ import AllgemeineInformationen from './AllgemeineInformationen';
 import Header from './Header/Header';
 import Altbau from './Lageplan/Altbau';
 import Spiele from './Spiele';
-import ProfessorenListe from './ProfessorenListe';
+import ProfessorenListe from './Professoren/ProfessorenListe';
 
 
 class Main extends Component {
