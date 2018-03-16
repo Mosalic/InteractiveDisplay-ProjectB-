@@ -27,15 +27,7 @@ class Users extends Component {
 
   // get all users
   componentDidMount(){
-    axios.get('http://localhost:3001/admin/user',  {headers:{ Authorization: localStorage.getItem('JWTToken')}})
-    .then((response) => {
-      this.setState({
-        users: response.data.users,
-      });
-    })
-    .catch((error) => {
-      console.log('error', error);
-    })
+    this.getUsers();
   }
 
   editUser(id, username, password, email, role){
@@ -64,7 +56,7 @@ class Users extends Component {
   deleteUser(id){
     axios.delete(`http://localhost:3001/admin/user/${id}`, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
     .then((response) => {
-      console.log('deleted');
+      this.getUsers();
     })
     .catch((error) => {
       console.log('error', error);
@@ -82,6 +74,7 @@ class Users extends Component {
       this.setState({
         editUser: '',
       })
+      this.getUsers();
     })
     .catch((error) => {
       console.log('error', error);
@@ -114,8 +107,21 @@ class Users extends Component {
     }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
     .then((response) => {
       this.setState({
-        editUser: '',
-      })
+        addUserVisible: false,
+      });
+      this.getUsers();
+    })
+    .catch((error) => {
+      console.log('error', error);
+    })
+  }
+
+  getUsers(){
+    axios.get('http://localhost:3001/admin/user',  {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+    .then((response) => {
+      this.setState({
+        users: response.data.users,
+      });
     })
     .catch((error) => {
       console.log('error', error);
@@ -161,10 +167,10 @@ class Users extends Component {
               })}
               {this.state.addUserVisible &&
                 <div className="userlist__table__row edit">
-                  <input value={this.state.username} name="username" onChange={(e) => this.handleChange(e)}/>
-                  <input value={this.state.password} name="password" onChange={(e) => this.handleChange(e)}/>
-                  <input value={this.state.email} name="email" onChange={(e) => this.handleChange(e)}/>
-                  <input value={this.state.role} name="role" onChange={(e) => this.handleChange(e)}/>
+                  <input value={this.state.username} placeholder="Username" name="username" onChange={(e) => this.handleChange(e)}/>
+                  <input value={this.state.password} placeholder="Password" name="password" onChange={(e) => this.handleChange(e)}/>
+                  <input value={this.state.email} placeholder="E-Mail" name="email" onChange={(e) => this.handleChange(e)}/>
+                  <input value={this.state.role} placeholder="Role" name="role" onChange={(e) => this.handleChange(e)}/>
                   <div onClick={() => this.saveNewUser()}><FontAwesome name="check-circle" className="icn-accept" /></div>
                   <div onClick={() => this.cancelAddUser()}><FontAwesome name="times-circle" className="icn-delete"/></div>
                 </div>
