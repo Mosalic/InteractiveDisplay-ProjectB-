@@ -11,6 +11,7 @@ class Users extends Component {
       users: [],
       editUser: '',
       username: '',
+      password: '',
       email: '',
       role: '',
     }
@@ -36,10 +37,11 @@ class Users extends Component {
     })
   }
 
-  editUser(id, username, email, role){
+  editUser(id, username, password, email, role){
     this.setState({
       editUser: id,
       username,
+      password,
       email,
       role,
     });
@@ -70,6 +72,7 @@ class Users extends Component {
   saveChangedUser(id){
     axios.put(`http://localhost:3001/admin/user/${id}`, {
       username: this.state.username,
+      password: this.state.password,
       email: this.state.email,
       role: this.state.role,
     }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
@@ -91,6 +94,7 @@ class Users extends Component {
             <div className="userlist__table">
               <div className="userlist__table__header">
                 <div>Username</div>
+                <div>Password</div>
                 <div>E-Mail</div>
                 <div>Role</div>
               </div>
@@ -99,6 +103,7 @@ class Users extends Component {
                   return(
                     <div className="userlist__table__row edit" key={index}>
                       <input value={this.state.username} name="username" onChange={(e) => this.handleChange(e)}/>
+                      <input value={this.state.password} name="password" onChange={(e) => this.handleChange(e)}/>
                       <input value={this.state.email} name="email" onChange={(e) => this.handleChange(e)}/>
                       <input value={this.state.role} name="role" onChange={(e) => this.handleChange(e)}/>
                       <div onClick={() => this.saveChangedUser(user.id)}><FontAwesome name="check-circle" className="icn-accept" /></div>
@@ -109,9 +114,10 @@ class Users extends Component {
                   return(
                     <div className="userlist__table__row" key={index}>
                       <div>{user.username}</div>
+                      <div>{user.password}</div>
                       <div>{user.email}</div>
                       <div>{user.role}</div>
-                      <button onClick={() => this.editUser(user.id, user.username, user.email, user.role)}><FontAwesome name="pencil-alt" className="icn-edit"/></button>
+                      <button onClick={() => this.editUser(user.id, user.username, user.password, user.email, user.role)}><FontAwesome name="pencil-alt" className="icn-edit"/></button>
                       <button onClick={() => this.deleteUser(user.id)}><FontAwesome name="trash" className="icn-delete"/></button>
                     </div>
                   );
