@@ -51,11 +51,21 @@ class Users extends Component {
     });
   }
 
+  deleteUser(email){
+    axios.delete(`http://localhost:3001/admin/user/${email}`, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+    .then((response) => {
+      console.log('deleted');
+    })
+    .catch((error) => {
+      console.log('error', error);
+    })
+  }
+
   render() {
     return (
         <div>
           <div className="userlist">
-            <button type="button" className="add" onClick={() => this.toggleAddProfessor()}>+</button>
+            {/* <button type="button" className="add" onClick={() => this.toggleAddProfessor()}>+</button> */}
             <div className="userlist__table">
               <div className="userlist__table__header">
                 <div>Username</div>
@@ -80,7 +90,7 @@ class Users extends Component {
                       <div>{user.email}</div>
                       <div>{user.role}</div>
                       <button onClick={() => this.editUser(user.email)}><FontAwesome name="pencil-alt" className="icn-edit"/></button>
-                      <button><FontAwesome name="trash" className="icn-delete"/></button>
+                      <button onClick={() => this.deleteUser(user.email)}><FontAwesome name="trash" className="icn-delete"/></button>
                     </div>
                   );
                 }
