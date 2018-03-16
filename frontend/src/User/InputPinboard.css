@@ -1,0 +1,48 @@
+.pinboard-input-wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 150, 210);
+}
+
+.pinboard-input{
+    width: 70%;
+    margin: 5%;
+    padding: 50px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.foto{
+  display: flex;
+  flex-direction: column;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+}
+
+.pinboard-foto{
+  height: 200px;
+  width: 200px;
+  background-size: cover;
+  flex: 0 0 auto;
+  background-position: center;
+}
+
+.input-fields{
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-upload{
+    width: 30%;
+  border: none;
+  background: rgb(0, 150, 210);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+}
+
