@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Professoren from './Professoren';
+import Users from './Users';
 
 class AdminArea extends Component {
 
@@ -28,8 +29,12 @@ class AdminArea extends Component {
             <NavLink activeClassName="active" to="/admin/admin-area/stundenplaene">
               Stundenpläne
             </NavLink>
+            <NavLink activeClassName="active" to="/admin/admin-area/users">
+              Users
+            </NavLink>
           </div>
           <Route path="/admin/admin-area/professoren" component={Professoren} />
+          <Route path="/admin/admin-area/users" component={Users} />
           {/* <button>Stundenplan hinzufügen</button> */}
         </div>
     );
