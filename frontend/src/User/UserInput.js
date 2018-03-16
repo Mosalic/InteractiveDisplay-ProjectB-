@@ -53,6 +53,7 @@ class UserInput extends Component {
                     <label htmlFor="foto"><div className="pinboard-foto" style={{backgroundImage: `url(${this.state.base64})`}}></div></label>
                   </div>
                   <div className="input-fields">
+                    <input name="name" type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.handleChange(e)} />
                     <input name="infos" type="text" placeholder="zusätzliche Informationen" value={this.state.name} onChange={(e) => this.handleChange(e)} />
 
                   </div>
