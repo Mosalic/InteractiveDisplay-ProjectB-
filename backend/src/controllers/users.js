@@ -49,3 +49,24 @@ export const postUser = (req, res, next) => {
     }
   });
 }
+
+export const getUsers = (req, res, next) => {
+  jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
+    if(err === null) {
+      if(decoded.role === 1){
+        User.find((err, doc) => {
+          if(err === null){
+            res.json({users: doc});
+            res.end("found");
+          }
+        });
+      } else {
+        res.writeHead(400, {'Content-Type': 'text/html'});
+        res.end("forbidden");
+      }
+    } else {
+      res.writeHead(400, {'Content-Type': 'text/html'});
+      res.end("forbidden");
+    }
+  });
+}
