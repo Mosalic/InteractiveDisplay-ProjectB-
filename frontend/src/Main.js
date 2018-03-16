@@ -22,10 +22,10 @@ class Main extends Component {
 
           <Route exact path={this.props.match.url} component={Home} />
           <Route exact path={`${this.props.match.url}/lageplan`} component={Lageplan}/>
-          <Route path="/home/allgemeineInformationen" component={AllgemeineInformationen}/>
-          <Route exact path="/home/altbau" component={Altbau}/>
-          <Route exact path="/home/spiele" component={Spiele}/>
-          <Route exact path="/home/professorenListe" component={ProfessorenListe}/>
+          <Route path={`${this.props.match.url}/allgemeineInformationen`} component={AllgemeineInformationen}/>
+          <Route exact path={`${this.props.match.url}/altbau`} component={Altbau}/>
+          <Route exact path={`${this.props.match.url}/spiele`} component={Spiele}/>
+          <Route exact path={`${this.props.match.url}/professorenListe`} component={ProfessorenListe}/>
 
         </div>
       </div>
