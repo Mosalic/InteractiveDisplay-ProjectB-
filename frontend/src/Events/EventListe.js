@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import './List.css'
+import '../Professoren/List.css'
 import axios from 'axios';
-import AddProfessor from '../Admin/AddProfessor';
+import AddProfessor from '../Admin/Events';
 import FontAwesome from 'react-fontawesome';
 
-class ProfessorenListe extends Component{
+class EventListe extends Component{
  constructor(){
     super();
 
     this.state = {
-      professoren: [],
-      addProfessor: false,
-      nextProfessorId: null,
+      events: [],
+      addEvent: false,
+      nextEventId: null,
       /*editProfessor: {},*/
     }
   }
@@ -22,18 +22,18 @@ class ProfessorenListe extends Component{
     }
   }*/
 
-  componentDidMount(){
-    axios.get('http://localhost:3001/professoren')
+  /*componentDidMount(){
+    axios.get('http://localhost:3001/events')
     .then((response) => {
       this.setState({
-        professoren: response.data.professoren,
-        nextProfessorId: response.data.professoren[response.data.professoren.length - 1].id + 1,
+        events: response.data.events,
+        nextEventId: response.data.events[response.data.events.length - 1].id + 1,
       });
     })
     .catch((error) => {
       console.log('error', error);
     })
-  }
+  }*/
 
 
   /*editProfessor(professor){
@@ -53,11 +53,12 @@ class ProfessorenListe extends Component{
   render() {
     return (
         <div>
+        <h1>Event Liste</h1>
           <div className="professoren-wrapper">
             
            
             <div className="professoren">
-              {this.state.professoren.map((professor, index) =>
+              {this.state.events.map((event, index) =>
                 <div className="professor" key={index}>
                     
                  {/* <div className="professor__edit">
@@ -68,19 +69,18 @@ class ProfessorenListe extends Component{
                       <FontAwesome name="trash" className="icn-delete"/>
                     </button>
                   </div>*/}
-                  <div className="professor-foto" style={{backgroundImage: `${professor.img ? `url(data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')})`: `url(${require('../Admin/dummy-image.jpeg')})`}`}}>
+                  <div className="professor-foto" style={{backgroundImage: `${event.img ? `url(data:image/png;base64,${new Buffer(event.img.data, 'binary').toString('base64')})`: `url(${require('../User/pinboard-icon.png')})`}`}}>
                   </div>
                   <div className="professor-information">
                     <div className="professor-heading">
-                      <div className="professor-name"><h2>{professor.name}</h2></div>
-                      <span className="funktion">{professor.funktion}</span><br />
+                      <div className="professor-name"><h2>{event.name}</h2></div>
+                      <span className="funktion">{event.information}</span><br />
                     </div>
                     {/*Informationen aus der Datenbank werden zugewiesen*/}
                     <div className="professor-main">
-                      <div>{/*<img className="room-image" src={ require('./location.png') } /> vllt Icon*/}Raum: <span className="span-info">{professor.raum}</span></div>
-                      <div>Email: <span>{professor.email}</span></div>
-                      <div>Telefonnummer: <span>{professor.telefonnummer}</span></div>
-                      <div>Sprechzeiten: <span>{professor.sprechzeiten}</span></div>
+                      <div>{/*<img className="room-image" src={ require('./location.png') } /> vllt Icon*/}Ort: <span className="span-info">{event.place}</span></div>
+                      <div>Uhrzeit: <span>{event.time}</span></div>
+                      <div>Datum: <span>{event.date}</span></div>
                     </div>
                   </div>
 
@@ -99,4 +99,4 @@ class ProfessorenListe extends Component{
   }
 }
 
-export default ProfessorenListe; /*um das in anderen Dateien importieren zu können*/
+export default EventListe; /*um das in anderen Dateien importieren zu können*/

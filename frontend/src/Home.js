@@ -7,6 +7,7 @@ import Header from './Header/Header';
 import Altbau from './Lageplan/Altbau';
 import Spiele from './Spiele';
 import ProfessorenListe from './Professoren/ProfessorenListe';
+import EventListe from './Events/EventListe';
 
 
 class Home extends Component {
@@ -28,7 +29,7 @@ class Home extends Component {
               <div className="button">
                   Schwarzes Brett
               </div>
-          <Link to="/home/spiele">
+          <Link to="/home/eventListe">
               <div className="button">
                   Spiele/TestProfessoren
               </div>
