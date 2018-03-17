@@ -6,6 +6,7 @@ import stundenplaene from './routes/stundenplaene';
 import admin from './routes/admin';
 import professoren from './routes/professoren';
 import notes from './routes/notes';
+import events from './routes/events';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use('/stundenplaene', stundenplaene);
 app.use('/admin', admin);
 app.use('/professoren', professoren);
 app.use('/notes', notes);
+app.use('/events', events);
 
 app.listen(3001, function () {
  console.log('Example app listening on port 3001!')
