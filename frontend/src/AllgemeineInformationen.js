@@ -16,7 +16,7 @@ class AllgemeineInformationen extends Component {
 
         <div className="wrapper">
 
-            <Route exact path="/home/allgemeineInformationen/professorenListe" component={ProfessorenListe}/>
+        {/*<Route exact path="/home/allgemeineInformationen/professorenListe" component={ProfessorenListe}/>*/}
 
             <div className="button">
                 Speiseplan

@@ -16,13 +16,8 @@ class EventListe extends Component{
     }
   }
 
-  /*componentWillMount(){
-    if(!localStorage.getItem('JWTToken')){
-      this.props.history.push('/admin/login');
-    }
-  }*/
 
-  /*componentDidMount(){
+  componentDidMount(){
     axios.get('http://localhost:3001/events')
     .then((response) => {
       this.setState({
@@ -33,22 +28,8 @@ class EventListe extends Component{
     .catch((error) => {
       console.log('error', error);
     })
-  }*/
+  }
 
-
-  /*editProfessor(professor){
-    this.setState({
-      addProfessor: true,
-      editProfessor: professor,
-    })
-  }*/
-
-    /*toggleAddProfessor(){
-        this.setState({
-          addProfessor: !this.state.addProfessor,
-          editProfessor: {},
-        })
-    }*/
 
   render() {
     return (
@@ -87,12 +68,6 @@ class EventListe extends Component{
                 </div>
               )}
             </div>
-            {/*<AddProfessor
-              nextProfessorId={this.state.nextProfessorId}
-              show={this.state.addProfessor}
-              close={() => this.toggleAddProfessor()}
-              professor={this.state.editProfessor}
-            />*/}
           </div>
         </div>
     );
