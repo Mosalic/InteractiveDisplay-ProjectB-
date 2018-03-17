@@ -29,7 +29,7 @@ class Home extends Component {
               <div className="button">
                   Schwarzes Brett
               </div>
-          <Link to="/home/eventListe">
+          <Link to="/home/noteListe">
               <div className="button">
                   Spiele/TestProfessoren
               </div>

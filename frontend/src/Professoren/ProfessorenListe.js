@@ -35,6 +35,11 @@ class ProfessorenListe extends Component{
     })
   }
 
+    handleChange(e){
+        this.setState({
+          [e.target.name]: e.target.value,
+        });
+    }
 
   /*editProfessor(professor){
     this.setState({
@@ -54,7 +59,8 @@ class ProfessorenListe extends Component{
     return (
         <div>
           <div className="professoren-wrapper">
-            
+            <h1>Professoren Liste</h1>
+             <input name="suche" type="text" placeholder="Suchen" onChange={(e) => this.handleChange(e)} />
            
             <div className="professoren">
               {this.state.professoren.map((professor, index) =>
