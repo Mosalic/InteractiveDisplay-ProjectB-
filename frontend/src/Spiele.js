@@ -1,19 +1,27 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import Iframe from 'react-iframe'
+import './App.css';
 
 class Spiele extends Component{
     render(){
         return(
             /*Hier normal HTML programmieren*/
-            <div>
-                <title>Unity WebGL Player | PuzzleMemory</title>
+            <div className="game__wrapper">
+
+
+              <Iframe url="https://miawoelm.com/game/"
+                display="initial"
+                position="relative"
+                allowFullScreen/>
+                {/* <title>Unity WebGL Player | PuzzleMemory</title>
                 <link rel="shortcut icon" href="TemplateData/favicon.ico">
                 <link rel="stylesheet" href="TemplateData/style.css">
-                <script src="TemplateData/UnityProgress.js"></script>  
+                <script src="TemplateData/UnityProgress.js"></script>
                 <script src="Build/UnityLoader.js"></script>
-                
+
             {let gameInstance = UnityLoader.instantiate("gameContainer", "Build/Builds.json", {onProgress: UnityProgress});}
-               
+
 
                 <div class="webgl-content">
                   <div id="gameContainer" style="width: 960px; height: 600px"></div>
@@ -22,7 +30,7 @@ class Spiele extends Component{
                     <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
                     <div class="title">PuzzleMemory</div>
                   </div>
-                </div>
+                </div> */}
 
             </div>
         );
