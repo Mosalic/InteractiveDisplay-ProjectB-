@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import stundenplaene from './routes/stundenplaene';
 import admin from './routes/admin';
 import professoren from './routes/professoren';
+import notes from './routes/notes';
 
 const app = express();
 
@@ -19,10 +20,7 @@ app.use(cors());
 app.use('/stundenplaene', stundenplaene);
 app.use('/admin', admin);
 app.use('/professoren', professoren);
-
-// app.get('/', function (req, res) {
-//  res.send('Hello World!')
-// });
+app.use('/notes', notes);
 
 app.listen(3001, function () {
  console.log('Example app listening on port 3001!')
