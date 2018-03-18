@@ -53,9 +53,13 @@ componentDidMount() {
         var tagInWoche = date.getDay();
         var wochentag = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
         var monate = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
-        
-       this.setState({
-       
+         
+        if(minuten < 10){
+            minuten = "0"+minuten;
+        }   
+      
+        this.setState({
+      
         datum: wochentag[tagInWoche] + ", " + tag + ". " + monate[monat] + " " + jahr,
         uhrzeit: stunden + ":" + minuten,
       });
