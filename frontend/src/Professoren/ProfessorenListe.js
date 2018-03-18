@@ -40,6 +40,27 @@ class ProfessorenListe extends Component{
           [e.target.name]: e.target.value,
         });
     }
+    
+    
+    searchProf(e){
+       console.log("Suche: " + e.target.value);
+        var searchText = e.target.value.toLowerCase();
+        
+        if(searchText != ""){
+            console.log("Suche nicht leer");
+           this.state.professoren.map(function(professor, index){
+                var profName = professor.name.toLowerCase();
+                console.log("Vorhandene Namen: " + profName);
+                if(professor.name.includes(searchText)){
+                    console.log(searchText + " ist vorhanden in " + profName + " in Position: " + profName.indexOf(searchText));
+                }
+            });     
+        }
+                   
+    } 
+    
+        
+ 
 
   /*editProfessor(professor){
     this.setState({
@@ -60,7 +81,7 @@ class ProfessorenListe extends Component{
         <div>
           <div className="professoren-wrapper">
             <h1>Professoren Liste</h1>
-             <input name="suche" type="text" placeholder="Suchen" onChange={(e) => this.handleChange(e)} />
+             <input name="suche" type="text" placeholder="Suchen" onChange={(e) => this.searchProf(e)} />
            
             <div className="professoren">
               {this.state.professoren.map((professor, index) =>
