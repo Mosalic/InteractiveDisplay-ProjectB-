@@ -1,0 +1,44 @@
+.event__box{
+  width: 25%;
+  background: #fff;
+  box-shadow: 0px 0px 4px 0px #CACACA;
+  margin: 10px 10px;
+}
+
+.event__photo{
+  width: 100%;
+  height: 150px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.event__information{
+  padding: 20px;
+}
+
+.event__heading{
+  text-align: center;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.event__subheading{
+  text-align: center;
+  font-weight: 300;
+  color: #565656;
+  margin-top: 5px;
+}
+
+.event__main{
+  text-align: left;
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+.events{
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+}

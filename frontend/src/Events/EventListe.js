@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import '../Professoren/List.css'
+import './EventListe.css'
 import axios from 'axios';
-import AddProfessor from '../Admin/Events';
 import FontAwesome from 'react-fontawesome';
 
 class EventListe extends Component{
@@ -10,9 +9,6 @@ class EventListe extends Component{
 
     this.state = {
       events: [],
-      addEvent: false,
-      nextEventId: null,
-      /*editProfessor: {},*/
     }
   }
 
@@ -22,7 +18,6 @@ class EventListe extends Component{
     .then((response) => {
       this.setState({
         events: response.data.events,
-        nextEventId: response.data.events[response.data.events.length - 1].id + 1,
       });
     })
     .catch((error) => {
@@ -35,33 +30,26 @@ class EventListe extends Component{
     return (
         <div>
         <h1>Event Liste</h1>
-          <div className="professoren-wrapper">
-            
-           
-            <div className="professoren">
+          <div className="event">
+
+
+            <div className="events">
               {this.state.events.map((event, index) =>
-                <div className="professor" key={index}>
-                    
-                 {/* <div className="professor__edit">
-                      <button onClick={() => this.editProfessor(professor)}>
-                      <FontAwesome name="edit" className="icn-edit"/>
-                    </button>
-                    <button onClick={(id) => this.deleteProfessor(professor.id)}>
-                      <FontAwesome name="trash" className="icn-delete"/>
-                    </button>
-                  </div>*/}
-                  <div className="professor-foto" style={{backgroundImage: `${event.img ? `url(data:image/png;base64,${new Buffer(event.img.data, 'binary').toString('base64')})`: `url(${require('../User/pinboard-icon.png')})`}`}}>
+                <div className="event__box" key={index}>
+
+                  <div className="event__photo" style={{backgroundImage: `${event.img ? `url(data:image/png;base64,${new Buffer(event.img.data, 'binary').toString('base64')})`: `url(${require('../User/pinboard-icon.png')})`}`}}>
                   </div>
-                  <div className="professor-information">
-                    <div className="professor-heading">
-                      <div className="professor-name"><h2>{event.name}</h2></div>
-                      <span className="funktion">{event.information}</span><br />
+                  <div className="event__information">
+                    <div className="event__heading">
+                      {event.name}
+                    </div>
+                    <div className="event__subheading">
+                      <div><FontAwesome name="map-marker-alt" /> {event.place}</div>
+                      <div><FontAwesome name="clock" /> {event.time}</div>
                     </div>
                     {/*Informationen aus der Datenbank werden zugewiesen*/}
-                    <div className="professor-main">
-                      <div>{/*<img className="room-image" src={ require('./location.png') } /> vllt Icon*/}Ort: <span className="span-info">{event.place}</span></div>
-                      <div>Uhrzeit: <span>{event.time}</span></div>
-                      <div>Datum: <span>{event.date}</span></div>
+                    <div className="event__main">
+                      {event.information}
                     </div>
                   </div>
 

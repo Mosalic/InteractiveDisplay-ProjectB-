@@ -33,7 +33,7 @@ class Home extends Component {
           </Link>
           <Link to="/home/spiele">
               <div className="button">
-                  Spiele/TestProfessoren
+                  Spiele
               </div>
           </Link>
       </div>
