@@ -29,16 +29,21 @@ componentWillUnmount() {
 
     this.state = {
         datum : '',
+        uhrzeit: '',
     }
+    this.updateTime = this.updateTime.bind(this);
   }
     
-    componentDidMount(){
+   /* componentDidMount(){
         this.updateTime();
-    }
+    }*/
+componentDidMount() {
+    window.addEventListener('load', this.updateTime);
+ }
     
     updateTime() {
         console.log("Datum berechnen");
-        /*const date = new Date.now ();
+        const date = new Date();
          
         var stunden = date.getHours();
         var minuten = date.getMinutes();
@@ -47,11 +52,12 @@ componentWillUnmount() {
         var jahr = date.getFullYear();
         var tagInWoche = date.getDay();
         var wochentag = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
-        var monate = new Array("Januar", "Februar", "M&auml;rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");*/
+        var monate = new Array("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
         
        this.setState({
        
-        datum: "Testdatum"/*wochentag[tagInWoche] + ", " + tag + ". " + monate[monat] + " " + jahr + " " + stunden + ":" + minuten*/,
+        datum: wochentag[tagInWoche] + ", " + tag + ". " + monate[monat] + " " + jahr,
+        uhrzeit: stunden + ":" + minuten,
       });
         
         
@@ -63,9 +69,8 @@ componentWillUnmount() {
     render() {
     return (
         <div className="header" >
-            <div className="date">
-                {this.state.datum}
-            </div>
+            <div className="date">{this.state.datum}</div>
+            <div className="time">{this.state.uhrzeit}</div>
         </div>
     );
   }
