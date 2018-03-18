@@ -27,8 +27,8 @@ class Main extends Component {
           <Route path={`${this.props.match.url}/allgemeineInformationen`} component={AllgemeineInformationen}/>
           <Route exact path={`${this.props.match.url}/altbau`} component={Altbau}/>
           <Route exact path={`${this.props.match.url}/spiele`} component={Spiele}/>
-          <Route exact path={`${this.props.match.url}/professorenListe`} component={ProfessorenListe}/>
-          <Route exact path={`${this.props.match.url}/eventListe`} component={EventListe}/>
+          <Route exact path={`${this.props.match.url}/allgemeineInformationen/professorenListe`} component={ProfessorenListe}/>
+          <Route exact path={`${this.props.match.url}/allgemeineInformationen/eventListe`} component={EventListe}/>
           <Route exact path={`${this.props.match.url}/noteListe`} component={NoteListe}/>
 
         </div>

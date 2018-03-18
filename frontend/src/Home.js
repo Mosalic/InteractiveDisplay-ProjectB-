@@ -26,10 +26,12 @@ class Home extends Component {
                   Lageplan
               </div>
           </Link>
+          <Link  to="/home/noteListe">
               <div className="button">
                   Schwarzes Brett
               </div>
-          <Link to="/home/noteListe">
+          </Link>
+          <Link to="/home/spiele">
               <div className="button">
                   Spiele/TestProfessoren
               </div>
