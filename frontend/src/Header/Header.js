@@ -1,11 +1,71 @@
 import React, { Component } from 'react';
 import './Header.css';
+//import Time from 'react-time';
 
 class Header extends Component {
-  render() {
-    return (
-        <div className="header">
+  
+/*getInitialState() {
+    return {
+      now: new Date(),
+    };
+    this.interval = null;
+}
+
+componentDidMount() {
+    const self = this;
+    self.interval = setInterval(function() {
+      self.setState({
+        now: new Date(),
+      });
+    }, 1000);
+}
+
+componentWillUnmount() {
+    clearInterval(this.interval);
+}*/
+    
+    constructor(){
+    super();
+
+    this.state = {
+        datum : '',
+    }
+  }
+    
+    componentDidMount(){
+        this.updateTime();
+    }
+    
+    updateTime() {
+        console.log("Datum berechnen");
+        /*const date = new Date.now ();
+         
+        var stunden = date.getHours();
+        var minuten = date.getMinutes();
+        var tag = date.getDate();
+        var monat = date.getMonth();
+        var jahr = date.getFullYear();
+        var tagInWoche = date.getDay();
+        var wochentag = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag");
+        var monate = new Array("Januar", "Februar", "M&auml;rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");*/
         
+       this.setState({
+       
+        datum: "Testdatum"/*wochentag[tagInWoche] + ", " + tag + ". " + monate[monat] + " " + jahr + " " + stunden + ":" + minuten*/,
+      });
+        
+        
+        //document.getElementsByClassName('date').innerHTML = this.state.datum;
+        setTimeout(this.updateTime, 60000);
+    }
+    //window.addEventListener("load", updateTime);
+    
+    render() {
+    return (
+        <div className="header" >
+            <div className="date">
+                {this.state.datum}
+            </div>
         </div>
     );
   }

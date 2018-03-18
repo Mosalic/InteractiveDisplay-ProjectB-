@@ -3,3 +3,10 @@
     height: 50px;
     background: rgb(0, 60, 160);
 }
+
+.date{
+    background-color: aqua;
+    width: 300px;
+    height: 40px;
+    color: white;
+}
