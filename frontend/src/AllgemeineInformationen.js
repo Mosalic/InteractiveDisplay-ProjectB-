@@ -30,9 +30,11 @@ class AllgemeineInformationen extends Component {
             <div className="button">
                 Stundenplan
             </div>
-            <div className="button">
-                Veranstaltungen
-            </div>
+            <Link to="/home/allgemeineInformationen/eventListe">
+              <div className="button">
+                  Veranstaltungen
+              </div>
+            </Link>
         </div>
 
 
