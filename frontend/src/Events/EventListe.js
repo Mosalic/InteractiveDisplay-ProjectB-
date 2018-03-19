@@ -9,6 +9,7 @@ class EventListe extends Component{
 
     this.state = {
       events: [],
+      monthMapping: ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'],
     }
   }
 
@@ -41,7 +42,13 @@ class EventListe extends Component{
                   </div>
                   <div className="event__information">
                     <div className="event__heading">
-                      {event.name}
+                      <div className="event__date">
+                        <div className="event__day">{new Date(event.date).getDate()}</div>
+                        <div className="event__month">{this.state.monthMapping[new Date(event.date).getMonth()]}</div>
+                      </div>
+                      <div className="event__title">
+                        {event.name}
+                      </div>
                     </div>
                     <div className="event__subheading">
                       <div><FontAwesome name="map-marker-alt" /> {event.place}</div>
