@@ -42,15 +42,13 @@ class ProfessorenListe extends Component{
     }
     
     
+    //Bei jeder Änderung im Suchfeld wird das Suchergebnis angezeigt
     searchProf(e){
        console.log("Suche: " + e.target.value);
         var i = 0;
         var searchText = e.target.value.toLowerCase();
         var professorenDivs = document.getElementsByClassName('professor');
        
-        
-        // console.log("Edmund".includes(searchText)); // Erster Buchstabe wird nicht verglichen
-        //for(var i = 0; i < searchText.length; i++){
              if(searchText.length > 0){
                 console.log("Suche nicht leer");
                 this.state.professoren.map(function(professor, index){
@@ -64,8 +62,6 @@ class ProfessorenListe extends Component{
                     }
                 });     
             }
-        //}
-         
                    
     } 
     

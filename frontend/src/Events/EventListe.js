@@ -24,6 +24,18 @@ class EventListe extends Component{
       console.log('error', error);
     })
   }
+    
+getEventDay(eventStr){
+    return eventStr.substring(8,10);
+}
+    
+getEventMonth(eventStr){
+    return eventStr.substring(5,7); 
+}
+    
+getEventYear(eventStr){
+     return eventStr.substring(0,4);
+}
 
 
   render() {
@@ -46,6 +58,7 @@ class EventListe extends Component{
                     <div className="event__subheading">
                       <div><FontAwesome name="map-marker-alt" /> {event.place}</div>
                       <div><FontAwesome name="clock" /> {event.time}</div>
+                        <div><FontAwesome name="date" /> {this.getEventDay(event.date) + "." + this.getEventMonth(event.date) + "." + this.getEventYear(event.date)}</div>
                     </div>
                     {/*Informationen aus der Datenbank werden zugewiesen*/}
                     <div className="event__main">
