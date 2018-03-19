@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './EventListe.css'
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';
+import Moment from 'react-moment';
 
 class EventListe extends Component{
  constructor(){
@@ -25,9 +26,27 @@ class EventListe extends Component{
       console.log('error', error);
     })
   }
+ 
+//Events nach dem Datum sortieren
+sortEvents(){
+    
+}
 
   render() {
-    return (
+    var sorted_meetings = this.state.events.sort((a,b) => {
+        return new Date(a.scheduled_for).getTime() - 
+            new Date(b.scheduled_for).getTime()
+    }).reverse();
+    
+    {/*let past_meetings = this.store.meetings.map((meeting, i) => {
+        if (meeting.scheduled_for < moment.utc( new Date() ).format()){
+            return (<MeetingItem meeting={meeting} key={`meeting-${meeting.id}`} />)
+        } else {
+            return ;
+        }
+    })*/}
+      
+      return (
         <div>
         <h1>Event Liste</h1>
           <div className="event">
