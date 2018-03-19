@@ -27,24 +27,16 @@ class EventListe extends Component{
     })
   }
  
-//Events nach dem Datum sortieren
-sortEvents(){
-    
-}
+
+
 
   render() {
-    var sorted_meetings = this.state.events.sort((a,b) => {
+    //Events nach dem Datum sortieren
+      var sorted_meetings = this.state.events.sort((a,b) => {
         return new Date(a.scheduled_for).getTime() - 
             new Date(b.scheduled_for).getTime()
     }).reverse();
     
-    {/*let past_meetings = this.store.meetings.map((meeting, i) => {
-        if (meeting.scheduled_for < moment.utc( new Date() ).format()){
-            return (<MeetingItem meeting={meeting} key={`meeting-${meeting.id}`} />)
-        } else {
-            return ;
-        }
-    })*/}
       
       return (
         <div>
