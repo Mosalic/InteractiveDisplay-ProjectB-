@@ -11,7 +11,7 @@ import Spiele from './Spiele';
 import ProfessorenListe from './Professoren/ProfessorenListe';
 import EventListe from './Events/EventListe';
 import NoteListe from './Notes/NoteListe';
-
+import Speiseplan from './Speiseplan';
 
 class Main extends Component {
   render() {
@@ -24,12 +24,13 @@ class Main extends Component {
 
           <Route exact path={this.props.match.url} component={Home} />
           <Route exact path={`${this.props.match.url}/lageplan`} component={Lageplan}/>
-          <Route path={`${this.props.match.url}/allgemeineInformationen`} component={AllgemeineInformationen}/>
+          <Route exact path={`${this.props.match.url}/allgemeineInformationen`} component={AllgemeineInformationen}/>
           <Route exact path={`${this.props.match.url}/altbau`} component={Altbau}/>
           <Route exact path={`${this.props.match.url}/spiele`} component={Spiele}/>
+          <Route exact path={`${this.props.match.url}/noteListe`} component={NoteListe}/>
           <Route exact path={`${this.props.match.url}/allgemeineInformationen/professorenListe`} component={ProfessorenListe}/>
           <Route exact path={`${this.props.match.url}/allgemeineInformationen/eventListe`} component={EventListe}/>
-          <Route exact path={`${this.props.match.url}/noteListe`} component={NoteListe}/>
+          <Route exact path={`${this.props.match.url}/allgemeineInformationen/speiseplan`} component={Speiseplan}/>
 
         </div>
       </div>

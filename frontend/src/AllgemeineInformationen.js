@@ -3,41 +3,29 @@ import './App.css';
 import { Link } from 'react-router-dom';
 import { NavLink, Route } from 'react-router-dom';
 
-
-import ProfessorenListe from './Professoren/ProfessorenListe';
-import Lageplan from './Lageplan/index';
-import Header from './Header/Header';
-import Altbau from './Lageplan/Altbau';
-
-
 class AllgemeineInformationen extends Component {
   render() {
     return (
-
-        <div className="wrapper">
-
-        {/*<Route exact path="/home/allgemeineInformationen/professorenListe" component={ProfessorenListe}/>*/}
-
+      <div className="wrapper">
+        <Link to="/home/allgemeineInformationen/speiseplan">
+          <div className="button">
+              Speiseplan
+          </div>
+        </Link>
+        <Link to="/home/allgemeineInformationen/professorenListe">
             <div className="button">
-                Speiseplan
+                Professoren
             </div>
-            <Link to="/home/allgemeineInformationen/professorenListe">
-                <div className="button">
-                    Professoren
-                </div>
-            </Link>
-
-            <div className="button">
-                Stundenplan
-            </div>
-            <Link to="/home/allgemeineInformationen/eventListe">
-              <div className="button">
-                  Veranstaltungen
-              </div>
-            </Link>
+        </Link>
+        <div className="button">
+            Stundenplan
         </div>
-
-
+        <Link to="/home/allgemeineInformationen/eventListe">
+          <div className="button">
+              Veranstaltungen
+          </div>
+        </Link>
+      </div>
     );
   }
 }
