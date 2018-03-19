@@ -44,18 +44,28 @@ class ProfessorenListe extends Component{
     
     searchProf(e){
        console.log("Suche: " + e.target.value);
+        var i = 0;
         var searchText = e.target.value.toLowerCase();
+        var professorenDivs = document.getElementsByClassName('professor');
+       
         
-        if(searchText != ""){
-            console.log("Suche nicht leer");
-           this.state.professoren.map(function(professor, index){
-                var profName = professor.name.toLowerCase();
-                console.log("Vorhandene Namen: " + profName);
-                if(professor.name.includes(searchText)){
-                    console.log(searchText + " ist vorhanden in " + profName + " in Position: " + profName.indexOf(searchText));
-                }
-            });     
-        }
+        // console.log("Edmund".includes(searchText)); // Erster Buchstabe wird nicht verglichen
+        //for(var i = 0; i < searchText.length; i++){
+             if(searchText.length > 0){
+                console.log("Suche nicht leer");
+                this.state.professoren.map(function(professor, index){
+                    var profName = professor.name.toLowerCase();
+                    console.log("Vorhandene Namen: " + profName);
+                    if(profName.includes(searchText)){
+                        console.log(searchText + " ist vorhanden in " + profName + " in Position: " + profName.indexOf(searchText));
+                        professorenDivs[index].style.display = "";
+                    }else{
+                        professorenDivs[index].style.display = 'none';
+                    }
+                });     
+            }
+        //}
+         
                    
     } 
     
