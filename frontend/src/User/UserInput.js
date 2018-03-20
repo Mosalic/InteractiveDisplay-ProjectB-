@@ -43,7 +43,7 @@ class UserInput extends Component {
         let formData = new FormData();
         formData.append('img', this.state.imgUrl);
         formData.append('name', this.state.name);
-        formData.append('infos', this.state.infos);
+        formData.append('info', this.state.infos);
         axios.post('http://localhost:3001/notes', formData, {headers:{ Authorization: localStorage.getItem('JWTToken'), 'Content-Type': 'multipart/form-data'}})
         .then((response) => {
           console.log('Note added');
