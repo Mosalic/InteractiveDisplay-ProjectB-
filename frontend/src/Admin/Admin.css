@@ -375,5 +375,4 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 
 .stundenplan__column{
     display: grid;
-    grid-template-rows: repeat(auto-fill, minmax(100px,1fr));
 }
