@@ -363,8 +363,13 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
   font-size: 14px;
 }
 
-.stundenplan__row{
+.stundenplan{
     display: grid;
+    
+}
+
+.stundenplan__row{
+    display: inline-grid;
     grid-template-columns: 100px repeat(auto-fill, minmax(100px,1fr));
 }
 

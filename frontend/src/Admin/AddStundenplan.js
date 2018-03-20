@@ -58,19 +58,12 @@ class AddStundenplan extends Component {
             <div className="stundeplan-wrapper">
               <input className="studiengang" placeholder="Studiengang"/>
                 <div className="stundenplan">
-                    <div className="stundenplan__row">
+                  
+                       
+                        
+                    
+        {/*<div className="stundenplan__column">
                         <div></div>
-                        {this.state.semester.map((semester, index) =>
-                            <div key={index}>
-                                {semester}
-                                 {this.state.monday.map((time, index) =>
-                                <div key={index}><button>add stunde</button></div>
-                                                  )}
-                            </div>
-                                            )}
-                        <button onClick={() => this.addSemester()}>AddSemester</button>
-                    </div>
-                    <div className="stundenplan__column">
                         <div>
                             Montag 
                             <button onClick={() => this.addTime('monday')}>+</button>
@@ -86,7 +79,45 @@ class AddStundenplan extends Component {
                                                   )}
                         </div>
                     </div>
-                </div>
+
+                    {this.state.semester.map((semester, index) =>
+                            <div key={index}>
+                                {semester}
+                                 {this.state.monday.map((time, index) =>
+                                <div key={index}><button>add stunde</button></div>
+                                                  )}
+                            </div>
+                                            )}
+                        <button onClick={() => this.addSemester()}>AddSemester</button>
+                </div>*/}
+        <div className="stundenplan__row">
+                <div></div>
+                 {this.state.semester.map((semester, index) =>
+                            <div key={index}>
+                                {semester}
+                                </div>
+                                                  )}
+                <button onClick={() => this.addSemester()}>AddSemester</button>
+</div>
+                <div> Montag <button onClick={() => this.addTime('monday')}>+</button></div>
+                {this.state.monday.map((time, index) =>
+                                <div className="stundenplan__row" key={index}>
+                                <div>{time.start} - {time.end}</div>
+                                {this.state.semester.map((semester, index) => 
+                                                        <div key={index}><button>add stunde</button></div>)}
+                                </div>
+                                                  )}
+                 <div> Dienstag <button onClick={() => this.addTime('tuesday')}>+</button></div>
+                  {this.state.tuesday.map((time, index) =>
+                            <div className="stundenplan__row" key={index}>
+                            <div>{time.start} - {time.end}</div>
+                            {this.state.semester.map((semester, index) => 
+                                                    <div key={index}><button>add stunde</button></div>)}
+                            </div>
+                                              )}
+
+        </div>
+        
             </div>
           
         </div>
