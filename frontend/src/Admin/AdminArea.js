@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode';
 import Professoren from './Professoren';
 import Users from './Users';
 import Events from './Events';
+import Stundenplan from './Stundenplan';
 
 class AdminArea extends Component {
 
@@ -40,6 +41,7 @@ class AdminArea extends Component {
           <Route path="/admin/admin-area/professoren" component={Professoren} />
           <Route path="/admin/admin-area/users" component={Users} />
           <Route path="/admin/admin-area/events" component={Events} />
+          <Route path="/admin/admin-area/stundenplaene" component={Stundenplan} />
           {/* <button>Stundenplan hinzufügen</button> */}
         </div>
     );
