@@ -71,14 +71,6 @@
   position: relative;
 }
 
-.professor:hover{
-    border: 2px solid rgb(0, 150, 210);  
-}
-
-.professor:hover .professor-name{
-    font-size: 110%;
-}
-
 h2{
   margin: 0;
 }
@@ -188,7 +180,7 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 
 .professor-heading{
   margin-bottom: 20px;
-   
+
 }
 
 .professor-main div{

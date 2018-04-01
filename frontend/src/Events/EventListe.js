@@ -59,6 +59,7 @@ class EventListe extends Component{
                       <div className="event__title">
                         {event.name}
                       </div>
+                      <div></div>
                     </div>
                     <div className="event__subheading">
                       <div><FontAwesome name="map-marker-alt" /> {event.place}</div>

@@ -24,6 +24,10 @@ class Professoren extends Component {
   }
 
   componentDidMount(){
+    this.getProfessoren();
+  }
+
+  getProfessoren(){
     axios.get('http://localhost:3001/professoren')
     .then((response) => {
       this.setState({
@@ -41,6 +45,7 @@ class Professoren extends Component {
     axios.delete(`http://localhost:3001/professoren/${id}`, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
     .then((response) => {
       console.log('deleted');
+      this.getProfessoren();
     })
     .catch((error) => {
       console.log('error', error);
