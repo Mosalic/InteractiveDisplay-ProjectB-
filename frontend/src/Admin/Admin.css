@@ -389,6 +389,7 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
   display: table-cell;
   border: 1px dotted black;
   padding: 5px 10px;
+  vertical-align: middle
 }
 
 .stundenplan__cell input{
@@ -459,7 +460,28 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 }
 
 .stundenplan__stunde{
+  position: relative;
+}
+
+.stundenplan__stunde__information{
   display: flex;
   font-weight: 300;
   justify-content: space-between;
+}
+
+.stundenplan__stunde__edit{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stundenplan__stunde__edit button{
+  border: none;
+  background: none;
+  font-size: 15px;
+  cursor: pointer;
 }

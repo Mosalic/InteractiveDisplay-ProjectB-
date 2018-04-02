@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';
+import Immutable from 'immutable';
 
 class AddStundenplan extends Component {
   constructor(){
@@ -44,6 +45,9 @@ class AddStundenplan extends Component {
           semesterIndex: null,
           weekday: '',
           timeSlot: null,
+          hoveredWeekday: null,
+          hoveredTime: null,
+          hoveredSemester: null,
       };
   }
 
@@ -125,6 +129,39 @@ class AddStundenplan extends Component {
       });
     }
 
+    deleteStunde(weekday, timeIndex, semesterIndex){
+      let sem = Immutable.fromJS(this.state.semester);
+      sem = sem.deleteIn([semesterIndex, weekday, `${timeIndex}`]);
+      this.setState({
+        semester: sem.toJS(),
+      })
+    }
+
+    handleMouseEnter(weekdayIndex, timeIndex, semesterIndex){
+      this.setState({
+        hoveredWeekday: weekdayIndex,
+        hoveredTime: timeIndex,
+        hoveredSemester: semesterIndex,
+      });
+    }
+
+    handleMouseLeave(){
+      this.setState({
+        hoveredWeekday: null,
+        hoveredTime: null,
+        hoveredSemester: null,
+      });
+    }
+
+    hovered(weekdayIndex, timeIndex, semesterIndex){
+      let hoveredWeekday = this.state.hoveredWeekday === weekdayIndex;
+      let hoveredTime = this.state.hoveredTime === timeIndex;
+      let hoveredSemester = this.state.hoveredSemester === semesterIndex;
+      if(hoveredWeekday && hoveredTime && hoveredSemester){
+        return true;
+      }
+      return false;
+    }
 
   render() {
     return (
@@ -152,9 +189,15 @@ class AddStundenplan extends Component {
                     {this.state.semester.map((semester, semesterIndex) =>
                       <div key={semesterIndex} className="stundenplan__cell">
                         {this.state.semester[semesterIndex][weekday.value][timeIndex] ?
-                          <div>
+                          <div className="stundenplan__stunde" onMouseEnter={() => this.handleMouseEnter(weekdayIndex, timeIndex, semesterIndex)} onMouseLeave={() => this.handleMouseLeave()}>
+                            {this.hovered(weekdayIndex, timeIndex, semesterIndex) &&
+                              <div className="stundenplan__stunde__edit">
+                                <button><FontAwesome name="edit" className="icn-edit"/></button>
+                                <button onClick={() => this.deleteStunde(weekday.value, timeIndex, semesterIndex)}><FontAwesome name="trash" className="icn-delete"/></button>
+                              </div>
+                            }
                             <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].veranstaltung}</span>
-                            <div className="stundenplan__stunde">
+                            <div className="stundenplan__stunde__information">
                               <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].professor}</span>
                               <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].raum}</span>
                             </div>
