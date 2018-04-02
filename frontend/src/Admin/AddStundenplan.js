@@ -72,16 +72,15 @@ class AddStundenplan extends Component {
     }
 
     addTime(day){
-        let dayTimes = this.state[day];
         let newTime = Object.assign( {}, this.state.times[this.state[day].length] );
-        dayTimes.push(newTime);
         if(this.state[day].length >= this.state.times.length){
+            console.log('add empty timeslot');
             this.setState({
                 [day]:  [...this.state[day], {start: '', end: ''}],
             });
         } else {
             this.setState({
-                [day]:  dayTimes,
+                [day]: [...this.state[day], newTime],
             });
         }
     }
@@ -133,33 +132,40 @@ class AddStundenplan extends Component {
         <div className="stundeplan-wrapper">
           <input className="studiengang" placeholder="Studiengang"/>
           <div className="stundenplan">
-            <div className="stundenplan__row">
+            <div className="stundenplan__row stundenplan__header">
               <div></div>
               {this.state.semester.map((semester, index) =>
                 <div className="stundenplan__cell" key={index}>
                   {semester.label}
                 </div>
               )}
-              <button onClick={() => this.addSemester()}>AddSemester</button>
+              <div className="stundenplan__button"><button className="stundenplan__add" onClick={() => this.addSemester()}><FontAwesome name="plus" className="icn-edit"/> Semester hinzufügen</button></div>
             </div>
             {this.state.weekdays.map((weekday, weekdayIndex) =>
               <div key={weekdayIndex} className="stundenplan__group">
-                <div> {weekday.label} <button onClick={() => this.addTime(weekday.value)}>+</button></div>
+                <div className="stundenplan__weekday"> {weekday.label}</div>
                 {this.state[weekday.value].map((time, timeIndex) =>
                   <div className="stundenplan__row" key={timeIndex}>
-                    <div>
+                    <div className="stundenplan__cell">
                       <input value={time.start} name="start" onChange={(e) => this.handleTimeChange(weekday.value, timeIndex, e)} /> -  <input value={time.end} name="end" onChange={(e) => this.handleTimeChange(weekday.value, timeIndex, e)} />
                     </div>
                     {this.state.semester.map((semester, semesterIndex) =>
                       <div key={semesterIndex} className="stundenplan__cell">
                         {this.state.semester[semesterIndex][weekday.value][timeIndex] ?
-                          <div>{this.state.semester[semesterIndex][weekday.value][timeIndex].veranstaltung}</div>
-                          : <button onClick={() => this.toggleAddStunde(semesterIndex, weekday.value, timeIndex)}>add stunde</button>
+                          <div>
+                            <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].veranstaltung}</span>
+                            <div className="stundenplan__stunde">
+                              <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].professor}</span>
+                              <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].raum}</span>
+                            </div>
+                          </div>
+                          : <button className="stundenplan__add" onClick={() => this.toggleAddStunde(semesterIndex, weekday.value, timeIndex)}><FontAwesome name="plus" className="icn-edit"/> Stunde einfügen</button>
                         }
                       </div>
                     )}
                   </div>
                 )}
+                <div className="stundenplan__row"><button className="stundenplan__add hour" onClick={() => this.addTime(weekday.value)}><FontAwesome name="plus" className="icn-edit"/> Zeit hinzufügen</button></div>
               </div>
             )}
           </div>
