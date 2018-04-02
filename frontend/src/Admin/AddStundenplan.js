@@ -98,12 +98,15 @@ class AddStundenplan extends Component {
 
     }
 
-    toggleAddStunde(semesterIndex, weekday, timeSlot){
+    toggleAddStunde(semesterIndex, weekday, timeSlot, veranstaltung, professor, raum){
       this.setState({
         addStunde: true,
         semesterIndex,
         weekday,
         timeSlot,
+        veranstaltung,
+        professor,
+        raum,
       });
     }
 
@@ -192,8 +195,12 @@ class AddStundenplan extends Component {
                           <div className="stundenplan__stunde" onMouseEnter={() => this.handleMouseEnter(weekdayIndex, timeIndex, semesterIndex)} onMouseLeave={() => this.handleMouseLeave()}>
                             {this.hovered(weekdayIndex, timeIndex, semesterIndex) &&
                               <div className="stundenplan__stunde__edit">
-                                <button><FontAwesome name="edit" className="icn-edit"/></button>
-                                <button onClick={() => this.deleteStunde(weekday.value, timeIndex, semesterIndex)}><FontAwesome name="trash" className="icn-delete"/></button>
+                                <button onClick={() => this.toggleAddStunde(semesterIndex, weekday.value, timeIndex, this.state.semester[semesterIndex][weekday.value][timeIndex].veranstaltung, this.state.semester[semesterIndex][weekday.value][timeIndex].professor, this.state.semester[semesterIndex][weekday.value][timeIndex].raum)}><FontAwesome name="edit" className="icn-edit"/></button>
+                                <button
+                                  onClick={() => this.deleteStunde(weekday.value, timeIndex, semesterIndex)}
+                                >
+                                  <FontAwesome name="trash" className="icn-delete"/>
+                                </button>
                               </div>
                             }
                             <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].veranstaltung}</span>
@@ -202,7 +209,7 @@ class AddStundenplan extends Component {
                               <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].raum}</span>
                             </div>
                           </div>
-                          : <button className="stundenplan__add" onClick={() => this.toggleAddStunde(semesterIndex, weekday.value, timeIndex)}><FontAwesome name="plus" className="icn-edit"/> Stunde einfügen</button>
+                          : <button className="stundenplan__add" onClick={() => this.toggleAddStunde(semesterIndex, weekday.value, timeIndex, this.state.veranstaltung, this.state.professor, this.state.raum)}><FontAwesome name="plus" className="icn-edit"/> Stunde einfügen</button>
                         }
                       </div>
                     )}
