@@ -364,16 +364,18 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 }
 
 .stundenplan{
-    display: grid;
-
+    display: table;
 }
 
 .stundenplan__row{
-    display: inline-grid;
-    grid-template-columns: 150px repeat(auto-fill, minmax(100px,1fr));
     padding: 10px 0px;
+    display: table-row;
 }
 
-.stundenplan__column{
-    display: grid;
+.stundenplan__cell{
+  display: table-cell;
+}
+
+.stundenplan__group{
+  display: table-row-group;
 }

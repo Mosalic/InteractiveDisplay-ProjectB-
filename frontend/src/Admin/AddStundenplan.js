@@ -136,14 +136,14 @@ class AddStundenplan extends Component {
             <div className="stundenplan__row">
               <div></div>
               {this.state.semester.map((semester, index) =>
-                <div key={index}>
+                <div className="stundenplan__cell" key={index}>
                   {semester.label}
                 </div>
               )}
               <button onClick={() => this.addSemester()}>AddSemester</button>
             </div>
             {this.state.weekdays.map((weekday, weekdayIndex) =>
-              <div key={weekdayIndex} className="stundenplan__column">
+              <div key={weekdayIndex} className="stundenplan__group">
                 <div> {weekday.label} <button onClick={() => this.addTime(weekday.value)}>+</button></div>
                 {this.state[weekday.value].map((time, timeIndex) =>
                   <div className="stundenplan__row" key={timeIndex}>
@@ -151,7 +151,7 @@ class AddStundenplan extends Component {
                       <input value={time.start} name="start" onChange={(e) => this.handleTimeChange(weekday.value, timeIndex, e)} /> -  <input value={time.end} name="end" onChange={(e) => this.handleTimeChange(weekday.value, timeIndex, e)} />
                     </div>
                     {this.state.semester.map((semester, semesterIndex) =>
-                      <div key={semesterIndex}>
+                      <div key={semesterIndex} className="stundenplan__cell">
                         {this.state.semester[semesterIndex][weekday.value][timeIndex] ?
                           <div>{this.state.semester[semesterIndex][weekday.value][timeIndex].veranstaltung}</div>
                           : <button onClick={() => this.toggleAddStunde(semesterIndex, weekday.value, timeIndex)}>add stunde</button>
