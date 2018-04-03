@@ -11,7 +11,7 @@ class Stundenplan extends Component {
     this.state = {
       addStundenplanVisible: false,
       stundenplaene: [],
-      nextStundenplanId: null,
+      timetableId: null,
       semester: [],
       timetable: {
         'monday': [],
@@ -20,6 +20,8 @@ class Stundenplan extends Component {
         'thursday': [],
         'friday': [],
       },
+      saved: false,
+      studiengang: '',
     }
   }
 
@@ -32,10 +34,9 @@ class Stundenplan extends Component {
   componentDidMount(){
     axios.get('http://localhost:3001/stundenplaene')
     .then((response) => {
-      console.log(response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id);
       this.setState({
         stundenplaene: response.data.data.stundenplaene,
-        nextStundenplanId: response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id !== 'undefined' ? (response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id + 1) : 0 ,
+        timetableId: response.data.data.stundenplaene.length === 0 ? 0 : (response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id + 1),
       });
     })
     .catch((error) => {
@@ -46,6 +47,7 @@ class Stundenplan extends Component {
 toggleAddStundenplan(){
   this.setState({
     addStundenplanVisible: !this.state.addStundenplanVisible,
+    saved: false,
   });
 }
 
@@ -54,7 +56,9 @@ toggleEditStundenplan(stundenplan){
     addStundenplanVisible: true,
     timetable: stundenplan.timetable,
     semester: stundenplan.semester,
-    id: stundenplan.id,
+    timetableId: stundenplan.id,
+    saved: true,
+    studiengang: stundenplan.studiengang
   });
 }
 
@@ -64,9 +68,11 @@ toggleEditStundenplan(stundenplan){
           <div className="professoren-wrapper">
             {this.state.addStundenplanVisible ?
               <AddStundenplan
-                timetableId={this.state.nextStundenplanId}
+                timetableId={this.state.timetableId}
                 semester={this.state.semester}
                 timetable={this.state.timetable}
+                saved={this.state.saved}
+                studiengang={this.state.studiengang}
               />
               :
               <div>

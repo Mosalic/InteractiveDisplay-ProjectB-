@@ -5,6 +5,6 @@ let stundenplanSchema = new Schema({
   studiengang: String,
   timetable: {},
   semester: [],
-})
+},  { minimize: false })
 
 export default mongoose.model('stundenplan', stundenplanSchema);

@@ -45,7 +45,8 @@ class AddStundenplan extends Component {
       hoveredTime: null,
       hoveredSemester: null,
       timetable: props.timetable,
-      saved: false,
+      saved: props.saved,
+      studiengang: props.studiengang,
     };
   }
 
@@ -156,7 +157,8 @@ class AddStundenplan extends Component {
     if(this.state.saved){
       axios.put(`http://localhost:3001/stundenplaene/${this.state.id}`, {
         timetable: this.state.timetable,
-        semester: this.state.semester
+        semester: this.state.semester,
+        studiengang: this.state.studiengang
       }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
       .then((response) => {
         console.log('Professor added');
@@ -173,7 +175,8 @@ class AddStundenplan extends Component {
       axios.post('http://localhost:3001/stundenplaene', {
         id: this.state.id,
         timetable: this.state.timetable,
-        semester: this.state.semester
+        semester: this.state.semester,
+        studiengang: this.state.studiengang
       }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
       .then((response) => {
         console.log('Professor added');
@@ -193,7 +196,7 @@ class AddStundenplan extends Component {
     return (
       <div>
         <div className="stundeplan-wrapper">
-          <input className="studiengang" placeholder="Studiengang"/>
+          <input className="studiengang" placeholder="Studiengang" name="studiengang" value={this.state.studiengang} onChange={(e) => this.handleChange(e)} />
           <div className="stundenplan">
             <div className="stundenplan__row stundenplan__header">
               <div></div>
