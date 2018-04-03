@@ -9,11 +9,6 @@ class AddStundenplan extends Component {
 
       this.state = {
           semester: [],
-          monday: [],
-          tuesday: [],
-          wedensday: [],
-          thursday: [],
-          friday: [],
           times: [
               {start: '8:30', end: '10:00'},
               {start: '10:30', end: '12:00'},
@@ -48,6 +43,13 @@ class AddStundenplan extends Component {
           hoveredWeekday: null,
           hoveredTime: null,
           hoveredSemester: null,
+          timetable: {
+            'monday': [],
+            'tuesday': [],
+            'wedensday': [],
+            'thursday': [],
+            'friday': [],
+          },
       };
   }
 
@@ -59,43 +61,30 @@ class AddStundenplan extends Component {
 
 
     addSemester(){
-        // this.setState({
-        //     semester: [...this.state.semester, `${this.state.semester.length + 1}. Semester`],
-        // })
-        let newSemester = {
-          label: `${this.state.semester.length + 1}. Semester`,
-          monday: {},
-          tuesday: {},
-          wedensday: {},
-          thursday: {},
-          friday: {},
-        };
         this.setState({
-          semester: [...this.state.semester, newSemester],
-        });
+            semester: [...this.state.semester, `${this.state.semester.length + 1}. Semester`],
+        })
     }
 
     addTime(day){
-        let newTime = Object.assign( {}, this.state.times[this.state[day].length] );
-        if(this.state[day].length >= this.state.times.length){
-            console.log('add empty timeslot');
-            this.setState({
-                [day]:  [...this.state[day], {start: '', end: ''}],
-            });
-        } else {
-            this.setState({
-                [day]: [...this.state[day], newTime],
-            });
-        }
+      let newTime = Object.assign( {classes: {}}, this.state.times[this.state.timetable[day].length] );
+      let timetable = Immutable.fromJS(this.state.timetable);
+      if(Object.keys(newTime).length === 1){
+        timetable = timetable.set(day, timetable.get(day).push({ start: '', end: '', classes:{} }));
+      } else {
+        timetable = timetable.set(day, timetable.get(day).push(newTime));
+      }
+      this.setState({
+        timetable: timetable.toJS(),
+      });
     }
 
     handleTimeChange(day, index, e){
-        let newTimes = this.state[day];
-        newTimes[index][e.target.name] = e.target.value;
-        this.setState({
-            [day]: newTimes,
-        });
-
+      let timetable = Immutable.fromJS(this.state.timetable);
+      timetable = timetable.setIn([day, index, e.target.name], e.target.value);
+      this.setState({
+        timetable: timetable.toJS(),
+      });
     }
 
     toggleAddStunde(semesterIndex, weekday, timeSlot, veranstaltung, professor, raum){
@@ -110,6 +99,7 @@ class AddStundenplan extends Component {
       });
     }
 
+    // handelt die Eingabe in dem Stunden Pop Up
     handleChange(e){
       this.setState({
         [e.target.name]: e.target.value,
@@ -118,25 +108,25 @@ class AddStundenplan extends Component {
 
     addStunde(){
       let newStunde = {
-        [this.state.timeSlot]: {
+        [this.state.semesterIndex]: {
           veranstaltung: this.state.veranstaltung,
           professor: this.state.professor,
           raum: this.state.raum,
         },
-      }
-      let sem = this.state.semester;
-      sem[this.state.semesterIndex][this.state.weekday] = Object.assign(sem[this.state.semesterIndex][this.state.weekday], newStunde);
+      };
+      let timetable = Immutable.fromJS(this.state.timetable);
+      timetable = timetable.setIn([this.state.weekday, this.state.timeSlot, 'classes'], timetable.getIn([this.state.weekday, this.state.timeSlot, 'classes']).merge(newStunde));
       this.setState({
         addStunde: false,
-        semester: sem,
+        timetable: timetable.toJS(),
       });
     }
 
     deleteStunde(weekday, timeIndex, semesterIndex){
-      let sem = Immutable.fromJS(this.state.semester);
-      sem = sem.deleteIn([semesterIndex, weekday, `${timeIndex}`]);
+      let timetable = Immutable.fromJS(this.state.timetable);
+      timetable = timetable.deleteIn([weekday, timeIndex, 'classes', `${semesterIndex}`]);
       this.setState({
-        semester: sem.toJS(),
+        timetable: timetable.toJS(),
       })
     }
 
@@ -166,6 +156,22 @@ class AddStundenplan extends Component {
       return false;
     }
 
+  save(){
+    axios.post('http://localhost:3001/stundenplaene', {
+      timetable: this.state.timetable,
+      semester: this.state.semester
+    }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+    .then((response) => {
+      console.log('Professor added');
+      if(response.status === 200){
+        
+      }
+    })
+    .catch((error) => {
+      console.log('error', error);
+    })
+  }
+
   render() {
     return (
       <div>
@@ -176,7 +182,7 @@ class AddStundenplan extends Component {
               <div></div>
               {this.state.semester.map((semester, index) =>
                 <div className="stundenplan__cell" key={index}>
-                  {semester.label}
+                  {semester}
                 </div>
               )}
               <div className="stundenplan__button"><button className="stundenplan__add" onClick={() => this.addSemester()}><FontAwesome name="plus" className="icn-edit"/> Semester hinzufügen</button></div>
@@ -184,18 +190,19 @@ class AddStundenplan extends Component {
             {this.state.weekdays.map((weekday, weekdayIndex) =>
               <div key={weekdayIndex} className="stundenplan__group">
                 <div className="stundenplan__weekday"> {weekday.label}</div>
-                {this.state[weekday.value].map((time, timeIndex) =>
+                {this.state.timetable[weekday.value].map((time, timeIndex) =>
                   <div className="stundenplan__row" key={timeIndex}>
                     <div className="stundenplan__cell">
                       <input value={time.start} name="start" onChange={(e) => this.handleTimeChange(weekday.value, timeIndex, e)} /> -  <input value={time.end} name="end" onChange={(e) => this.handleTimeChange(weekday.value, timeIndex, e)} />
                     </div>
                     {this.state.semester.map((semester, semesterIndex) =>
                       <div key={semesterIndex} className="stundenplan__cell">
-                        {this.state.semester[semesterIndex][weekday.value][timeIndex] ?
+
+                        {this.state.timetable[weekday.value][timeIndex].classes[semesterIndex] ?
                           <div className="stundenplan__stunde" onMouseEnter={() => this.handleMouseEnter(weekdayIndex, timeIndex, semesterIndex)} onMouseLeave={() => this.handleMouseLeave()}>
                             {this.hovered(weekdayIndex, timeIndex, semesterIndex) &&
                               <div className="stundenplan__stunde__edit">
-                                <button onClick={() => this.toggleAddStunde(semesterIndex, weekday.value, timeIndex, this.state.semester[semesterIndex][weekday.value][timeIndex].veranstaltung, this.state.semester[semesterIndex][weekday.value][timeIndex].professor, this.state.semester[semesterIndex][weekday.value][timeIndex].raum)}><FontAwesome name="edit" className="icn-edit"/></button>
+                                <button onClick={() => this.toggleAddStunde(semesterIndex, weekday.value, timeIndex, this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].veranstaltung, this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].professor, this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum)}><FontAwesome name="edit" className="icn-edit"/></button>
                                 <button
                                   onClick={() => this.deleteStunde(weekday.value, timeIndex, semesterIndex)}
                                 >
@@ -203,14 +210,15 @@ class AddStundenplan extends Component {
                                 </button>
                               </div>
                             }
-                            <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].veranstaltung}</span>
+                            <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].veranstaltung}</span>
                             <div className="stundenplan__stunde__information">
-                              <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].professor}</span>
-                              <span>{this.state.semester[semesterIndex][weekday.value][timeIndex].raum}</span>
+                              <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].professor}</span>
+                              <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum}</span>
                             </div>
                           </div>
                           : <button className="stundenplan__add" onClick={() => this.toggleAddStunde(semesterIndex, weekday.value, timeIndex, this.state.veranstaltung, this.state.professor, this.state.raum)}><FontAwesome name="plus" className="icn-edit"/> Stunde einfügen</button>
                         }
+
                       </div>
                     )}
                   </div>
@@ -220,6 +228,7 @@ class AddStundenplan extends Component {
             )}
           </div>
         </div>
+        <button onClick={() => this.save()}>Save</button>
         {this.state.addStunde &&
           <div className="backdrop">
             <div className="modal">
