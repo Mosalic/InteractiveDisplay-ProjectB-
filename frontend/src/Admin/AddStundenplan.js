@@ -248,8 +248,8 @@ class AddStundenplan extends Component {
               </div>
             )}
           </div>
+          <button onClick={() => this.save()} className="stundenplan__btn-save">Save</button>
         </div>
-        <button onClick={() => this.save()}>Save</button>
         {this.state.addStunde &&
           <div className="backdrop">
             <div className="modal">
