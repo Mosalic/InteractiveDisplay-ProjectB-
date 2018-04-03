@@ -196,6 +196,7 @@ class AddStundenplan extends Component {
     return (
       <div>
         <div className="stundeplan-wrapper">
+          <button className="add back" onClick={() => this.props.back()}><FontAwesome name="arrow-left" /></button>
           <input className="studiengang" placeholder="Studiengang" name="studiengang" value={this.state.studiengang} onChange={(e) => this.handleChange(e)} />
           <div className="stundenplan">
             <div className="stundenplan__row stundenplan__header">

@@ -485,3 +485,8 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
   font-size: 15px;
   cursor: pointer;
 }
+
+.back{
+  font-size: 22px;
+  align-self: flex-start;
+}

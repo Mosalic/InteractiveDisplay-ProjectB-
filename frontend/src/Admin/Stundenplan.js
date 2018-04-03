@@ -46,8 +46,18 @@ class Stundenplan extends Component {
 
 toggleAddStundenplan(){
   this.setState({
-    addStundenplanVisible: !this.state.addStundenplanVisible,
+    addStundenplanVisible: true,
     saved: false,
+    semester: [],
+    timetable: {
+      'monday': [],
+      'tuesday': [],
+      'wedensday': [],
+      'thursday': [],
+      'friday': [],
+    },
+    studiengang: '',
+    timetableId: this.state.stundenplaene.length === 0 ? 0 : (this.state.stundenplaene[this.state.stundenplaene.length - 1].id + 1),
   });
 }
 
@@ -62,6 +72,22 @@ toggleEditStundenplan(stundenplan){
   });
 }
 
+closeAddStundenplan(){
+  this.setState({
+    addStundenplanVisible: false,
+  });
+  axios.get('http://localhost:3001/stundenplaene')
+  .then((response) => {
+    this.setState({
+      stundenplaene: response.data.data.stundenplaene,
+      timetableId: response.data.data.stundenplaene.length === 0 ? 0 : (response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id + 1),
+    });
+  })
+  .catch((error) => {
+    console.log('error', error);
+  })
+}
+
   render() {
     return (
         <div>
@@ -73,6 +99,7 @@ toggleEditStundenplan(stundenplan){
                 timetable={this.state.timetable}
                 saved={this.state.saved}
                 studiengang={this.state.studiengang}
+                back={() => this.closeAddStundenplan()}
               />
               :
               <div>
