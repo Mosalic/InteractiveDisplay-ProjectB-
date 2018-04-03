@@ -12,6 +12,14 @@ class Stundenplan extends Component {
       addStundenplanVisible: false,
       stundenplaene: [],
       nextStundenplanId: null,
+      semester: [],
+      timetable: {
+        'monday': [],
+        'tuesday': [],
+        'wedensday': [],
+        'thursday': [],
+        'friday': [],
+      },
     }
   }
 
@@ -36,23 +44,43 @@ class Stundenplan extends Component {
   }
 
 toggleAddStundenplan(){
-    this.setState({
-        addStundenplanVisible: !this.state.addStundenplanVisible,
+  this.setState({
+    addStundenplanVisible: !this.state.addStundenplanVisible,
+  });
+}
 
-    });
+toggleEditStundenplan(stundenplan){
+  this.setState({
+    addStundenplanVisible: true,
+    timetable: stundenplan.timetable,
+    semester: stundenplan.semester,
+    id: stundenplan.id,
+  });
 }
 
   render() {
     return (
         <div>
           <div className="professoren-wrapper">
-
-            <button type="button" className="add" onClick={() => this.toggleAddStundenplan()}>+</button>
-            <div className="stundeplan">
-
-            </div>
+            {this.state.addStundenplanVisible ?
+              <AddStundenplan
+                timetableId={this.state.nextStundenplanId}
+                semester={this.state.semester}
+                timetable={this.state.timetable}
+              />
+              :
+              <div>
+                <button type="button" className="add" onClick={() => this.toggleAddStundenplan()}>+</button>
+                <div className="stundeplan">
+                  {this.state.stundenplaene.map((stundenplan, index) =>
+                    <button key={index} onClick={() => this.toggleEditStundenplan(stundenplan)}>
+                      {stundenplan.studiengang}
+                    </button>
+                  )}
+                </div>
+              </div>
+            }
           </div>
-        {this.state.addStundenplanVisible && <AddStundenplan timetableId={this.state.nextStundenplanId}/>}
         </div>
     );
   }

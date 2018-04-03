@@ -9,7 +9,7 @@ class AddStundenplan extends Component {
 
     this.state = {
       id: props.timetableId,
-      semester: [],
+      semester: props.semester,
       times: [
           {start: '8:30', end: '10:00'},
           {start: '10:30', end: '12:00'},
@@ -44,13 +44,7 @@ class AddStundenplan extends Component {
       hoveredWeekday: null,
       hoveredTime: null,
       hoveredSemester: null,
-      timetable: {
-        'monday': [],
-        'tuesday': [],
-        'wedensday': [],
-        'thursday': [],
-        'friday': [],
-      },
+      timetable: props.timetable,
       saved: false,
     };
   }
