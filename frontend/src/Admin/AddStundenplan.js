@@ -4,53 +4,55 @@ import FontAwesome from 'react-fontawesome';
 import Immutable from 'immutable';
 
 class AddStundenplan extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
-      this.state = {
-          semester: [],
-          times: [
-              {start: '8:30', end: '10:00'},
-              {start: '10:30', end: '12:00'},
-              {start: '13:00', end: '14:30'},
-              {start: '15:00', end: '16:30'},
-              {start: '17:00', end: '18:30'},
-              {start: '19:00', end: '20:30'},
-          ],
-          weekdays: [{
-              label: 'Montag',
-              value: 'monday'
-          }, {
-              label: 'Dienstag',
-              value: 'tuesday'
-          }, {
-              label: 'Mittwoch',
-              value: 'wedensday'
-          }, {
-              label: 'Donnerstag',
-              value: 'thursday'
-          }, {
-              label: 'Freitag',
-              value: 'friday'
-          }],
-          addStunde: false,
-          veranstaltung: '',
-          professor: '',
-          raum: '',
-          semesterIndex: null,
-          weekday: '',
-          timeSlot: null,
-          hoveredWeekday: null,
-          hoveredTime: null,
-          hoveredSemester: null,
-          timetable: {
-            'monday': [],
-            'tuesday': [],
-            'wedensday': [],
-            'thursday': [],
-            'friday': [],
-          },
-      };
+    this.state = {
+      id: props.timetableId,
+      semester: [],
+      times: [
+          {start: '8:30', end: '10:00'},
+          {start: '10:30', end: '12:00'},
+          {start: '13:00', end: '14:30'},
+          {start: '15:00', end: '16:30'},
+          {start: '17:00', end: '18:30'},
+          {start: '19:00', end: '20:30'},
+      ],
+      weekdays: [{
+          label: 'Montag',
+          value: 'monday'
+      }, {
+          label: 'Dienstag',
+          value: 'tuesday'
+      }, {
+          label: 'Mittwoch',
+          value: 'wedensday'
+      }, {
+          label: 'Donnerstag',
+          value: 'thursday'
+      }, {
+          label: 'Freitag',
+          value: 'friday'
+      }],
+      addStunde: false,
+      veranstaltung: '',
+      professor: '',
+      raum: '',
+      semesterIndex: null,
+      weekday: '',
+      timeSlot: null,
+      hoveredWeekday: null,
+      hoveredTime: null,
+      hoveredSemester: null,
+      timetable: {
+        'monday': [],
+        'tuesday': [],
+        'wedensday': [],
+        'thursday': [],
+        'friday': [],
+      },
+      saved: false,
+    };
   }
 
   componentWillMount(){
@@ -157,19 +159,40 @@ class AddStundenplan extends Component {
     }
 
   save(){
-    axios.post('http://localhost:3001/stundenplaene', {
-      timetable: this.state.timetable,
-      semester: this.state.semester
-    }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
-    .then((response) => {
-      console.log('Professor added');
-      if(response.status === 200){
-        
-      }
-    })
-    .catch((error) => {
-      console.log('error', error);
-    })
+    if(this.state.saved){
+      axios.put(`http://localhost:3001/stundenplaene/${this.state.id}`, {
+        timetable: this.state.timetable,
+        semester: this.state.semester
+      }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+      .then((response) => {
+        console.log('Professor added');
+        if(response.status === 200){
+          this.setState({
+            saved: true,
+          })
+        }
+      })
+      .catch((error) => {
+        console.log('error', error);
+      })
+    } else {
+      axios.post('http://localhost:3001/stundenplaene', {
+        id: this.state.id,
+        timetable: this.state.timetable,
+        semester: this.state.semester
+      }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+      .then((response) => {
+        console.log('Professor added');
+        if(response.status === 200){
+          this.setState({
+            saved: true,
+          })
+        }
+      })
+      .catch((error) => {
+        console.log('error', error);
+      })
+    }
   }
 
   render() {

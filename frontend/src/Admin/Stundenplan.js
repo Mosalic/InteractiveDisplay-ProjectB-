@@ -7,10 +7,12 @@ import AddStundenplan from './AddStundenplan';
 class Stundenplan extends Component {
   constructor(){
     super();
-      
-      this.state={
-          addStundenplanVisible: false,
-      } 
+
+    this.state = {
+      addStundenplanVisible: false,
+      stundenplaene: [],
+      nextStundenplanId: null,
+    }
   }
 
   componentWillMount(){
@@ -20,11 +22,12 @@ class Stundenplan extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:3001/professoren')
+    axios.get('http://localhost:3001/stundenplaene')
     .then((response) => {
+      console.log(response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id);
       this.setState({
-        professoren: response.data.professoren,
-        nextProfessorId: response.data.professoren[response.data.professoren.length - 1].id + 1,
+        stundenplaene: response.data.data.stundenplaene,
+        nextStundenplanId: response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id !== 'undefined' ? (response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id + 1) : 0 ,
       });
     })
     .catch((error) => {
@@ -35,7 +38,7 @@ class Stundenplan extends Component {
 toggleAddStundenplan(){
     this.setState({
         addStundenplanVisible: !this.state.addStundenplanVisible,
-        
+
     });
 }
 
@@ -43,13 +46,13 @@ toggleAddStundenplan(){
     return (
         <div>
           <div className="professoren-wrapper">
-           
+
             <button type="button" className="add" onClick={() => this.toggleAddStundenplan()}>+</button>
             <div className="stundeplan">
-              
+
             </div>
           </div>
-        {this.state.addStundenplanVisible && <AddStundenplan/>}
+        {this.state.addStundenplanVisible && <AddStundenplan timetableId={this.state.nextStundenplanId}/>}
         </div>
     );
   }
