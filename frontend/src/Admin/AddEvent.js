@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class AddEvent extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
       name: '',
@@ -13,6 +13,7 @@ class AddEvent extends Component{
       place: '',
       imgUrl: '',
       base64: require('./dummy-image.jpeg'),
+      id: props.eventId,
     }
   }
 
@@ -24,6 +25,7 @@ class AddEvent extends Component{
     formData.append('time', this.state.time);
     formData.append('information', this.state.information);
     formData.append('place', this.state.place);
+    formData.append('id', this.state.id);
     axios.post('http://localhost:3001/events', formData, {headers:{ Authorization: localStorage.getItem('JWTToken'), 'Content-Type': 'multipart/form-data'}})
     .then((response) => {
       console.log('Event added');

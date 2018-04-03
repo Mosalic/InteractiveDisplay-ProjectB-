@@ -3,6 +3,7 @@
   background: #fff;
   box-shadow: 0px 0px 4px 0px #CACACA;
   margin: 10px 10px;
+  position: relative;
 }
 
 .event__photo{
@@ -59,4 +60,25 @@
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.event__edit{
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom-left-radius: 3px;
+}
+
+.event__edit button{
+  border: none;
+  font-size: 16px;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.event__edit button:focus{
+  outline: none;
 }

@@ -19,6 +19,7 @@ class Events extends Component {
     .then((response) => {
       this.setState({
         events: response.data.events,
+        eventId:  response.data.events.length === 0 ? 0 : (response.data.events[response.data.events.length - 1].id + 1),
       });
     })
     .catch((error) => {
@@ -32,6 +33,16 @@ class Events extends Component {
     })
   }
 
+  deleteEvent(id){
+    axios.delete(`http://localhost:3001/events/${id}`, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+    .then((response) => {
+      console.log('deleted');
+    })
+    .catch((error) => {
+      console.log('error', error);
+    })
+  }
+
   render(){
     return(
       <div>
@@ -40,7 +51,14 @@ class Events extends Component {
           <div className="events">
             {this.state.events.map((event, index) =>
               <div className="event__box" key={index}>
-
+                <div className="event__edit">
+                  <button>
+                    <FontAwesome name="edit" className="icn-edit"/>
+                  </button>
+                  <button onClick={() => this.deleteEvent(event.id)}>
+                    <FontAwesome name="trash" className="icn-delete"/>
+                  </button>
+                </div>
                 <div className="event__photo" style={{backgroundImage: `${event.img ? `url(data:image/png;base64,${new Buffer(event.img.data, 'binary').toString('base64')})`: `url(${require('../User/pinboard-icon.png')})`}`}}>
                 </div>
                 <div className="event__information">
@@ -70,6 +88,7 @@ class Events extends Component {
         {this.state.addEventVisible &&
           <AddEvent
             close={() => this.toggleAddEvent()}
+            eventId={this.state.eventId}
           />
         }
       </div>
