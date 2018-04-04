@@ -6,18 +6,26 @@ class AddEvent extends Component{
     super(props);
 
     this.state = {
-      name: '',
-      date: '',
-      time: '',
-      information: '',
-      place: '',
-      imgUrl: '',
-      base64: require('./dummy-image.jpeg'),
+      name: props.event ? props.event.name : '',
+      date: props.event ? new Date(props.event.date).toISOString().split('T')[0] : '',
+      time: props.event ? props.event.time : '',
+      information: props.event ? props.event.information : '',
+      place: props.event ? props.event.place : '',
+      imgUrl: props.event ? props.event.imgUrl : '',
+      base64: props.event ? `data:image/png;base64,${new Buffer(props.event.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg'),
       id: props.eventId,
     }
   }
 
   save(){
+    if(this.props.event !== null){
+      this.update();
+    } else {
+      this.create();
+    }
+  }
+
+  create(){
     let formData = new FormData();
     formData.append('img', this.state.imgUrl);
     formData.append('name', this.state.name);
@@ -33,6 +41,39 @@ class AddEvent extends Component{
     .catch((error) => {
       console.log('error', error);
     })
+  }
+
+  update(){
+    axios.put(`http://localhost:3001/events/${this.state.id}`, {
+      name: this.state.name,
+      date: this.state.date,
+      time: this.state.time,
+      information: this.state.information,
+      place: this.state.place,
+    }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+    .then((response) => {
+      console.log('Professor updated');
+      if(response.status === 200){
+        this.props.close();
+      }
+    })
+    .catch((error) => {
+      console.log('error', error);
+    })
+    if(this.state.imgUrl){
+      let formData = new FormData();
+      formData.append('img', this.state.imgUrl);
+      axios.put(`http://localhost:3001/events/${this.state.id}/image`, formData, {headers:{ Authorization: localStorage.getItem('JWTToken'), 'Content-Type': 'multipart/form-data'}})
+      .then((response) => {
+        console.log('Picture updated');
+        if(response.status === 200){
+
+        }
+      })
+      .catch((error) => {
+        console.log('error', error);
+      })
+    }
   }
 
   handleChange(e){

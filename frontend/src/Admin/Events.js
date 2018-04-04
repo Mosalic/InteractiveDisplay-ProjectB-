@@ -11,6 +11,8 @@ class Events extends Component {
       events: [],
       monthMapping: ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'],
       addEventVisible: false,
+      event: null,
+      eventId: null,
     };
   }
 
@@ -30,6 +32,7 @@ class Events extends Component {
   toggleAddEvent(){
     this.setState({
       addEventVisible: !this.state.addEventVisible,
+      event: null,
     })
   }
 
@@ -43,6 +46,14 @@ class Events extends Component {
     })
   }
 
+  editEvent(id, event){
+    this.setState({
+      addEventVisible: true,
+      event: event,
+      eventId: id,
+    });
+  }
+
   render(){
     return(
       <div>
@@ -52,7 +63,7 @@ class Events extends Component {
             {this.state.events.map((event, index) =>
               <div className="event__box" key={index}>
                 <div className="event__edit">
-                  <button>
+                  <button onClick={() => this.editEvent(event.id, event)}>
                     <FontAwesome name="edit" className="icn-edit"/>
                   </button>
                   <button onClick={() => this.deleteEvent(event.id)}>
@@ -89,6 +100,7 @@ class Events extends Component {
           <AddEvent
             close={() => this.toggleAddEvent()}
             eventId={this.state.eventId}
+            event={this.state.event}
           />
         }
       </div>

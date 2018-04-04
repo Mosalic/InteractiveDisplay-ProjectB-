@@ -19,11 +19,9 @@
 }
 
 .event__heading{
-  /* display: flex;
-  align-items: center; */
   display: grid;
   align-items: center;
-  grid-template-columns: 15% 70%;
+  grid-template-columns: 20% 60%;
 }
 
 .event__title{
@@ -39,6 +37,7 @@
   font-size: 20px;
   font-weight: 300;
   text-align: center;
+  justify-self: flex-start;
 }
 
 .event__day{

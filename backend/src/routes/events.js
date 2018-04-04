@@ -1,6 +1,6 @@
 import express, {Router} from 'express';
 import multer from 'multer';
-import { getEvents, postEvents, putEvents, deleteEvents } from '../controllers/events';
+import { getEvents, postEvents, putEvents, deleteEvents, putEventsImage } from '../controllers/events';
 
 var upload = multer({ dest: './uploads/' })
 
@@ -13,5 +13,8 @@ events.route('/')
 events.route('/:id')
   .put(putEvents)
   .delete(deleteEvents);
+
+events.route('/:id/image')
+  .put(upload.single("img"), putEventsImage);
 
 export default events;
