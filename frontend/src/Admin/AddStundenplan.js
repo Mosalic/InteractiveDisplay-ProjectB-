@@ -192,6 +192,14 @@ class AddStundenplan extends Component {
     }
   }
 
+  deleteTimeslot(weekday, timeIndex){
+    let timetable = Immutable.fromJS(this.state.timetable);
+    timetable = timetable.deleteIn([weekday, timeIndex]);
+    this.setState({
+      timetable: timetable.toJS(),
+    });
+  }
+
   render() {
     return (
       <div>
@@ -242,6 +250,9 @@ class AddStundenplan extends Component {
 
                       </div>
                     )}
+                    <div className="stundenplan__cell icn">
+                      <button onClick={() => this.deleteTimeslot(weekday.value, timeIndex)}><FontAwesome name="minus-circle" className="icn-delete"/></button>
+                    </div>
                   </div>
                 )}
                 <div className="stundenplan__row"><button className="stundenplan__add hour" onClick={() => this.addTime(weekday.value)}><FontAwesome name="plus" className="icn-edit"/> Zeit hinzufügen</button></div>
