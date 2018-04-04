@@ -19,14 +19,18 @@
 }
 
 .event__heading{
-  display: flex;
+  /* display: flex;
+  align-items: center; */
+  display: grid;
   align-items: center;
+  grid-template-columns: 15% 70%;
 }
 
 .event__title{
   text-align: center;
   font-weight: 700;
   font-size: 25px;
+  word-wrap: break-word;
 }
 
 .event__date{
