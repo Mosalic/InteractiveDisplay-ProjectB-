@@ -520,3 +520,20 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 .icn button:focus{
   outline: none;
 }
+
+.stundenplan__btn{
+  border: none;
+  background: none;
+  font-size: 15px;
+  padding: 0px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.stundenplan__btn:focus{
+  outline: none;
+}
+
+.stunden__input{
+  flex-direction: column;
+}

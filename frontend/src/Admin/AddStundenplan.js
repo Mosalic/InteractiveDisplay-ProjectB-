@@ -153,6 +153,12 @@ class AddStundenplan extends Component {
       return false;
     }
 
+  closeAddStunde(){
+    this.setState({
+      addStunde: false,
+    })
+  }
+
   save(){
     if(this.state.saved){
       axios.put(`http://localhost:3001/stundenplaene/${this.state.id}`, {
@@ -200,6 +206,14 @@ class AddStundenplan extends Component {
     });
   }
 
+  // deleteSemester(index){
+  //   let semester = Immutable.fromJS(this.state.semester);
+  //   semester = semester.delete(index);
+  //   this.setState({
+  //     semester: semester.toJS(),
+  //   });
+  // }
+
   render() {
     return (
       <div>
@@ -212,6 +226,7 @@ class AddStundenplan extends Component {
               {this.state.semester.map((semester, index) =>
                 <div className="stundenplan__cell" key={index}>
                   {semester}
+                  {/* <button className="stundenplan__btn" onClick={() => this.deleteSemester(index)}><FontAwesome name="trash" className="icn-delete"/></button> */}
                 </div>
               )}
               <div className="stundenplan__button"><button className="stundenplan__add" onClick={() => this.addSemester()}><FontAwesome name="plus" className="icn-edit"/> Semester hinzufügen</button></div>
@@ -264,10 +279,16 @@ class AddStundenplan extends Component {
         {this.state.addStunde &&
           <div className="backdrop">
             <div className="modal">
-              <input type="text" placeholder="Veranstaltung" name="veranstaltung" value={this.state.veranstaltung} onChange={(e) => this.handleChange(e)} />
-              <input type="text" placeholder="Professor" name="professor" value={this.state.professor} onChange={(e) => this.handleChange(e)} />
-              <input type="text" placeholder="Raum" name="raum" value={this.state.raum} onChange={(e) => this.handleChange(e)} />
-              <button onClick={() => this.addStunde()}>Ok</button>
+              <h2>Stunde einfügen</h2>
+              <button className="btn-close" type="button" onClick={() => this.closeAddStunde()}>x</button>
+              <form className="stunden__input">
+                <div className="row">Veranstaltung <input type="text" placeholder="Veranstaltung" name="veranstaltung" value={this.state.veranstaltung} onChange={(e) => this.handleChange(e)} /></div>
+                <div className="row">Professor <input type="text" placeholder="Professor" name="professor" value={this.state.professor} onChange={(e) => this.handleChange(e)} /></div>
+                <div className="row">Raum <input type="text" placeholder="Raum" name="raum" value={this.state.raum} onChange={(e) => this.handleChange(e)} /></div>
+              </form>
+              <div className="button-footer">
+                <button className="btn-save" type="button" onClick={() => this.addStunde()}>Einfügen</button>
+              </div>
             </div>
           </div>
         }
