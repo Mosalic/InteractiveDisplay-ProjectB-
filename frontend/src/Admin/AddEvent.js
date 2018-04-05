@@ -112,7 +112,7 @@ class AddEvent extends Component{
             </div>
             <div className="row">Eventname <input value={this.state.name} placeholder="Name" onChange={(e) => this.handleChange(e)} name="name" /></div>
             <div className="row">Eventdatum <input value={this.state.date} placeholder="Date" type="date" onChange={(e) => this.handleChange(e)} name="date" /></div>
-            <div className="row">Eventzeit <input value={this.state.time} placeholder="Time" onChange={(e) => this.handleChange(e)} name="time" /></div>
+            <div className="row">Eventzeit <input value={this.state.time} type="time" placeholder="Time" onChange={(e) => this.handleChange(e)} name="time" /></div>
             {/* <div className="row">Eventbeschreibung <input value={this.state.information} placeholder="Information" onChange={(e) => this.handleChange(e)} name="information" /></div> */}
             <div className="row">Eventbeschreibung  <textarea value={this.state.information} name="information" placeholder="Eventbeschreibung" onChange={(e) => this.handleChange(e)} /></div>
             <div className="row">Eventort <input value={this.state.place} placeholder="Place" onChange={(e) => this.handleChange(e)} name="place" /></div>

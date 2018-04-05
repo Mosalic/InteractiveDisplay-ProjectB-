@@ -74,7 +74,7 @@
   transition: max-height 0.5s linear 0s;
   /* height: 300px; */
   overflow: hidden;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .tooBig{

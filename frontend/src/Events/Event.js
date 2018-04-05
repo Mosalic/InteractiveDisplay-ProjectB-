@@ -19,7 +19,7 @@ class Event extends Component {
   }
 
   componentDidMount(){
-    if(document.getElementById(`event__${this.props.id}`).offsetHeight > 300){
+    if(document.getElementById(`event__${this.props.id}`).offsetHeight > 350){
       this.setState({
         tooBig: true,
       });
