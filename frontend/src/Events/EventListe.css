@@ -1,5 +1,5 @@
 .event__box{
-  width: 25%;
+  width: 30%;
   background: #fff;
   box-shadow: 0px 0px 4px 0px #CACACA;
   margin: 10px 10px;
@@ -21,13 +21,12 @@
 .event__heading{
   display: grid;
   align-items: center;
-  grid-template-columns: 20% 60%;
+  grid-template-columns: 20% 80%;
 }
 
 .event__title{
-  text-align: center;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 23px;
   word-wrap: break-word;
 }
 
@@ -54,8 +53,14 @@
 
 .event__main{
   text-align: left;
-  font-weight: 300;
+  /* font-weight: 300; */
   margin-top: 20px;
+  color: #333333;
+  line-height: 1.34;
+  white-space: pre-line;
+  transition: max-height 1s ease;
+  /* height: 300px; */
+  overflow: hidden;
 }
 
 .events{
@@ -63,6 +68,24 @@
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.event__footer{
+  text-align: center;
+  padding-bottom: 10px;
+  /* box-shadow: 0 -5px 5px -5px #e0e0e0; */
+  background: #0395d2;
+  color: #fff;
+  /* color: #0395d2; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.event__footer span{
+  margin-left: 10px;
 }
 
 .event__edit{
@@ -84,4 +107,15 @@
 
 .event__edit button:focus{
   outline: none;
+}
+
+.editEvent__photo{
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: 10px;
+  padding: 0px 2.5px;
+  margin-bottom: 10px;
 }

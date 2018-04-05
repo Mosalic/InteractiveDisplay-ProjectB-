@@ -11,6 +11,7 @@ class EventListe extends Component{
     this.state = {
       events: [],
       monthMapping: ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'],
+      showText: null,
     }
   }
 
@@ -19,7 +20,10 @@ class EventListe extends Component{
     axios.get('http://localhost:3001/events')
     .then((response) => {
       this.setState({
-        events: response.data.events,
+        events: response.data.events.sort((a,b) => {
+          return new Date(a.scheduled_for).getTime() -
+              new Date(b.scheduled_for).getTime()
+      }).reverse(),
       });
     })
     .catch((error) => {
@@ -28,14 +32,18 @@ class EventListe extends Component{
   }
 
 
-
+  showText(index){
+    this.setState({
+      showText: index,
+    });
+  }
 
   render() {
     //Events nach dem Datum sortieren
-      var sorted_meetings = this.state.events.sort((a,b) => {
-        return new Date(a.scheduled_for).getTime() -
-            new Date(b.scheduled_for).getTime()
-    }).reverse();
+    //   var sorted_meetings = this.state.events.sort((a,b) => {
+    //     return new Date(a.scheduled_for).getTime() -
+    //         new Date(b.scheduled_for).getTime()
+    // }).reverse();
 
 
       return (
@@ -66,11 +74,15 @@ class EventListe extends Component{
                       <div><FontAwesome name="clock" /> {event.time}</div>
                     </div>
                     {/*Informationen aus der Datenbank werden zugewiesen*/}
-                    <div className="event__main">
+                    <div className="event__main" style={ { maxHeight: `${this.state.showText === index ? '1000px' : '300px' }` }} >
                       {event.information}
                     </div>
                   </div>
-
+                  {this.state.showText !== index &&
+                    <div className="event__footer" onClick={() => this.showText(index)}>
+                      <FontAwesome name="angle-down" /> <span>Gesamten Text anzeigen</span>
+                    </div>
+                  }
                 </div>
               )}
             </div>

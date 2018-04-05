@@ -103,8 +103,13 @@ class AddEvent extends Component{
           <h2>Event hinzufügen</h2>
           <button className="btn-close" type="button" onClick={() => this.props.close()}>x</button>
           <form className="event">
-            <div className="row">Eventfoto <input id="foto" name="foto" type="file" onChange={(event) => this.encodeImageFileAsURL(event)} accept="image/x-png,image/gif,image/jpeg" />
-            <label htmlFor="foto"><div className="professor-foto" style={{backgroundImage: `url(${this.state.base64})`}}></div></label></div>
+            <div className="row">
+              Eventfoto
+              <div>
+                <label htmlFor="foto"><div className="editEvent__photo" style={{backgroundImage: `url(${this.state.base64})`}}></div></label>
+                <input id="foto" name="foto" type="file" onChange={(event) => this.encodeImageFileAsURL(event)} accept="image/x-png,image/gif,image/jpeg" />
+              </div>
+            </div>
             <div className="row">Eventname <input value={this.state.name} placeholder="Name" onChange={(e) => this.handleChange(e)} name="name" /></div>
             <div className="row">Eventdatum <input value={this.state.date} placeholder="Date" type="date" onChange={(e) => this.handleChange(e)} name="date" /></div>
             <div className="row">Eventzeit <input value={this.state.time} placeholder="Time" onChange={(e) => this.handleChange(e)} name="time" /></div>

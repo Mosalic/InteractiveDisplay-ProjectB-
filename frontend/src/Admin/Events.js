@@ -13,6 +13,7 @@ class Events extends Component {
       addEventVisible: false,
       event: null,
       eventId: null,
+      showText: null,
     };
   }
 
@@ -54,6 +55,17 @@ class Events extends Component {
     });
   }
 
+  showText(index){
+    this.setState({
+      showText: index,
+    });
+  }
+
+  tooBig(index){
+    console.log(`event__${index}`);
+    return true;
+  }
+
   render(){
     return(
       <div>
@@ -87,11 +99,15 @@ class Events extends Component {
                     <div><FontAwesome name="clock" /> {event.time}</div>
                   </div>
                   {/*Informationen aus der Datenbank werden zugewiesen*/}
-                  <div className="event__main">
+                  <div id={`event__${index}`} className="event__main" style={ { maxHeight: `${this.state.showText === index ? '1000px' : '300px' }` } }>
                     {event.information}
                   </div>
                 </div>
-
+                {(this.state.showText !== index && this.tooBig(index)) &&
+                  <div className="event__footer" onClick={() => this.showText(index)}>
+                    <FontAwesome name="angle-down" /> <span>Gesamten Text anzeigen</span>
+                  </div>
+                }
               </div>
             )}
           </div>
