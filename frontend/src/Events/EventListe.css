@@ -15,7 +15,7 @@
 }
 
 .event__information{
-  padding: 20px;
+  padding: 20px 20px 5px 20px;
 }
 
 .event__heading{
@@ -28,6 +28,7 @@
   font-weight: 700;
   font-size: 23px;
   word-wrap: break-word;
+  text-align: left;
 }
 
 .event__date{
@@ -45,10 +46,22 @@
 }
 
 .event__subheading{
-  text-align: center;
+  text-align: left;
   font-weight: 300;
-  color: #565656;
-  margin-top: 15px;
+  /* color: #565656; */
+  margin-top: 20px;
+}
+
+.event__subheading div{
+  display: grid;
+  grid-template-columns: 8% 90%;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.event__subheading div span {
+  color: #bfbfbf;
+  text-align: center;
 }
 
 .event__main{
@@ -58,9 +71,10 @@
   color: #333333;
   line-height: 1.34;
   white-space: pre-line;
-  transition: max-height 1s ease;
+  transition: max-height 0.5s linear 0s;
   /* height: 300px; */
   overflow: hidden;
+  padding-bottom: 20px;
 }
 
 .tooBig{
@@ -68,7 +82,7 @@
 }
 
 .showText{
-  max-height: 1000px;
+  max-height: 800px;
 }
 
 .events{
