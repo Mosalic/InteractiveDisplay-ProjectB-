@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './EventListe.css'
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';
+import Event from './Event';
 // import Moment from 'react-moment';
 
 class EventListe extends Component{
@@ -11,7 +12,6 @@ class EventListe extends Component{
     this.state = {
       events: [],
       monthMapping: ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'],
-      showText: null,
     }
   }
 
@@ -31,13 +31,6 @@ class EventListe extends Component{
     })
   }
 
-
-  showText(index){
-    this.setState({
-      showText: index,
-    });
-  }
-
   render() {
     //Events nach dem Datum sortieren
     //   var sorted_meetings = this.state.events.sort((a,b) => {
@@ -54,36 +47,7 @@ class EventListe extends Component{
 
             <div className="events">
               {this.state.events.map((event, index) =>
-                <div className="event__box" key={index}>
-
-                  <div className="event__photo" style={{backgroundImage: `${event.img ? `url(data:image/png;base64,${new Buffer(event.img.data, 'binary').toString('base64')})`: `url(${require('../User/pinboard-icon.png')})`}`}}>
-                  </div>
-                  <div className="event__information">
-                    <div className="event__heading">
-                      <div className="event__date">
-                        <div className="event__day">{new Date(event.date).getDate()}</div>
-                        <div className="event__month">{this.state.monthMapping[new Date(event.date).getMonth()]}</div>
-                      </div>
-                      <div className="event__title">
-                        {event.name}
-                      </div>
-                      <div></div>
-                    </div>
-                    <div className="event__subheading">
-                      <div><FontAwesome name="map-marker-alt" /> {event.place}</div>
-                      <div><FontAwesome name="clock" /> {event.time}</div>
-                    </div>
-                    {/*Informationen aus der Datenbank werden zugewiesen*/}
-                    <div className="event__main" style={ { maxHeight: `${this.state.showText === index ? '1000px' : '300px' }` }} >
-                      {event.information}
-                    </div>
-                  </div>
-                  {this.state.showText !== index &&
-                    <div className="event__footer" onClick={() => this.showText(index)}>
-                      <FontAwesome name="angle-down" /> <span>Gesamten Text anzeigen</span>
-                    </div>
-                  }
-                </div>
+                <Event key={index} event={event} id={event.id}/>
               )}
             </div>
           </div>

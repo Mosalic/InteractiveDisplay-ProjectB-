@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';
 import AddEvent from './AddEvent';
+import Event from './Event';
 
 class Events extends Component {
   constructor(){
@@ -13,7 +14,6 @@ class Events extends Component {
       addEventVisible: false,
       event: null,
       eventId: null,
-      showText: null,
     };
   }
 
@@ -55,17 +55,6 @@ class Events extends Component {
     });
   }
 
-  showText(index){
-    this.setState({
-      showText: index,
-    });
-  }
-
-  tooBig(index){
-    console.log(`event__${index}`);
-    return true;
-  }
-
   render(){
     return(
       <div>
@@ -73,42 +62,12 @@ class Events extends Component {
         <div className="event">
           <div className="events">
             {this.state.events.map((event, index) =>
-              <div className="event__box" key={index}>
-                <div className="event__edit">
-                  <button onClick={() => this.editEvent(event.id, event)}>
-                    <FontAwesome name="edit" className="icn-edit"/>
-                  </button>
-                  <button onClick={() => this.deleteEvent(event.id)}>
-                    <FontAwesome name="trash" className="icn-delete"/>
-                  </button>
-                </div>
-                <div className="event__photo" style={{backgroundImage: `${event.img ? `url(data:image/png;base64,${new Buffer(event.img.data, 'binary').toString('base64')})`: `url(${require('../User/pinboard-icon.png')})`}`}}>
-                </div>
-                <div className="event__information">
-                  <div className="event__heading">
-                    <div className="event__date">
-                      <div className="event__day">{new Date(event.date).getDate()}</div>
-                      <div className="event__month">{this.state.monthMapping[new Date(event.date).getMonth()]}</div>
-                    </div>
-                    <div className="event__title">
-                      {event.name}
-                    </div>
-                  </div>
-                  <div className="event__subheading">
-                    <div><FontAwesome name="map-marker-alt" /> {event.place}</div>
-                    <div><FontAwesome name="clock" /> {event.time}</div>
-                  </div>
-                  {/*Informationen aus der Datenbank werden zugewiesen*/}
-                  <div id={`event__${index}`} className="event__main" style={ { maxHeight: `${this.state.showText === index ? '1000px' : '300px' }` } }>
-                    {event.information}
-                  </div>
-                </div>
-                {(this.state.showText !== index && this.tooBig(index)) &&
-                  <div className="event__footer" onClick={() => this.showText(index)}>
-                    <FontAwesome name="angle-down" /> <span>Gesamten Text anzeigen</span>
-                  </div>
-                }
-              </div>
+              <Event key={index}
+                deleteEvent={(id) => this.deleteEvent(id)}
+                editEvent={(id, event) => this.editEvent(id, event)}
+                id={event.id}
+                event={event}
+              />
             )}
           </div>
         </div>

@@ -63,6 +63,14 @@
   overflow: hidden;
 }
 
+.tooBig{
+  max-height: 300px;
+}
+
+.showText{
+  max-height: 1000px;
+}
+
 .events{
   display: flex;
   align-items: flex-start;
