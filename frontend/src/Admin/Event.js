@@ -12,9 +12,9 @@ class Event extends Component {
     };
   }
 
-  showText(){
+  toggleText(){
     this.setState({
-      showText: true,
+      showText: !this.state.showText,
     });
   }
 
@@ -58,9 +58,12 @@ class Event extends Component {
             {this.props.event.information}
           </div>
         </div>
-        {(!this.state.showText && this.state.tooBig) &&
-          <div className="event__footer" onClick={() => this.showText()}>
-            <FontAwesome name="angle-down" /> <span>Gesamten Text anzeigen</span>
+        {this.state.tooBig &&
+          <div className="event__footer" onClick={() => this.toggleText()}>
+            {this.state.showText ?
+              <div><FontAwesome name="angle-up" /> <span>Weniger anzeigen</span></div>
+              : <div><FontAwesome name="angle-down" /> <span>Gesamten Text anzeigen</span></div>
+            }
           </div>
         }
       </div>
