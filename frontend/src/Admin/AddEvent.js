@@ -11,13 +11,13 @@ class AddEvent extends Component{
       startDate: props.event ? new Date(props.event.startDate).toISOString().split('T')[0] : '',
       startTime: props.event ? props.event.startTime : '',
       endDate: props.event ? props.event.endDate ? new Date(props.event.endDate).toISOString().split('T')[0] : '' : '',
-      endTime: props.event ? props.event.endDate ? props.event.endTime : '' : '',
+      endTime: props.event ? props.event.endTime ? props.event.endTime : '' : '',
       information: props.event ? props.event.information : '',
       place: props.event ? props.event.place : '',
       imgUrl: props.event ? props.event.imgUrl : '',
       base64: props.event ? `data:image/png;base64,${new Buffer(props.event.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg'),
       id: props.eventId,
-      endTimeVisible: false,
+      endTimeVisible: props.event ? props.event.endDate ? true : false : false,
     }
   }
 
