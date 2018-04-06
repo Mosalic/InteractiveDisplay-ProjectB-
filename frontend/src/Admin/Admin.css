@@ -331,14 +331,14 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 
 .modal form.event{
   display: grid;
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
 }
 
 .row{
   display: grid;
   align-items: center;
-  grid-template-columns: 30% 60%;
+  grid-template-columns: 20% 70%;
   text-align: right;
   margin: 10px 0;
 }
@@ -352,15 +352,40 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
   font-size: 14px;
 }
 
+.row input[type=file]{
+  width: 90%;
+}
+
 .row textarea{
   margin-left: 10px;
   padding: 10px 15px;
-  height: 100px;
+  height: 130px;
   resize: none;
   border-radius: 3px;
   border: 1px solid #ccc;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
+}
+
+.shared{
+  grid-template-columns: 20% 30% 25% 15%;
+}
+
+.shared button{
+  border: none;
+  background: none;
+  font-size: 15px;
+  color: #0395d2;
+  cursor: pointer;
+  text-align: right;
+}
+
+.shared button:focus{
+  outline: none;
+}
+
+.event__deleteEnd{
+  color: red !important;
 }
 
 .stundeplan-wrapper{

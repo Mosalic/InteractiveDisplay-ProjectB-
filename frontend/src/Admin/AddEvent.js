@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import FontAwesome from 'react-fontawesome';
 
 class AddEvent extends Component{
   constructor(props){
@@ -7,13 +8,16 @@ class AddEvent extends Component{
 
     this.state = {
       name: props.event ? props.event.name : '',
-      date: props.event ? new Date(props.event.date).toISOString().split('T')[0] : '',
-      time: props.event ? props.event.time : '',
+      startDate: props.event ? new Date(props.event.startDate).toISOString().split('T')[0] : '',
+      startTime: props.event ? props.event.startTime : '',
+      endDate: props.event ? props.event.endDate ? new Date(props.event.endDate).toISOString().split('T')[0] : '' : '',
+      endTime: props.event ? props.event.endDate ? props.event.endTime : '' : '',
       information: props.event ? props.event.information : '',
       place: props.event ? props.event.place : '',
       imgUrl: props.event ? props.event.imgUrl : '',
       base64: props.event ? `data:image/png;base64,${new Buffer(props.event.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg'),
       id: props.eventId,
+      endTimeVisible: false,
     }
   }
 
@@ -29,8 +33,10 @@ class AddEvent extends Component{
     let formData = new FormData();
     formData.append('img', this.state.imgUrl);
     formData.append('name', this.state.name);
-    formData.append('date', this.state.date);
-    formData.append('time', this.state.time);
+    formData.append('startDate', this.state.startDate);
+    formData.append('startTime', this.state.startTime);
+    formData.append('endDate', this.state.endDate);
+    formData.append('endTime', this.state.endTime);
     formData.append('information', this.state.information);
     formData.append('place', this.state.place);
     formData.append('id', this.state.id);
@@ -46,8 +52,10 @@ class AddEvent extends Component{
   update(){
     axios.put(`http://localhost:3001/events/${this.state.id}`, {
       name: this.state.name,
-      date: this.state.date,
-      time: this.state.time,
+      startDate: this.state.startDate,
+      startTime: this.state.startTime,
+      endDate: this.state.endDate,
+      endTime: this.state.endTime,
       information: this.state.information,
       place: this.state.place,
     }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
@@ -96,7 +104,16 @@ class AddEvent extends Component{
       reader.readAsDataURL(file);
   }
 
+  toggleEndTime(){
+    this.setState({
+      endTimeVisible: !this.state.endTimeVisible,
+      endTime: '',
+      endDate: '',
+    });
+  }
+
   render(){
+    console.log(this.props.event);
     return(
       <div className="backdrop">
         <div className="modal">
@@ -110,12 +127,25 @@ class AddEvent extends Component{
                 <input id="foto" name="foto" type="file" onChange={(event) => this.encodeImageFileAsURL(event)} accept="image/x-png,image/gif,image/jpeg" />
               </div>
             </div>
-            <div className="row">Eventname <input value={this.state.name} placeholder="Name" onChange={(e) => this.handleChange(e)} name="name" /></div>
-            <div className="row">Eventdatum <input value={this.state.date} placeholder="Date" type="date" onChange={(e) => this.handleChange(e)} name="date" /></div>
-            <div className="row">Eventzeit <input value={this.state.time} type="time" placeholder="Time" onChange={(e) => this.handleChange(e)} name="time" /></div>
+            <div className="row">Eventname <input value={this.state.name} placeholder="Eventname" onChange={(e) => this.handleChange(e)} name="name" /></div>
+            <div className="row shared">
+              {this.state.endTimeVisible ? 'Start' : 'Datum/Uhrzeit'}
+              <input value={this.state.startDate} placeholder="Date" type="date" onChange={(e) => this.handleChange(e)} name="startDate" />
+              <input value={this.state.startTime} type="time" placeholder="Uhrzeit" onChange={(e) => this.handleChange(e)} name="startTime" />
+              {!this.state.endTimeVisible && <button type="button" onClick={() => this.toggleEndTime()}><FontAwesome name="plus" className="icn-edit"/> Endzeit hinzufügen</button> }
+            </div>
+            {this.state.endTimeVisible &&
+              <div className="row shared">
+                Ende
+                <input value={this.state.endDate} placeholder="Date" type="date" onChange={(e) => this.handleChange(e)} name="endDate" />
+                <input value={this.state.endTime} type="time" placeholder="Uhrzeit" onChange={(e) => this.handleChange(e)} name="endTime" />
+                <button className="event__deleteEnd" type="button" onClick={() => this.toggleEndTime()}><FontAwesome name="minus-circle" className="icn-delete"/> Endzeit entfernen</button>
+              </div>
+            }
+            {/* <div className="row">Eventzeit <input value={this.state.time} type="time" placeholder="Time" onChange={(e) => this.handleChange(e)} name="time" /></div> */}
             {/* <div className="row">Eventbeschreibung <input value={this.state.information} placeholder="Information" onChange={(e) => this.handleChange(e)} name="information" /></div> */}
-            <div className="row">Eventbeschreibung  <textarea value={this.state.information} name="information" placeholder="Eventbeschreibung" onChange={(e) => this.handleChange(e)} /></div>
-            <div className="row">Eventort <input value={this.state.place} placeholder="Place" onChange={(e) => this.handleChange(e)} name="place" /></div>
+            <div className="row">Information  <textarea value={this.state.information} name="information" placeholder="Beschreibung" onChange={(e) => this.handleChange(e)} /></div>
+            <div className="row">Ort <input value={this.state.place} placeholder="Ort" onChange={(e) => this.handleChange(e)} name="place" /></div>
           </form>
           <div className="button-footer">
             <button className="btn-save" type="button" onClick={() => this.save()}>Save</button>

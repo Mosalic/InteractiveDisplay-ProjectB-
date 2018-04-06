@@ -9,6 +9,7 @@ class Event extends Component {
       monthMapping: ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'],
       showText: false,
       tooBig: false,
+      fullMonthMapping: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
     };
   }
 
@@ -19,6 +20,7 @@ class Event extends Component {
   }
 
   componentDidMount(){
+    console.log(this.props.id, document.getElementById(`event__${this.props.id}`).offsetHeight);
     if(document.getElementById(`event__${this.props.id}`).offsetHeight > 350){
       this.setState({
         tooBig: true,
@@ -42,16 +44,38 @@ class Event extends Component {
         <div className="event__information">
           <div className="event__heading">
             <div className="event__date">
-              <div className="event__day">{new Date(this.props.event.date).getDate()}</div>
-              <div className="event__month">{this.state.monthMapping[new Date(this.props.event.date).getMonth()]}</div>
+              <div className="event__day">{new Date(this.props.event.startDate).getDate()}</div>
+              <div className="event__month">{this.state.monthMapping[new Date(this.props.event.startDate).getMonth()]}</div>
             </div>
             <div className="event__title">
               {this.props.event.name}
             </div>
           </div>
           <div className="event__subheading">
-            <div><FontAwesome name="map-marker-alt" /> {this.props.event.place}</div>
-            <div><FontAwesome name="clock" /> {this.props.event.time}</div>
+            <div className="event__subheading-row"><FontAwesome name="map-marker-alt" /> {this.props.event.place}</div>
+            {this.props.event.endTime ?
+              <div>
+                {this.props.event.startDate === this.props.event.endDate ?
+                    <div className="event__subheading-row">
+                      <FontAwesome name="clock" /> {new Date(this.props.event.startDate).getDate()}. {`${this.state.fullMonthMapping[new Date(this.props.event.startDate).getMonth()]} `}
+                      {this.props.event.startTime} - {this.props.event.endTime}
+                    </div>
+                  : <div className="event__subheading-row">
+                    <FontAwesome name="clock" />
+                    <div className="event__fullTime">
+                      {new Date(this.props.event.startDate).getDate()}. {`${this.state.fullMonthMapping[new Date(this.props.event.startDate).getMonth()]} `}
+                      - {new Date(this.props.event.endDate).getDate()}. {this.state.fullMonthMapping[new Date(this.props.event.endDate).getMonth()]}
+                      <span> Vom {new Date(this.props.event.startDate).getDate()}. {this.state.fullMonthMapping[new Date(this.props.event.startDate).getMonth()]} um {`${this.props.event.startTime} `}
+                      bis zum {new Date(this.props.event.endDate).getDate()}. {this.state.fullMonthMapping[new Date(this.props.event.endDate).getMonth()]} um {this.props.event.endTime}</span>
+                    </div>
+                  </div>
+                }
+              </div>
+              : <div className="event__subheading-row">
+                  <FontAwesome name="clock" /> {new Date(this.props.event.startDate).getDate()}. {`${this.state.fullMonthMapping[new Date(this.props.event.startDate).getMonth()]} `}
+                  {this.props.event.startTime}
+                </div>
+            }
           </div>
           {/* <div id={`event__${this.props.id}`} className="event__main" style={ { maxHeight: `${this.state.showText ? '1000px' : '300px' }` } }> */}
           <div id={`event__${this.props.id}`} className={`${this.state.tooBig ? 'tooBig ' : ''}event__main ${this.state.showText ? 'showText' : ''}`}>
@@ -62,7 +86,7 @@ class Event extends Component {
           <div className="event__footer" onClick={() => this.toggleText()}>
             {this.state.showText ?
               <div><FontAwesome name="angle-up" /> <span>Weniger anzeigen</span></div>
-              : <div><FontAwesome name="angle-down" /> <span>Gesamten Text anzeigen</span></div>
+              : <div><FontAwesome name="angle-down" /> <span>Mehr anzeigen</span></div>
             }
           </div>
         }

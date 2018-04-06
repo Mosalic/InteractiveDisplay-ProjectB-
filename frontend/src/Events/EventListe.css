@@ -52,14 +52,14 @@
   margin-top: 20px;
 }
 
-.event__subheading div{
+.event__subheading-row{
   display: grid;
   grid-template-columns: 8% 90%;
   align-items: center;
   margin-top: 10px;
 }
 
-.event__subheading div span {
+.event__subheading-row > span {
   color: #bfbfbf;
   text-align: center;
 }
@@ -137,7 +137,19 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  margin-left: 10px;
-  padding: 0px 2.5px;
+  /* margin-left: 10px;
+  padding: 0px 2.5px; */
   margin-bottom: 10px;
+}
+
+.event__fullTime{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+}
+
+.event__fullTime span{
+  color: #424242;
+  font-size: 14px;
 }
