@@ -76,6 +76,7 @@ class AddProfessor extends Component {
       console.log('Professor added');
       if(response.status === 200){
         this.props.close();
+        this.props.getProfessoren();
       }
     })
     .catch((error) => {
@@ -97,6 +98,7 @@ class AddProfessor extends Component {
       console.log('Professor updated');
       if(response.status === 200){
         this.props.close();
+        this.props.getProfessoren();
       }
     })
     .catch((error) => {

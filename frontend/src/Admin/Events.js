@@ -18,6 +18,10 @@ class Events extends Component {
   }
 
   componentDidMount(){
+    this.getEvents();
+  }
+
+  getEvents(){
     axios.get('http://localhost:3001/events')
     .then((response) => {
       this.setState({
@@ -41,6 +45,7 @@ class Events extends Component {
     axios.delete(`http://localhost:3001/events/${id}`, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
     .then((response) => {
       console.log('deleted');
+      this.getEvents();
     })
     .catch((error) => {
       console.log('error', error);
@@ -58,7 +63,7 @@ class Events extends Component {
   render(){
     return(
       <div>
-        <button type="button" className="add" onClick={() => this.toggleAddEvent()}>+</button>
+        <div className="admin__btn-add"><button type="button" className="add" onClick={() => this.toggleAddEvent()}>+</button></div>
         <div className="event">
           <div className="events">
             {this.state.events.map((event, index) =>
@@ -76,6 +81,7 @@ class Events extends Component {
             close={() => this.toggleAddEvent()}
             eventId={this.state.eventId}
             event={this.state.event}
+            getEvents={() => this.getEvents()}
           />
         }
       </div>

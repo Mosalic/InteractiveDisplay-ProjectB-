@@ -32,17 +32,21 @@ class Stundenplan extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:3001/stundenplaene')
-    .then((response) => {
-      this.setState({
-        stundenplaene: response.data.data.stundenplaene,
-        timetableId: response.data.data.stundenplaene.length === 0 ? 0 : (response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id + 1),
-      });
-    })
-    .catch((error) => {
-      console.log('error', error);
-    })
+    this.getStundenplaene();
   }
+
+getStundenplaene(){
+  axios.get('http://localhost:3001/stundenplaene')
+  .then((response) => {
+    this.setState({
+      stundenplaene: response.data.data.stundenplaene,
+      timetableId: response.data.data.stundenplaene.length === 0 ? 0 : (response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id + 1),
+    });
+  })
+  .catch((error) => {
+    console.log('error', error);
+  })
+}
 
 toggleAddStundenplan(){
   this.setState({
@@ -76,23 +80,14 @@ closeAddStundenplan(){
   this.setState({
     addStundenplanVisible: false,
   });
-  axios.get('http://localhost:3001/stundenplaene')
-  .then((response) => {
-    this.setState({
-      stundenplaene: response.data.data.stundenplaene,
-      timetableId: response.data.data.stundenplaene.length === 0 ? 0 : (response.data.data.stundenplaene[response.data.data.stundenplaene.length - 1].id + 1),
-    });
-  })
-  .catch((error) => {
-    console.log('error', error);
-  })
+  this.getStundenplaene();
 }
 
   render() {
     return (
         <div>
-          <div className="professoren-wrapper">
-            {this.state.addStundenplanVisible ?
+          {this.state.addStundenplanVisible ?
+            <div className="professoren-wrapper">
               <AddStundenplan
                 timetableId={this.state.timetableId}
                 semester={this.state.semester}
@@ -101,19 +96,19 @@ closeAddStundenplan(){
                 studiengang={this.state.studiengang}
                 back={() => this.closeAddStundenplan()}
               />
-              :
-              <div>
-                <button type="button" className="add" onClick={() => this.toggleAddStundenplan()}>+</button>
-                <div className="stundeplan">
-                  {this.state.stundenplaene.map((stundenplan, index) =>
-                    <button key={index} onClick={() => this.toggleEditStundenplan(stundenplan)}>
-                      {stundenplan.studiengang}
-                    </button>
-                  )}
-                </div>
+            </div>
+            :
+            <div>
+              <div className="admin__btn-add"><button type="button" className="add" onClick={() => this.toggleAddStundenplan()}>+</button></div>
+              <div className="stundeplan">
+                {this.state.stundenplaene.map((stundenplan, index) =>
+                  <button key={index} onClick={() => this.toggleEditStundenplan(stundenplan)}>
+                    {stundenplan.studiengang}
+                  </button>
+                )}
               </div>
-            }
-          </div>
+            </div>
+          }
         </div>
     );
   }

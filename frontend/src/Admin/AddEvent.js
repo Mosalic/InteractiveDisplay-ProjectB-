@@ -15,7 +15,7 @@ class AddEvent extends Component{
       information: props.event ? props.event.information : '',
       place: props.event ? props.event.place : '',
       imgUrl: props.event ? props.event.imgUrl : '',
-      base64: props.event ? `data:image/png;base64,${new Buffer(props.event.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg'),
+      base64: props.event ? props.event.img ? `data:image/png;base64,${new Buffer(props.event.img.data, 'binary').toString('base64')}` : require('./dummy-image.jpeg') : require('./dummy-image.jpeg'),
       id: props.eventId,
       endTimeVisible: props.event ? props.event.endDate ? true : false : false,
     }
@@ -43,6 +43,8 @@ class AddEvent extends Component{
     axios.post('http://localhost:3001/events', formData, {headers:{ Authorization: localStorage.getItem('JWTToken'), 'Content-Type': 'multipart/form-data'}})
     .then((response) => {
       console.log('Event added');
+      this.props.close();
+      this.props.getEvents();
     })
     .catch((error) => {
       console.log('error', error);
@@ -63,6 +65,7 @@ class AddEvent extends Component{
       console.log('Professor updated');
       if(response.status === 200){
         this.props.close();
+        this.props.getEvents();
       }
     })
     .catch((error) => {

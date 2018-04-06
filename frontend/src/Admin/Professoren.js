@@ -105,6 +105,7 @@ class Professoren extends Component {
               show={this.state.addProfessor}
               close={() => this.toggleAddProfessor()}
               professor={this.state.editProfessor}
+              getProfessoren={() => this.getProfessoren()}
             />
           </div>
         </div>

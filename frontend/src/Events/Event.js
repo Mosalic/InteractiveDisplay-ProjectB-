@@ -31,7 +31,7 @@ class Event extends Component {
   render(){
     return(
       <div className="event__box">
-        <div className="event__photo" style={{backgroundImage: `${this.props.event.img ? `url(data:image/png;base64,${new Buffer(this.props.event.img.data, 'binary').toString('base64')})`: `url(${require('../User/pinboard-icon.png')})`}`}}>
+        <div className="event__photo" style={{backgroundImage: `${this.props.event.img ? `url(data:image/png;base64,${new Buffer(this.props.event.img.data, 'binary').toString('base64')})`: `url(${require('./dummy-image.jpeg')})`}`}}>
         </div>
         <div className="event__information">
           <div className="event__heading">
