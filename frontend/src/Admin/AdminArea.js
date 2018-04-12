@@ -5,6 +5,7 @@ import Professoren from './Professoren';
 import Users from './Users';
 import Events from './Events';
 import Stundenplan from './Stundenplan';
+import Notes from './Notes';
 
 class AdminArea extends Component {
 
@@ -34,6 +35,9 @@ class AdminArea extends Component {
             <NavLink activeClassName="active" to="/admin/admin-area/events">
               Veranstaltungen
             </NavLink>
+            <NavLink activeClassName="active" to="/admin/admin-area/notes">
+              Pinnwand
+            </NavLink>
             <NavLink activeClassName="active" to="/admin/admin-area/users">
               Users
             </NavLink>
@@ -42,6 +46,7 @@ class AdminArea extends Component {
           <Route path="/admin/admin-area/users" component={Users} />
           <Route path="/admin/admin-area/events" component={Events} />
           <Route path="/admin/admin-area/stundenplaene" component={Stundenplan} />
+          <Route path="/admin/admin-area/notes" component={Notes} />
           {/* <button>Stundenplan hinzufügen</button> */}
         </div>
     );

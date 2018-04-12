@@ -100,7 +100,7 @@ closeAddStundenplan(){
             :
             <div>
               <div className="admin__btn-add"><button type="button" className="add" onClick={() => this.toggleAddStundenplan()}>+</button></div>
-              <div className="stundeplan">
+              <div className="stundenplan__wrapper">
                 {this.state.stundenplaene.map((stundenplan, index) =>
                   <button key={index} onClick={() => this.toggleEditStundenplan(stundenplan)}>
                     {stundenplan.studiengang}

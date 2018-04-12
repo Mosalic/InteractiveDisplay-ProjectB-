@@ -396,6 +396,23 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
   color: red !important;
 }
 
+.stundenplan__wrapper{
+  display: flex;
+  width: 80%;
+  justify-content: center;
+}
+
+.stundenplan__wrapper > button {
+  border: none;
+  background: #0395d2;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0px 10px;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
 .stundeplan-wrapper{
   display: flex;
   flex-direction: column;

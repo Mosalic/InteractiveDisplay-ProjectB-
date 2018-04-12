@@ -6,7 +6,7 @@
     "axios": "^0.17.1",
     "immutable": "^3.8.2",
     "jwt-decode": "^2.2.0",
-    "moment": "^2.21.0",
+    "moment": "^2.22.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-fontawesome": "^1.6.1",
