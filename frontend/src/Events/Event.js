@@ -9,6 +9,7 @@ class Event extends Component {
       monthMapping: ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'],
       showText: false,
       tooBig: false,
+      height: '',
       fullMonthMapping: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
     };
   }
@@ -24,6 +25,7 @@ class Event extends Component {
     if(document.getElementById(`event__${this.props.id}`).offsetHeight > 350){
       this.setState({
         tooBig: true,
+        height: `${document.getElementById(`event__${this.props.id}`).offsetHeight}`,
       });
     }
   }
@@ -70,7 +72,7 @@ class Event extends Component {
             }
           </div>
           {/* <div id={`event__${this.props.id}`} className="event__main" style={ { maxHeight: `${this.state.showText ? '1000px' : '300px' }` } }> */}
-          <div id={`event__${this.props.id}`} className={`${this.state.tooBig ? 'tooBig ' : ''}event__main ${this.state.showText ? 'showText' : ''}`}>
+          <div id={`event__${this.props.id}`} className={`event__main`} style={{ maxHeight: `${this.state.tooBig && !this.state.showText ? '300' : this.state.height}px`}}>
             {this.props.event.information}
           </div>
         </div>
