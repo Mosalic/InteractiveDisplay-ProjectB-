@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Admin.css'
 import AddProfessor from './AddProfessor';
 import FontAwesome from 'react-fontawesome';
+import withAuth from './withAuth';
 // import faStyles from 'font-awesome/css/font-awesome.css';
 
 class Professoren extends Component {
@@ -113,4 +114,4 @@ class Professoren extends Component {
   }
 }
 
-export default Professoren;
+export default withAuth(Professoren);

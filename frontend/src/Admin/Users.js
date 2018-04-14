@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Admin.css'
 import FontAwesome from 'react-fontawesome';
+import withAuth from './withAuth';
 
 class Users extends Component {
   constructor(){
@@ -182,4 +183,4 @@ class Users extends Component {
   }
 }
 
-export default Users;
+export default withAuth(Users);

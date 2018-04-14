@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';
 import Immutable from 'immutable';
+import withAuth from './withAuth';
 
 class AddStundenplan extends Component {
   constructor(props){
@@ -297,4 +298,4 @@ class AddStundenplan extends Component {
   }
 }
 
-export default AddStundenplan;
+export default withAuth(AddStundenplan);

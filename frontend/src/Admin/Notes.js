@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import withAuth from './withAuth';
 
 class Notes extends Component {
   constructor(){
@@ -39,4 +40,4 @@ class Notes extends Component {
   }
 }
 
-export default Notes;
+export default withAuth(Notes);

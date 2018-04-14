@@ -3,6 +3,7 @@ import axios from 'axios';
 import FontAwesome from 'react-fontawesome';
 import AddEvent from './AddEvent';
 import Event from './Event';
+import withAuth from './withAuth';
 
 class Events extends Component {
   constructor(){
@@ -89,4 +90,4 @@ class Events extends Component {
   }
 }
 
-export default Events;
+export default withAuth(Events);
