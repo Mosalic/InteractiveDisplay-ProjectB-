@@ -17,9 +17,11 @@ class AllgemeineInformationen extends Component {
                 Professoren
             </div>
         </Link>
-        <div className="button">
-            Stundenplan
-        </div>
+        <Link to="/home/allgemeineInformationen/stundenplaene">
+          <div className="button">
+              Stundenpläne
+          </div>
+        </Link>
         <Link to="/home/allgemeineInformationen/eventListe">
           <div className="button">
               Veranstaltungen
