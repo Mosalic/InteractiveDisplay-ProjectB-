@@ -4,15 +4,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(0, 150, 210);
+    padding: 30px 0px;
 }
 
 .pinboard-input{
-    width: 70%;
-    margin: 5%;
-    padding: 50px;
-    background-color: white;
-    border-radius: 5px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.pinboard-input h2{
+  margin-bottom: 20px;
+}
+
+input[type="text"]{
+  margin: 0px 0px 10px 0px;
+}
+
+textarea{
+  padding: 10px;
+  height: 130px;
+  resize: none;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+textarea::placeholder{
+  color: #ccc;
 }
 
 .foto{
@@ -22,11 +42,28 @@
   justify-content: flex-end;
 }
 
+.foto input{
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.foto label{
+  color: #0395d2;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.foto label span{
+  margin-left: 5px;
+}
+
 .pinboard-foto{
   height: 200px;
-  width: 200px;
-    margin: 10px;
-    margin-bottom: 15px;
+  width: 100%;
   background-size: cover;
   flex: 0 0 auto;
   background-position: center;
@@ -38,7 +75,7 @@
 }
 
 .btn-upload{
-    width: 30%;
+  width: 30%;
   border: none;
   background: rgb(0, 150, 210);
   color: #fff;
@@ -47,4 +84,3 @@
   font-size: 14px;
   font-family: 'Lato', sans-serif;
 }
-

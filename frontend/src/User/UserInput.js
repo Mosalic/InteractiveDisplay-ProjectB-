@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from '../Header/Header';
+import FontAwesome from 'react-fontawesome';
 import './InputPinboard.css';
 import axios from 'axios';
 
 
 class UserInput extends Component {
- 
+
  constructor(){
     super();
 
@@ -14,17 +14,17 @@ class UserInput extends Component {
         name: '',
         infos: '',
         imgUrl: '',
-        base64: require('./pinboard-icon.png'),
+        base64: '',
     }
   }
-    
+
 
     handleChange(e){
         this.setState({
           [e.target.name]: e.target.value,
         });
     }
-    
+
     encodeImageFileAsURL(element){
       this.setState({
           imgUrl: element.target.files[0]
@@ -38,7 +38,7 @@ class UserInput extends Component {
       }.bind(this)
       reader.readAsDataURL(file);
   }
-    
+
     save(){
         let formData = new FormData();
         formData.append('img', this.state.imgUrl);
@@ -52,34 +52,40 @@ class UserInput extends Component {
           console.log('error', error);
         })
     }
-    
-    
+
+
     render() {
         return (
             <div >
               <div className="pinboard-input-wrapper">
                 <div className="pinboard-input">
-                    <h2>Anhang hinzufügen</h2>
+                    <h2>Pin erstellen</h2>
 
                     <form>
+                      <div className="input-fields">
+                        Titel
+                        <input value={this.state.name} name="name" type="text" placeholder="Gib dem Pin einen Title" onChange={(e) => this.handleChange(e)} />
+                        Beschreibung
+                        <textarea value={this.state.infos} name="infos" placeholder="Zusätzliche Informationen" onChange={(e) => this.handleChange(e)} />
+                      </div>
                       <div className="foto">
                         <input id="foto" name="foto" type="file" onChange={(event) => this.encodeImageFileAsURL(event)} accept="image/x-png,image/gif,image/jpeg" />
-                        <label htmlFor="foto"><div className="pinboard-foto" style={{backgroundImage: `url(${this.state.base64})`}}></div></label>
-                      </div>
-                      <div className="input-fields">
-                        <input value={this.state.name} name="name" type="text" placeholder="Name" onChange={(e) => this.handleChange(e)} />
-                        <input value={this.state.infos} name="infos" type="text" placeholder="zusätzliche Informationen" onChange={(e) => this.handleChange(e)} />
-
+                        {this.state.base64 === '' ?
+                        <label htmlFor="foto">
+                            <FontAwesome name="plus" className="icn-edit"/>
+                            <span>Füge ein Foto hinzu.</span>
+                        </label>
+                        : <label htmlFor="foto"><div className="pinboard-foto" style={{backgroundImage: `url(${this.state.base64})`}}></div></label> }
                       </div>
                     </form>
 
-                    <button className="btn-upload" type="button" onClick={() => this.save()}>Save&Upload</button>
+                    <button className="btn-upload" type="button" onClick={() => this.save()}>Upload</button>
 
                 </div>
               </div>
             </div>
-               
-          
+
+
     );
   }
 
