@@ -13,6 +13,7 @@ import EventListe from './Events/EventListe';
 import NoteListe from './Notes/NoteListe';
 import Speiseplan from './Speiseplan';
 import Stundenplaene from './Stundenplaene';
+import Stundenplan from './Stundenplaene/Stundenplan';
 
 class Main extends Component {
   render() {
@@ -33,7 +34,7 @@ class Main extends Component {
           <Route exact path={`${this.props.match.url}/allgemeineInformationen/eventListe`} component={EventListe}/>
           <Route exact path={`${this.props.match.url}/allgemeineInformationen/speiseplan`} component={Speiseplan}/>
           <Route exact path={`${this.props.match.url}/allgemeineInformationen/stundenplaene`} component={Stundenplaene}/>
-
+          <Route path={`${this.props.match.url}/allgemeineInformationen/stundenplaene/:id`} component={Stundenplan} />
         </div>
       </div>
     </div>

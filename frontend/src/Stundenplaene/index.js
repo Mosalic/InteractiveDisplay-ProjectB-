@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 class Stundenplaene extends Component{
   constructor(){
@@ -27,12 +29,13 @@ class Stundenplaene extends Component{
   }
 
   render(){
+    console.log(this.props);
     return(
       <div className="stundenplan__wrapper">
         {this.state.stundenplaene.map((stundenplan, index) =>
-          <button key={index} onClick={() => this.toggleEditStundenplan(stundenplan)}>
+          <Link to={`${this.props.match.url}/${stundenplan.id}`}>
             {stundenplan.studiengang}
-          </button>
+          </Link>
         )}
       </div>
     );
