@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../Professoren/List.css'
+import '../Notes/NoteList.css'
 import axios from 'axios';
 import AddProfessor from '../Admin/Events';
 import FontAwesome from 'react-fontawesome';
@@ -35,31 +35,23 @@ class NoteListe extends Component{
     return (
         <div>
         <h1>Schwarzes Brett</h1>
-          <div className="professoren-wrapper">
+          <div className="note-wrapper">
             
            
-            <div className="professoren">
+            <div className="notes">
               {this.state.notes.map((note, index) =>
-                <div className="professor" key={index}>
+                <div className="note" key={index}>
                     
-                 {/* <div className="professor__edit">
-                      <button onClick={() => this.editProfessor(professor)}>
-                      <FontAwesome name="edit" className="icn-edit"/>
-                    </button>
-                    <button onClick={(id) => this.deleteProfessor(professor.id)}>
-                      <FontAwesome name="trash" className="icn-delete"/>
-                    </button>
-                  </div>*/}
-                  <div className="professor-foto" style={{backgroundImage: `${note.img ? `url(data:image/png;base64,${new Buffer(note.img.data, 'binary').toString('base64')})`: `url(${require('../User/pinboard-icon.png')})`}`}}>
+                  <div className="note-foto" style={{backgroundImage: `${note.img ? `url(data:image/png;base64,${new Buffer(note.img.data, 'binary').toString('base64')})`: `url(${require('../User/pinboard-icon.png')})`}`}}>
                   </div>
-                  <div className="professor-information">
-                    <div className="professor-heading">
-                      <div className="professor-name"><h2>{note.name}</h2></div>
+                  <div className="note-information">
+                    <div className="note-heading">
+                      <div className="note-name"><h2>{note.name}</h2></div>
                           {/*<span className="funktion">{note.info}</span><br />*/}
                     </div>
                     {/*Informationen aus der Datenbank werden zugewiesen*/}
-                    <div className="professor-main">
-                      <div>{/*<img className="room-image" src={ require('./location.png') } /> vllt Icon*/}Info: <span className="span-info">{note.info}</span></div>
+                    <div className="note-main">
+                      <div>Info: <span className="span-info">{note.info}</span></div>
                           {/*<div>Uhrzeit: <span>{event.time}</span></div>
                       <div>Datum: <span>{event.date}</span></div>*/}
                     </div>
