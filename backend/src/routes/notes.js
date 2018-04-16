@@ -1,6 +1,6 @@
 import express, {Router} from 'express';
 import multer from 'multer';
-import { getNotes, postNotes, putNotes, deleteNotes } from '../controllers/notes';
+import { getNotes, postNotes, putNotes, deleteNotes, putNotesImage, deleteNotesImage } from '../controllers/notes';
 
 var upload = multer({ dest: './uploads/' })
 
@@ -13,5 +13,9 @@ notes.route('/')
 notes.route('/:id')
   .put(putNotes)
   .delete(deleteNotes);
+
+notes.route('/:id/image')
+  .put(upload.single("img"), putNotesImage)
+  .delete(deleteNotesImage);
 
 export default notes;
