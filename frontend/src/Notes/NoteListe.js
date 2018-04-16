@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import AddProfessor from '../Admin/Events';
-import FontAwesome from 'react-fontawesome';
 import './NoteListe.css';
 import Masonry from 'react-masonry-component';
 
@@ -11,8 +9,6 @@ class NoteListe extends Component{
 
     this.state = {
       notes: [],
-      addNote: false, //brauchen wir das ? und die id?
-      nextNoteId: null,
       previewImg: null,
       previewVisible: false,
     }
@@ -50,19 +46,16 @@ class NoteListe extends Component{
         <div>
         <h1>Schwarzes Brett</h1>
           <div className="notes-wrapper">
-            <div className="notes">
-              <Masonry
-                className={'my-gallery-class'} // default ''
-                disableImagesLoaded={false} // default false
-                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-              >
+            <Masonry
+              className={'my-gallery-class'}
+              disableImagesLoaded={false}
+              updateOnEachImageLoad={false}
+            >
               {this.state.notes.map((note, index) =>
                 <div className="note" key={index}>
                   {note.img &&
                     <div>
                       <img className="note-img" onClick={() => this.openPreview(note.img.data)} src={`data:image/png;base64,${new Buffer(note.img.data, 'binary').toString('base64')}`} />
-                      {/* <div className="professor-foto" style={{backgroundImage: `${`url(data:image/png;base64,${new Buffer(note.img.data, 'binary').toString('base64')})`}`}}>
-                      </div> */}
                       <hr />
                     </div>
                   }
@@ -78,7 +71,6 @@ class NoteListe extends Component{
                 </div>
               )}
             </Masonry>
-            </div>
           </div>
           {this.state.previewVisible &&
             <div>

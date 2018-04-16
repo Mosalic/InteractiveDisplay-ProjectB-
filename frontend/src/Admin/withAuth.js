@@ -18,7 +18,7 @@ export default function withAuth(AuthComponent) {
 
     render() {
       return (
-        <AuthComponent history={this.props.history} />
+        <AuthComponent history={this.props.history} {...this.props} />
       )
     }
   }

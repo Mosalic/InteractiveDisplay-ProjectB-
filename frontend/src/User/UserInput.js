@@ -53,6 +53,13 @@ class UserInput extends Component {
         })
     }
 
+    deleteImg(){
+      this.setState({
+        imgUrl: '',
+        base64: '',
+      });
+    }
+
 
     render() {
         return (
@@ -75,7 +82,16 @@ class UserInput extends Component {
                             <FontAwesome name="plus" className="icn-edit"/>
                             <span>Füge ein Foto hinzu.</span>
                         </label>
-                        : <label htmlFor="foto"><div className="pinboard-foto" style={{backgroundImage: `url(${this.state.base64})`}}></div></label> }
+                        :
+                        <div>
+                          <label htmlFor="foto">
+                            <img className="pinboard-foto" src={this.state.base64} />
+                            {/* <div className="pinboard-foto" style={{backgroundImage: `url(${this.state.base64})`}}> */}
+                          {/* </div> */}
+                          </label>
+                          <br />
+                          <button onClick={() => this.deleteImg()} className="btn-delete"><FontAwesome name="minus-circle" className="icn-delete"/><span>Foto entfernen</span></button>
+                        </div> }
                       </div>
                     </form>
 

@@ -1,6 +1,7 @@
 import Notes from '../models/notes';
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
+var ObjectId = require('mongodb').ObjectID;
 
 export const getNotes = (req, res, next) => {
   Notes.find((err, doc) => {
@@ -52,7 +53,7 @@ export const putNotes = (req, res, next) => {
 export const deleteNotes = (req, res, next) => {
   jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
     if(err === null) {
-      Notes.remove({ "id" : req.params.id}, (err, doc) => {
+      Notes.remove({ "_id" : ObjectId(req.params.id)}, (err, doc) => {
         if(err === null){
           res.writeHead(200, {'Content-Type': 'text/html'});
           res.end("deleted");

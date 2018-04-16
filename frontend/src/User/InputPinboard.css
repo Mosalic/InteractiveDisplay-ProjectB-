@@ -62,11 +62,24 @@ textarea::placeholder{
 }
 
 .pinboard-foto{
-  height: 200px;
+  /* height: 200px;
   width: 100%;
   background-size: cover;
   flex: 0 0 auto;
-  background-position: center;
+  background-position: center; */
+  max-width: 300px;
+}
+
+.btn-delete{
+  border: none;
+  font-size: 16px;
+  color: red;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.btn-delete span{
+  margin-left: 5px;
 }
 
 .input-fields{
