@@ -41,9 +41,8 @@ class EventListe extends Component{
 
       return (
         <div>
-        <h1>Event Liste</h1>
+        <h1>Veranstaltungen</h1>
           <div className="event">
-
 
             <div className="events">
               {this.state.events.map((event, index) =>
