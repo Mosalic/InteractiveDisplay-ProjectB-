@@ -1,0 +1,291 @@
+.admin-area{
+  min-height: 100vh;
+  width: 100%;
+  background: #F3F4F6;
+}
+
+.admin-area__nav{
+  padding-top: 70px;
+  padding-bottom: 20px;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.admin-area__nav a{
+  margin: 0px 10px;
+  color: #0f0f0f;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.admin-area__nav a:hover{
+  border-bottom: 3px solid rgb(0, 150, 210);
+}
+
+.active{
+  border-bottom: 3px solid rgb(0, 150, 210);
+}
+
+.note-wrapper{
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.notes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: start;
+  margin: 0 auto;
+    text-align: left;
+}
+
+
+
+.add{
+  border-radius: 100%;
+  color: #fff;
+  background: rgb(0, 150, 210);
+  height: 45px;
+  width: 45px;
+  border: none;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 300;
+  cursor: pointer;
+  margin-bottom: 10px;
+  align-self: flex-end;
+}
+
+.note{
+  width: 43%;
+  background: #fff;
+  box-shadow: 0px 0px 4px 0px #CACACA;
+  padding: 20px;
+  margin: 10px 0px;
+  /*display: flex;
+  position: relative;*/
+}
+
+h2{
+  margin: 0;
+}
+
+.funktion{
+  color: #8D8A8A;
+  font-weight: 300;
+}
+
+.backdrop{
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.modal{
+  background: #fff;
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.modal form{
+  display: flex;
+  margin-top: 20px;
+}
+
+.foto{
+  display: flex;
+  flex-direction: column;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+}
+
+
+.input-fields{
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"]{
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  margin: 5px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  width: 300px;
+}
+
+input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ccc;
+}
+
+input[type="text"]::-moz-placeholder { /* Firefox 19+ */
+  color: #ccc;
+}
+
+input[type="text"]:-ms-input-placeholder { /* IE 10+ */
+  color: #ccc;
+}
+
+input[type="text"]:-moz-placeholder { /* Firefox 18- */
+  color: #ccc;
+}
+
+.btn-close{
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.btn-save{
+  border: none;
+  background: rgb(0, 150, 210);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+}
+
+.button-footer{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.note-information{
+  margin-left: 15px;
+}
+
+.note-name{
+     border-bottom: 2px solid rgb(0, 150, 210);
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+}
+
+.note-heading{
+  margin-bottom: 20px;
+
+}
+
+.note-main div{
+  margin: 10px 0px;
+}
+
+.note-main div span{
+  font-weight: 300;
+}
+
+.note-foto{
+  height: 250px;
+  width: 100%;
+  background-size: cover;
+  flex: 0 0 auto;
+  background-position: center;
+}
+
+.span-info{
+    margin-left: 50px;
+}
+
+.login{
+  width: 100%;
+  height: 100vh;
+  background: rgb(0, 60, 160);
+  display: flex;
+  align-items: center;
+}
+
+.login__form{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__form input{
+  padding: 10px;
+  margin: 10px 0px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 200px;
+}
+
+.login__form button{
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: none;
+  margin-top: 10px;
+  font-size: 14px;
+  background: rgb(0, 150, 210);
+  color: #fff;
+}
+
+.professor__edit{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.professor__edit button{
+  border: none;
+  padding: 0px;
+  font-size: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+.icn-delete{
+  color: red;
+  margin-left: 10px;
+}
+
+.icn-edit{
+  color: rgb(0, 150, 210);
+}
+
+/*später in Design, Image skalieren
+.room-image{
+    width: 100%;
+    height: auto;
+}*/
+
+.professor-main input{
+  border: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0 0 0 3px;
+  width: 100%;
+  padding: 5px;
+}
+
+.professor-main input:hover{
+  background: #e8e8e8;
+}
+
+.professor-main input:focus{
+  background: #fff;
+}
+
+.professor__row{
+  display: flex;
+  align-items: center;
+}
