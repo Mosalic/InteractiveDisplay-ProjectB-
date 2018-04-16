@@ -74,6 +74,7 @@ componentDidMount() {
     return (
         <div className="header" >
             <div className="date">{this.state.datum}</div>
+           <img className="logoImg" src="./logo_haw.jpg"/>
             <div className="time">{this.state.uhrzeit}</div>
         </div>
     );

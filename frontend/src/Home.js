@@ -15,7 +15,7 @@ class Home extends Component {
     console.log(this.props);
     return (
       <div className="wrapper">
-
+            
           <Link to="/home/allgemeineInformationen">
               <div className="button">
                   Allgemeine Informationen
