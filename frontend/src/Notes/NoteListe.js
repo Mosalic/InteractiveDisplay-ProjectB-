@@ -5,7 +5,6 @@ import FontAwesome from 'react-fontawesome';
 import './NoteListe.css';
 import Masonry from 'react-masonry-component';
 
-
 class NoteListe extends Component{
  constructor(){
     super();
