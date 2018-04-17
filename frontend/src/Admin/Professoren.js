@@ -71,12 +71,39 @@ class Professoren extends Component {
     })
   }
 
+  //Bei jeder Änderung im Suchfeld wird das Suchergebnis angezeigt
+  searchProf(e){
+    console.log("Suche: " + e.target.value);
+    var i = 0;
+    var searchText = e.target.value.toLowerCase();
+    var professorenDivs = document.getElementsByClassName('professor');
+
+         if(searchText.length > 0){
+            console.log("Suche nicht leer");
+            this.state.professoren.map(function(professor, index){
+                var profName = professor.name.toLowerCase();
+                console.log("Vorhandene Namen: " + profName);
+                if(profName.includes(searchText)){
+                    console.log(searchText + " ist vorhanden in " + profName + " in Position: " + profName.indexOf(searchText));
+                    professorenDivs[index].style.display = "";
+                }else{
+                    professorenDivs[index].style.display = 'none';
+                }
+            });
+        } else {
+          this.state.professoren.map(function(professor, index){
+            professorenDivs[index].style.display = "";
+          });
+        }
+  }
+
   render() {
     return (
         <div>
           <div className="professoren-wrapper">
             {/* <h1>Professoren</h1> */}
             <button type="button" className="add" onClick={() => this.toggleAddProfessor()}>+</button>
+            <input name="suche" type="text" placeholder="Suchen" onChange={(e) => this.searchProf(e)} />
             <div className="professoren">
               {this.state.professoren.map((professor, index) =>
                 <div className="professor" key={index}>
