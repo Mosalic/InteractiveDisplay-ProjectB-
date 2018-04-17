@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import './EventListe.css'
 import axios from 'axios';
-import FontAwesome from 'react-fontawesome';
 import Event from './Event';
-// import Moment from 'react-moment';
 
 class EventListe extends Component{
  constructor(){
@@ -17,13 +15,25 @@ class EventListe extends Component{
 
 
   componentDidMount(){
+    let events = [];
     axios.get('http://localhost:3001/events')
     .then((response) => {
+      events = response.data.events.sort((a,b) => {
+        return new Date(a.startDate).getTime() -
+            new Date(b.startDate).getTime()
+          });
+      events.forEach((event, index) => {
+        let now = new Date();
+        if(event.endDate !== null){
+          if(new Date(event.endDate) < now){
+            events.splice(index, 1);
+          }
+        }else if (new Date(event.startDate) < now) {
+          events.splice(index, 1);
+        }
+      })
       this.setState({
-        events: response.data.events.sort((a,b) => {
-          return new Date(a.scheduled_for).getTime() -
-              new Date(b.scheduled_for).getTime()
-      }).reverse(),
+        events,
       });
     })
     .catch((error) => {
@@ -32,13 +42,6 @@ class EventListe extends Component{
   }
 
   render() {
-    //Events nach dem Datum sortieren
-    //   var sorted_meetings = this.state.events.sort((a,b) => {
-    //     return new Date(a.scheduled_for).getTime() -
-    //         new Date(b.scheduled_for).getTime()
-    // }).reverse();
-
-
       return (
         <div>
         <h1>Veranstaltungen</h1>
