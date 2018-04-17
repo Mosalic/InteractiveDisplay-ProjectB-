@@ -6,6 +6,7 @@ import Users from './Users';
 import Events from './Events';
 import Stundenplan from './Stundenplan';
 import Notes from './Notes';
+import FontAwesome from 'react-fontawesome';
 
 class AdminArea extends Component {
 
@@ -20,6 +21,11 @@ class AdminArea extends Component {
         this.props.history.push('/admin/login');
       }
     }
+  }
+
+  logout(){
+    localStorage.removeItem('JWTToken');
+    this.props.history.push('/admin/login');
   }
 
   render() {
@@ -41,6 +47,7 @@ class AdminArea extends Component {
             <NavLink activeClassName="active" to="/admin/admin-area/users">
               Users
             </NavLink>
+            <button className="btn-logout" onClick={() => this.logout()}><FontAwesome name="sign-out-alt" className="icn-edit"/><span>Logout</span></button>
           </div>
           <Route path="/admin/admin-area/professoren" component={Professoren} />
           <Route path="/admin/admin-area/users" component={Users} />

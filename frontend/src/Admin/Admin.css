@@ -27,6 +27,22 @@
   padding-top: 20px;
 }
 
+.btn-logout{
+  border: none;
+  font-size: 16px;
+  background: rgb(0, 60, 160);;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.btn-logout span{
+  margin-left: 5px;
+  color: #fff;
+}
+
 .admin-area__nav a:hover{
   border-bottom: 3px solid rgb(0, 150, 210);
 }
