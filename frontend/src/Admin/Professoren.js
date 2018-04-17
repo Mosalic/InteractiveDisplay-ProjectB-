@@ -32,8 +32,12 @@ class Professoren extends Component {
     axios.get('http://localhost:3001/professoren')
     .then((response) => {
       this.setState({
-        professoren: response.data.professoren,
         nextProfessorId: response.data.professoren[response.data.professoren.length - 1].id + 1,
+        professoren: response.data.professoren.sort(function(a, b){
+                      if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                      if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                      return 0;
+                    }),
       });
     })
     .catch((error) => {

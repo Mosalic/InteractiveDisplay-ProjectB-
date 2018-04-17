@@ -10,24 +10,18 @@ class ProfessorenListe extends Component{
 
     this.state = {
       professoren: [],
-      addProfessor: false,
-      nextProfessorId: null,
-      /*editProfessor: {},*/
     }
   }
-
-  /*componentWillMount(){
-    if(!localStorage.getItem('JWTToken')){
-      this.props.history.push('/admin/login');
-    }
-  }*/
 
   componentDidMount(){
     axios.get('http://localhost:3001/professoren')
     .then((response) => {
       this.setState({
-        professoren: response.data.professoren,
-        nextProfessorId: response.data.professoren[response.data.professoren.length - 1].id + 1,
+        professoren: response.data.professoren.sort(function(a, b){
+                      if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                      if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                      return 0;
+                    }),
       });
     })
     .catch((error) => {
@@ -35,56 +29,31 @@ class ProfessorenListe extends Component{
     })
   }
 
-    handleChange(e){
-        this.setState({
-          [e.target.name]: e.target.value,
-        });
-    }
-
-
     //Bei jeder Änderung im Suchfeld wird das Suchergebnis angezeigt
     searchProf(e){
-       console.log("Suche: " + e.target.value);
-        var i = 0;
-        var searchText = e.target.value.toLowerCase();
-        var professorenDivs = document.getElementsByClassName('professor');
+      console.log("Suche: " + e.target.value);
+      var i = 0;
+      var searchText = e.target.value.toLowerCase();
+      var professorenDivs = document.getElementsByClassName('professor');
 
-             if(searchText.length > 0){
-                console.log("Suche nicht leer");
-                this.state.professoren.map(function(professor, index){
-                    var profName = professor.name.toLowerCase();
-                    console.log("Vorhandene Namen: " + profName);
-                    if(profName.includes(searchText)){
-                        console.log(searchText + " ist vorhanden in " + profName + " in Position: " + profName.indexOf(searchText));
-                        professorenDivs[index].style.display = "";
-                    }else{
-                        professorenDivs[index].style.display = 'none';
-                    }
-                });
-            } else {
+           if(searchText.length > 0){
+              console.log("Suche nicht leer");
               this.state.professoren.map(function(professor, index){
-                professorenDivs[index].style.display = "";
+                  var profName = professor.name.toLowerCase();
+                  console.log("Vorhandene Namen: " + profName);
+                  if(profName.includes(searchText)){
+                      console.log(searchText + " ist vorhanden in " + profName + " in Position: " + profName.indexOf(searchText));
+                      professorenDivs[index].style.display = "";
+                  }else{
+                      professorenDivs[index].style.display = 'none';
+                  }
               });
-            }
-
+          } else {
+            this.state.professoren.map(function(professor, index){
+              professorenDivs[index].style.display = "";
+            });
+          }
     }
-
-
-
-
-  /*editProfessor(professor){
-    this.setState({
-      addProfessor: true,
-      editProfessor: professor,
-    })
-  }*/
-
-    /*toggleAddProfessor(){
-        this.setState({
-          addProfessor: !this.state.addProfessor,
-          editProfessor: {},
-        })
-    }*/
 
   render() {
     return (
@@ -97,14 +66,6 @@ class ProfessorenListe extends Component{
               {this.state.professoren.map((professor, index) =>
                 <div className="professor" key={index}>
 
-                 {/* <div className="professor__edit">
-                      <button onClick={() => this.editProfessor(professor)}>
-                      <FontAwesome name="edit" className="icn-edit"/>
-                    </button>
-                    <button onClick={(id) => this.deleteProfessor(professor.id)}>
-                      <FontAwesome name="trash" className="icn-delete"/>
-                    </button>
-                  </div>*/}
                   <div className="professor-foto" style={{backgroundImage: `${professor.img ? `url(data:image/png;base64,${new Buffer(professor.img.data, 'binary').toString('base64')})`: `url(${require('../Admin/dummy-image.jpeg')})`}`}}>
                   </div>
                   <div className="professor-information">
@@ -124,12 +85,6 @@ class ProfessorenListe extends Component{
                 </div>
               )}
             </div>
-            {/*<AddProfessor
-              nextProfessorId={this.state.nextProfessorId}
-              show={this.state.addProfessor}
-              close={() => this.toggleAddProfessor()}
-              professor={this.state.editProfessor}
-            />*/}
           </div>
         </div>
     );
