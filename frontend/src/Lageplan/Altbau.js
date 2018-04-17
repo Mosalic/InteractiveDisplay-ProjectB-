@@ -5,6 +5,7 @@ import './Lageplan.css';
 import FirstFloorAltbau from './FirstFloorAltbau';
 import BasementFloorAltbau from './BasementFloorAltbau';
 import SecondFloorAltbau from './SecondFloorAltbau';
+import backLogo from '../backBtn.png';
 
 class Altbau extends Component {
     constructor(props){
@@ -41,6 +42,7 @@ class Altbau extends Component {
         return (
             <div className="lageplan-wrapper">
                 <div className="sidebar">
+                    <div className="backInfo"><Link to="/home/lageplan"><img className="backBtn" src={backLogo} /></Link></div>
                   <input className="search" placeholder="Suche nach einem Raum..." value={this.state.search} onChange={(e) => this.handleChange(e)} />
                   <button className={`change-floor ${this.state.floor === 0 && 'active'}`} value="0" onClick={() => this.changeFloor(0)}>UG</button>
                   <button className={`change-floor ${this.state.floor === 1 && 'active'}`} value="1" onClick={() => this.changeFloor(1)}>EG</button>

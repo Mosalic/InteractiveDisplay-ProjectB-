@@ -153,3 +153,11 @@
   color: #424242;
   font-size: 14px;
 }
+
+.backBtn{
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+

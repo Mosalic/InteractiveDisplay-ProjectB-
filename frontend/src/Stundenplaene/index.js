@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Stundenplan.css';
 import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom';
+import backLogo from '../backBtn.png';
 
 class Stundenplaene extends Component{
   constructor(){
@@ -36,6 +37,7 @@ class Stundenplaene extends Component{
     return(
      
         <div>
+            <div className="backInfo"><Link to="/home/allgemeineInformationen"><img className="backBtn" src={backLogo} /></Link></div>
             <h1>Studiengänge</h1>
             <div className="stundenplan__wrapper">
                 {this.state.stundenplaene.map((stundenplan, index) =>
@@ -43,10 +45,10 @@ class Stundenplaene extends Component{
                     <div className="stundenplan__button" key={index}>
                         <span>{stundenplan.studiengang}</span>
                         
-                       {/* <div className="recXDown"></div>
+                        <div className="recXDown"></div>
                         <div className="recYDown"></div>
                         <div className="recXUp"></div>
-                        <div className="recYUp"></div>*/}
+                        <div className="recYUp"></div>
                         
                     </div>
                   </Link>

@@ -3,6 +3,8 @@ import './List.css'
 import axios from 'axios';
 import AddProfessor from '../Admin/AddProfessor';
 import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router-dom';
+import backLogo from '../backBtn.png';
 
 class ProfessorenListe extends Component{
  constructor(){
@@ -58,8 +60,11 @@ class ProfessorenListe extends Component{
   render() {
     return (
         <div>
+        <div className="backInfo"><Link to="/home/allgemeineInformationen"><img className="backBtn" src={backLogo} /></Link></div>
+         <h1>Professoren Liste</h1>
           <div className="professoren-wrapper">
-            <h1>Professoren Liste</h1>
+            
+           
              <input name="suche" type="text" placeholder="Suchen" onChange={(e) => this.searchProf(e)} />
 
             <div className="professoren">
