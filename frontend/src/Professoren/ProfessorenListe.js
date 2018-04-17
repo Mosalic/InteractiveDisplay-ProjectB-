@@ -40,15 +40,15 @@ class ProfessorenListe extends Component{
           [e.target.name]: e.target.value,
         });
     }
-    
-    
+
+
     //Bei jeder Änderung im Suchfeld wird das Suchergebnis angezeigt
     searchProf(e){
        console.log("Suche: " + e.target.value);
         var i = 0;
         var searchText = e.target.value.toLowerCase();
         var professorenDivs = document.getElementsByClassName('professor');
-       
+
              if(searchText.length > 0){
                 console.log("Suche nicht leer");
                 this.state.professoren.map(function(professor, index){
@@ -60,13 +60,17 @@ class ProfessorenListe extends Component{
                     }else{
                         professorenDivs[index].style.display = 'none';
                     }
-                });     
+                });
+            } else {
+              this.state.professoren.map(function(professor, index){
+                professorenDivs[index].style.display = "";
+              });
             }
-                   
-    } 
-    
-        
- 
+
+    }
+
+
+
 
   /*editProfessor(professor){
     this.setState({
@@ -88,11 +92,11 @@ class ProfessorenListe extends Component{
           <div className="professoren-wrapper">
             <h1>Professoren Liste</h1>
              <input name="suche" type="text" placeholder="Suchen" onChange={(e) => this.searchProf(e)} />
-           
+
             <div className="professoren">
               {this.state.professoren.map((professor, index) =>
                 <div className="professor" key={index}>
-                    
+
                  {/* <div className="professor__edit">
                       <button onClick={() => this.editProfessor(professor)}>
                       <FontAwesome name="edit" className="icn-edit"/>
