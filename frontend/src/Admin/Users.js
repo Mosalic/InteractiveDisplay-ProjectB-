@@ -133,7 +133,7 @@ class Users extends Component {
     return (
         <div>
           <div className="userlist">
-            <button type="button" className="add" onClick={() => this.addUser()}>+</button>
+            <button type="button" className="add" onClick={() => this.addUser()}><FontAwesome name="plus" /></button>
             <div className="userlist__table">
               <div className="userlist__table__header">
                 <div>Username</div>

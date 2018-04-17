@@ -99,7 +99,7 @@ closeAddStundenplan(){
             </div>
             :
             <div>
-              <div className="admin__btn-add"><button type="button" className="add" onClick={() => this.toggleAddStundenplan()}>+</button></div>
+              <div className="admin__btn-add"><button type="button" className="add" onClick={() => this.toggleAddStundenplan()}><FontAwesome name="plus" /></button></div>
               <div className="stundenplan__wrapper">
                 {this.state.stundenplaene.map((stundenplan, index) =>
                   <button key={index} onClick={() => this.toggleEditStundenplan(stundenplan)}>

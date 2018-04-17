@@ -64,7 +64,7 @@ class Events extends Component {
   render(){
     return(
       <div>
-        <div className="admin__btn-add"><button type="button" className="add" onClick={() => this.toggleAddEvent()}>+</button></div>
+        <div className="admin__btn-add"><button type="button" className="add" onClick={() => this.toggleAddEvent()}><FontAwesome name="plus" /></button></div>
         <div className="event">
           <div className="events">
             {this.state.events.map((event, index) =>

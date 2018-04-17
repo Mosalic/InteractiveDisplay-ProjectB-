@@ -102,7 +102,7 @@ class Professoren extends Component {
         <div>
           <div className="professoren-wrapper">
             {/* <h1>Professoren</h1> */}
-            <button type="button" className="add" onClick={() => this.toggleAddProfessor()}>+</button>
+            <button type="button" className="add" onClick={() => this.toggleAddProfessor()}><FontAwesome name="plus" /></button>
             <input name="suche" type="text" placeholder="Suchen" onChange={(e) => this.searchProf(e)} />
             <div className="professoren">
               {this.state.professoren.map((professor, index) =>
