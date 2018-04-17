@@ -9,6 +9,13 @@ import Notes from './Notes';
 import FontAwesome from 'react-fontawesome';
 
 class AdminArea extends Component {
+  constructor(){
+    super();
+
+    this.state = {
+      userRole: 0,
+    }
+  }
 
   componentWillMount(){
     if(!localStorage.getItem('JWTToken')){
@@ -23,6 +30,15 @@ class AdminArea extends Component {
     }
   }
 
+  componentDidMount(){
+    if(localStorage.getItem('JWTToken')){
+      const decodedToken = jwt_decode(localStorage.getItem('JWTToken'));
+      this.setState({
+        userRole: decodedToken.role,
+      });
+    }
+  }
+
   logout(){
     localStorage.removeItem('JWTToken');
     this.props.history.push('/admin/login');
@@ -32,21 +48,29 @@ class AdminArea extends Component {
     return (
         <div className="admin-area">
           <div className="admin-area__nav">
-            <NavLink activeClassName="active" to="/admin/admin-area/professoren">
-              Professoren
-            </NavLink>
+            {this.state.userRole <= 2 &&
+              <NavLink activeClassName="active" to="/admin/admin-area/professoren">
+                Professoren
+              </NavLink>
+            }
             <NavLink activeClassName="active" to="/admin/admin-area/stundenplaene">
               Stundenpläne
             </NavLink>
-            <NavLink activeClassName="active" to="/admin/admin-area/events">
-              Veranstaltungen
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/admin-area/notes">
-              Pinnwand
-            </NavLink>
-            <NavLink activeClassName="active" to="/admin/admin-area/users">
-              Users
-            </NavLink>
+            {this.state.userRole <= 3 &&
+              <NavLink activeClassName="active" to="/admin/admin-area/events">
+                Veranstaltungen
+              </NavLink>
+            }
+            {this.state.userRole <= 2 &&
+              <NavLink activeClassName="active" to="/admin/admin-area/notes">
+                Pinnwand
+              </NavLink>
+            }
+            {this.state.userRole === 1 &&
+              <NavLink activeClassName="active" to="/admin/admin-area/users">
+                Users
+              </NavLink>
+            }
             <button className="btn-logout" onClick={() => this.logout()}><FontAwesome name="sign-out-alt" className="icn-edit"/><span>Logout</span></button>
           </div>
           <Route path="/admin/admin-area/professoren" component={Professoren} />

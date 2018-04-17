@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 class Login extends Component {
   constructor(){
@@ -24,7 +25,12 @@ class Login extends Component {
     })
     .then((response) => {
       localStorage.setItem('JWTToken', response.data.token)
-      this.props.history.push('/admin/admin-area/professoren');
+      const decodedToken = jwt_decode(response.data.token);
+      if(decodedToken.role <= 2){
+        this.props.history.push('/admin/admin-area/professoren');
+      } else {
+        this.props.history.push('/admin/admin-area/stundenplaene');
+      }
     })
     .catch((error) => {
       console.log('error', error);
