@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Header.css';
+import { Link } from 'react-router-dom';
 //import Time from 'react-time';
 import logo from './haw_dmi_logo.jpg';
 
@@ -74,9 +75,12 @@ componentDidMount() {
     render() {
     return (
         <div className="header" >
-            <div className="date">{this.state.datum}</div>
-           <img className="logoImg" src={logo} />
-            <div className="time">{this.state.uhrzeit}</div>
+            <div className="centerInfos">
+                <Link to="/home"><img className="logoImg" src={logo} /></Link>
+                <div className="time">{this.state.uhrzeit}</div>
+                <div className="date">{this.state.datum}</div>
+                
+            </div>
         </div>
     );
   }
