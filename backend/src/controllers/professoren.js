@@ -5,19 +5,24 @@ import fs from 'fs';
 export const postProfessoren = (req, res, next) => {
   jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
     if(err === null) {
-      const professor = new Professor(req.body);
-      if (req.file != undefined){
-        professor.img = {data: fs.readFileSync(req.file.path), contentType: 'image/png'};
-      }
-      professor.save(req.body, (err, doc) => {
-        if(err === null){
-          res.writeHead(200, {'Content-Type': 'text/html'});
-          res.end("added");
-        } else {
-          res.writeHead(500, {'Content-Type': 'text/html'});
-          res.end(`${err}`);
+      if(decoded.role <= 2){
+        const professor = new Professor(req.body);
+        if (req.file != undefined){
+          professor.img = {data: fs.readFileSync(req.file.path), contentType: 'image/png'};
         }
-      });
+        professor.save(req.body, (err, doc) => {
+          if(err === null){
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end("added");
+          } else {
+            res.writeHead(500, {'Content-Type': 'text/html'});
+            res.end(`${err}`);
+          }
+        });
+      } else {
+        res.writeHead(400, {'Content-Type': 'text/html'});
+        res.end("forbidden");
+      }
     } else {
       res.writeHead(400, {'Content-Type': 'text/html'});
       res.end("forbidden");
@@ -38,18 +43,23 @@ export const putProfessoren = (req, res, next) => {
   console.log(req.body);
   jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
     if(err === null) {
-      Professor.findOneAndUpdate(
-        { "id" : req.params.id },
-        req.body,
-      (err, doc) => {
-        if(err === null){
-          res.writeHead(200, {'Content-Type': 'text/html'});
-          res.end("updated");
-        } else {
-          res.writeHead(500, {'Content-Type': 'text/html'});
-          res.end(`${err}`);
-        }
-      });
+      if(decoded.role <= 2){
+        Professor.findOneAndUpdate(
+          { "id" : req.params.id },
+          req.body,
+        (err, doc) => {
+          if(err === null){
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end("updated");
+          } else {
+            res.writeHead(500, {'Content-Type': 'text/html'});
+            res.end(`${err}`);
+          }
+        });
+      } else {
+        res.writeHead(400, {'Content-Type': 'text/html'});
+        res.end("forbidden");
+      }
     } else {
       res.writeHead(400, {'Content-Type': 'text/html'});
       res.end("forbidden");
@@ -72,15 +82,20 @@ export const getProfessorenById = (req, res, next) => {
 export const deleteProfessoren = (req, res, next) => {
   jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
     if(err === null) {
-      Professor.remove({ "id" : req.params.id}, (err, doc) => {
-        if(err === null){
-          res.writeHead(200, {'Content-Type': 'text/html'});
-          res.end("deleted");
-        } else {
-          res.writeHead(500, {'Content-Type': 'text/html'});
-          res.end(`${err}`);
-        }
-      });
+      if(decoded.role <= 2){
+        Professor.remove({ "id" : req.params.id}, (err, doc) => {
+          if(err === null){
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end("deleted");
+          } else {
+            res.writeHead(500, {'Content-Type': 'text/html'});
+            res.end(`${err}`);
+          }
+        });
+      } else {
+        res.writeHead(400, {'Content-Type': 'text/html'});
+        res.end("forbidden");
+      }
     } else {
       res.writeHead(400, {'Content-Type': 'text/html'});
       res.end("forbidden");
@@ -92,21 +107,26 @@ export const putProfessorenImage = (req, res, next) => {
   console.log(req.body);
   jwt.verify(req.headers.authorization, 'shhhhh', (err, decoded) => {
     if(err === null) {
+      if(decoded.role <= 2){
       // if (req.file != undefined){
       //   professor.img = {data: fs.readFileSync(req.file.path), contentType: 'image/png'};
       // }
-      Professor.findOneAndUpdate(
-        { "id" : req.params.id },
-        { img: {data: fs.readFileSync(req.file.path), contentType: 'image/png'} },
-      (err, doc) => {
-        if(err === null){
-          res.writeHead(200, {'Content-Type': 'text/html'});
-          res.end("updated");
-        } else {
-          res.writeHead(500, {'Content-Type': 'text/html'});
-          res.end(`${err}`);
-        }
-      });
+        Professor.findOneAndUpdate(
+          { "id" : req.params.id },
+          { img: {data: fs.readFileSync(req.file.path), contentType: 'image/png'} },
+        (err, doc) => {
+          if(err === null){
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end("updated");
+          } else {
+            res.writeHead(500, {'Content-Type': 'text/html'});
+            res.end(`${err}`);
+          }
+        });
+      } else {
+        res.writeHead(400, {'Content-Type': 'text/html'});
+        res.end("forbidden");
+      }
     } else {
       res.writeHead(400, {'Content-Type': 'text/html'});
       res.end("forbidden");
