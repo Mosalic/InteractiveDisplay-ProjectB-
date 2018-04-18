@@ -24,7 +24,15 @@ class Altbau extends Component {
         });
     }
 
-
+    componentDidMount(){
+      if(this.props.location.search !== ''){
+        const searchValue = this.props.location.search.split('=')[1];
+        this.setState({
+          searchValue,
+        });
+        this.search(searchValue);
+      }
+    }
 
     floorPlan(floor, search){
       const getFloorPlan = (search) => ({
@@ -41,37 +49,38 @@ class Altbau extends Component {
       });
     }
 
-    search(){
-      if(this.state.searchValue.charAt(0) === 'U'){
+    search(searchValue){
+      if(searchValue.charAt(0) === 'U'){
         this.setState({
-          search: this.state.searchValue,
+          search: searchValue,
           floor: 0,
         });
-      } else if(this.state.searchValue.charAt(0) === 'E'){
+      } else if(searchValue.charAt(0) === 'E'){
         this.setState({
-          search: this.state.searchValue,
+          search: searchValue,
           floor: 1,
         });
-      } else if(this.state.searchValue.charAt(0) === '1'){
+      } else if(searchValue.charAt(0) === '1'){
         this.setState({
-          search: this.state.searchValue,
+          search: searchValue,
           floor: 2,
         });
-      } else if(this.state.searchValue === ''){
+      } else if(searchValue === ''){
         this.setState({
-          search: this.state.searchValue,
+          search: searchValue,
         });
       }
     }
 
     render() {
+      console.log(this.props);
         return (
             <div className="lageplan-wrapper">
                 <div className="sidebar">
                   <div className="lageplan-top">
                     <div className="lageplan-search">
                       <input className="search" placeholder="Suche nach einem Raum..." value={this.state.searchValue} onChange={(e) => this.handleChange(e)} />
-                      <button onClick={() => this.search()}>Suchen</button>
+                      <button onClick={() => this.search(this.state.searchValue)}>Suchen</button>
                     </div>
                     <button className={`change-floor ${this.state.floor === 0 && 'active'}`} value="0" onClick={() => this.changeFloor(0)}>UG</button>
                     <button className={`change-floor ${this.state.floor === 1 && 'active'}`} value="1" onClick={() => this.changeFloor(1)}>EG</button>

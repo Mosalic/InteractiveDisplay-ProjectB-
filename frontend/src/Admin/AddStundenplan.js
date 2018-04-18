@@ -230,7 +230,7 @@ class AddStundenplan extends Component {
                   {/* <button className="stundenplan__btn" onClick={() => this.deleteSemester(index)}><FontAwesome name="trash" className="icn-delete"/></button> */}
                 </div>
               )}
-              <div className="stundenplan__button"><button className="stundenplan__add" onClick={() => this.addSemester()}><FontAwesome name="plus" className="icn-edit"/> Semester hinzufügen</button></div>
+              <div className="stundenplan__cell__button"><button className="stundenplan__add" onClick={() => this.addSemester()}><FontAwesome name="plus" className="icn-edit"/> Semester hinzufügen</button></div>
             </div>
             {this.state.weekdays.map((weekday, weekdayIndex) =>
               <div key={weekdayIndex} className="stundenplan__group">
