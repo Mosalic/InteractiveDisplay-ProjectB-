@@ -4,10 +4,40 @@ import campus from '../Mediencampus_Finkenau.png';
 import './Lageplan.css';
 
 class Lageplan extends Component {
+  constructor(props){
+      super(props);
+
+      this.state = {
+          searchValue: '',
+      };
+  }
+
+  handleChange(e){
+      this.setState({
+          searchValue: e.target.value,
+      });
+  }
+
+  search(room){
+    if(room === 'Forum' || room === 'Mensa' || room === 'Café' || room === 'Bibliothek' || room === 'Tonlabore' || room === 'Lichtlabore' || room === 'Videolabore'){
+      this.props.history.push(`/home/neubau?room=${room}`);
+    } else if(room.charAt(1) === '.'){
+      this.props.history.push(`/home/neubau?room=${room}`);
+    } else {
+      this.props.history.push(`/home/altbau?room=${room}`);
+    }
+  }
+
   render() {
     return (
         <div className="lageplan-wrapper">
-           <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 558 474.57">
+          <div className="lageplan-top">
+            <div className="lageplan-search">
+              <input className="search" placeholder="Suche nach einem Raum..." value={this.state.searchValue} onChange={(e) => this.handleChange(e)} />
+              <button onClick={() => this.search(this.state.searchValue)}>Suchen</button>
+            </div>
+          </div>
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 558 474.57">
 
             <title>Mediencampus_Finkenau</title>
             <image width="558" height="765" transform="translate(0 -98.51)" href={campus} />
