@@ -39,3 +39,9 @@ body{
 .frameDiv{
     height: 100%;
 }
+
+.main-back{
+  position: absolute;
+  left: 10px;
+  top: 70px;
+}

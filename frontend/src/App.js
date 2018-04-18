@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import BrowserHistory from 'history/createBrowserHistory'
 import Main from './Main';
 import './App.css';
 import Admin from './Admin';

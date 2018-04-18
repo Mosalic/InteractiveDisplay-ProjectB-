@@ -61,7 +61,6 @@ class Stundenplan extends Component{
   render(){
     return(
         <div>
-        <div className="backInfo"><Link to="/home/allgemeineInformationen/stundenplaene"><img className="backBtn" src={backLogo} /></Link></div>
             <h1>Stundenplan</h1>
           <div className="stundeplan-wrapper">
 

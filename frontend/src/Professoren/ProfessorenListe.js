@@ -60,11 +60,10 @@ class ProfessorenListe extends Component{
   render() {
     return (
         <div>
-        <div className="backInfo"><Link to="/home/allgemeineInformationen"><img className="backBtn" src={backLogo} /></Link></div>
          <h1>Professoren Liste</h1>
           <div className="professoren-wrapper">
-            
-           
+
+
              <input name="suche" type="text" placeholder="Suchen" onChange={(e) => this.searchProf(e)} />
 
             <div className="professoren">

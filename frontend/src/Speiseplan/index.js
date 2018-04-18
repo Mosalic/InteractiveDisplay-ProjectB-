@@ -20,7 +20,6 @@ class Speiseplan extends Component {
   render() {
     return (
         <div className="frameDiv">
-            <div className="backInfo"><Link to="/home/allgemeineInformationen"><img className="backBtn" src={backLogo} /></Link></div>
             <h1>Speiseplan</h1>
             <Iframe url={`http://speiseplan.studierendenwerk-hamburg.de/de/420/${this.state.link}`}
             display="initial"

@@ -68,7 +68,6 @@ class Altbau extends Component {
         return (
             <div className="lageplan-wrapper">
                 <div className="sidebar">
-                    <div className="backInfo"><Link to="/home/lageplan"><img className="backBtn" src={backLogo} /></Link></div>
                   <div className="lageplan-top">
                     <div className="lageplan-search">
                       <input className="search" placeholder="Suche nach einem Raum..." value={this.state.searchValue} onChange={(e) => this.handleChange(e)} />

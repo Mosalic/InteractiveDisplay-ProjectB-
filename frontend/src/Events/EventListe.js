@@ -46,7 +46,6 @@ class EventListe extends Component{
   render() {
       return (
         <div>
-          <div className="backInfo"><Link to="/home/allgemeineInformationen"><img className="backBtn" src={backLogo} /></Link></div>
         <h1>Veranstaltungen</h1>
           <div className="event">
 

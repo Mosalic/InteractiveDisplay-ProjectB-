@@ -14,6 +14,7 @@ import NoteListe from './Notes/NoteListe';
 import Speiseplan from './Speiseplan';
 import Stundenplaene from './Stundenplaene';
 import Stundenplan from './Stundenplaene/Stundenplan';
+import FontAwesome from 'react-fontawesome';
 
 class Main extends Component {
   render() {
@@ -23,7 +24,9 @@ class Main extends Component {
       <Header />
       <div className="main">
         <div className="wrapper">
-
+          {this.props.match.url !== this.props.location.pathname &&
+            <button className="add back main-back" onClick={() => this.props.history.goBack()}><FontAwesome name="arrow-left" /></button>
+          }
           <Route exact path={this.props.match.url} component={Home} />
           <Route exact path={`${this.props.match.url}/lageplan`} component={Lageplan}/>
           <Route exact path={`${this.props.match.url}/allgemeineInformationen`} component={AllgemeineInformationen}/>

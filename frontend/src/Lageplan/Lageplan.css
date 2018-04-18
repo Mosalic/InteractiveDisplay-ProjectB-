@@ -52,6 +52,7 @@ button.change-floor.active{
 
 .selected-room{
     opacity: 0.5;
+    fill: red;
 }
 
 .no-room{
