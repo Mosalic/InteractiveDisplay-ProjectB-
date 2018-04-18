@@ -200,7 +200,7 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 }
 
 .span-info{
-    margin-left: 50px;
+    /* margin-left: 50px; */
 }
 
 .login{
@@ -288,4 +288,15 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 .professor__row{
   display: flex;
   align-items: center;
+}
+
+
+.raum__button{
+  background: #003ca0;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 3px 8px;
+  margin-left: 5px;
 }

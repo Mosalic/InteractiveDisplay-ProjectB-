@@ -57,6 +57,10 @@ class ProfessorenListe extends Component{
           }
     }
 
+    showRoom(room){
+      this.props.history.push(`/home/altbau?room=${room}`);
+    }
+
   render() {
     return (
         <div>
@@ -79,7 +83,7 @@ class ProfessorenListe extends Component{
                     </div>
                     {/*Informationen aus der Datenbank werden zugewiesen*/}
                     <div className="professor-main">
-                      <div>{/*<img className="room-image" src={ require('./location.png') } /> vllt Icon*/}Raum: <span className="span-info">{professor.raum}</span></div>
+                      <div>Raum: <span className="span-info"><button className="raum__button" onClick={() => this.showRoom(professor.raum)}>{professor.raum}</button></span></div>
                       <div>Email: <span>{professor.email}</span></div>
                       <div>Telefonnummer: <span>{professor.telefonnummer}</span></div>
                       <div>Sprechzeiten: <span>{professor.sprechzeiten}</span></div>

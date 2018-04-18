@@ -45,3 +45,11 @@ body{
   left: 10px;
   top: 70px;
 }
+
+.main-back:active{
+  outline: none;
+}
+
+.main-back:focus{
+  outline: none;
+}
