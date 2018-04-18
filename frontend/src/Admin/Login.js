@@ -41,7 +41,10 @@ class Login extends Component {
   render() {
     return (
         <div className="login">
+        
           <form className="login__form">
+            <h1 style={{color: '#fff'}}>Admin Bereich</h1> 
+            <br></br>
             <input name="username" placeholder="Username" value={this.state.username} onChange={(e) => this.handleChange(e)}/>
             <input name="password" type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.handleChange(e)}/>
             <button type="button" onClick={() => this.login()}>Login</button>
