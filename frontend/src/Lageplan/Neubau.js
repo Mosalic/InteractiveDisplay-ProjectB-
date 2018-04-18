@@ -15,7 +15,7 @@ class Neubau extends Component {
 
         this.state = {
             searchValue: '',
-            floor: 1,
+            floor: 0,
             search: '',
         };
     }
@@ -54,27 +54,27 @@ class Neubau extends Component {
     }
 
     search(searchValue){
-      if(searchValue.charAt(0) === 'U'){
+      if(searchValue === 'Forum' || searchValue === 'Mensa'){
         this.setState({
           search: searchValue,
           floor: 0,
         });
-      } else if(searchValue.charAt(0) === 'E'){
+      } else if(searchValue === 'Café'){
         this.setState({
           search: searchValue,
           floor: 1,
         });
-      } else if(searchValue.charAt(0) === '2'){
+      } else if(searchValue.charAt(0) === '2' || searchValue === 'Bibliothek'){
         this.setState({
           search: searchValue,
           floor: 2,
         });
-      } else if(searchValue.charAt(0) === '3'){
+      } else if(searchValue.charAt(0) === '3' || searchValue === 'Tonlabore' || searchValue === 'Lichtlabore'){
         this.setState({
           search: searchValue,
           floor: 3,
         });
-      } else if(searchValue.charAt(0) === '4'){
+      } else if(searchValue.charAt(0) === '4' || searchValue === 'Videolabore'){
         this.setState({
           search: searchValue,
           floor: 4,

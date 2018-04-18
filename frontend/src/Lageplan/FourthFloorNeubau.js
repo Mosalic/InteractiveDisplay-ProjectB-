@@ -81,7 +81,7 @@ class FourthFloorNeubau extends Component {
                 <rect id="4.017" data-name="4.017" className="room" x="421.5" y="9" width="47.83" height="69.33"/>
                 <polygon id="4.018" data-name="4.018" className="room" points="475.33 9 554.67 9 554.67 106.33 475.33 74 475.33 9"/>
                 <rect id="4.019" data-name="4.019" className="room" x="560" y="9" width="183.5" height="139.5"/>
-                <polygon id="Videolabore" class="cls-1" className="0 0 560 0 560 455 4 455 0 0"/>
+                <polygon id="Videolabore" className="room" points="0 0 560 0 560 455 4 455 0 0"/>
                 <polygon id="4.024" data-name="4.024" className="room" points="859.5 9 911.5 9 911.5 148.5 859.5 148.5 859.5 11.5 859.5 9"/>
                 <rect id="4.025" data-name="4.025" className="room" x="916.5" y="9" width="52" height="139.5"/>
                 <rect id="4.026" data-name="4.026" className="room" x="973" y="9" width="217.5" height="139.5"/>

@@ -59,7 +59,7 @@ class BasementNeubau extends Component {
     return (
         <div className="svg-wrapper">
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1286">
-                <title>fourth_floor</title>
+                <title>basement</title>
                 <image href={basementFloor} />
                 <rect id="Forum" className="room" x="82" y="8" width="383" height="350"/>
                 <polygon id="Mensa" className="room" points="745 1225 946 1225 946 403 1093 403 1093 8 745 8 745 1225"/>
