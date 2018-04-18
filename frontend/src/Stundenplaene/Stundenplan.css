@@ -1,12 +1,12 @@
 
 .stundenplan__wrapper{
-    
+
     align-items: flex-start;
     flex-wrap: wrap;
     justify-content: center;
     padding: 50px;
-    margin: auto; 
-    
+    margin: auto;
+
 }
 
 .stundenplan__button{
@@ -18,7 +18,11 @@
     font-weight: bold;
     border-radius: 5px;
     vertical-align: middle;
-    
+    padding: 5px;
+    display: table-cell;
+    padding-left: 10px;
+    border: 1px solid #f3f4f6;
+
 }
 
 .stundenplan__button .link{
@@ -69,3 +73,12 @@
     position: fixed;
 }
 
+.stundenplan__raum__button{
+  background: #003ca0;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 3px 8px;
+  margin-left: 20px;
+}

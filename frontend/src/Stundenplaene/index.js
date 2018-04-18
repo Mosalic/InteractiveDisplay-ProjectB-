@@ -40,8 +40,8 @@ class Stundenplaene extends Component{
             <h1>Studiengänge</h1>
             <div className="stundenplan__wrapper">
                 {this.state.stundenplaene.map((stundenplan, index) =>
-                  <Link to={`${this.props.match.url}/${stundenplan.id}`} style={{ textDecoration: 'none' }}>
-                    <div className="stundenplan__button" key={index}>
+                  <Link key={index} to={`${this.props.match.url}/${stundenplan.id}`} style={{ textDecoration: 'none' }}>
+                    <div className="stundenplan__button">
                         <span>{stundenplan.studiengang}</span>
 
                         <div className="recXDown"></div>

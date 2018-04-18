@@ -89,7 +89,7 @@ class Stundenplan extends Component{
                               <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].veranstaltung}</span>
                               <div className="stundenplan__stunde__information">
                                 <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].professor}</span>
-                                <span><button onClick={() => this.showRoom(this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum)}>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum}</button></span>
+                                <span><button className="stundenplan__raum__button" onClick={() => this.showRoom(this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum)}>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum}</button></span>
                               </div>
                             </div>
                           }
