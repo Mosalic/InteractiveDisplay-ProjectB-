@@ -7,6 +7,7 @@ import Lageplan from './Lageplan/index';
 import AllgemeineInformationen from './AllgemeineInformationen';
 import Header from './Header/Header';
 import Altbau from './Lageplan/Altbau';
+import Neubau from './Lageplan/Neubau';
 import Spiele from './Spiele';
 import ProfessorenListe from './Professoren/ProfessorenListe';
 import EventListe from './Events/EventListe';
@@ -31,6 +32,7 @@ class Main extends Component {
           <Route exact path={`${this.props.match.url}/lageplan`} component={Lageplan}/>
           <Route exact path={`${this.props.match.url}/allgemeineInformationen`} component={AllgemeineInformationen}/>
           <Route exact path={`${this.props.match.url}/altbau`} component={Altbau}/>
+          <Route exact path={`${this.props.match.url}/neubau`} component={Neubau}/>
           <Route exact path={`${this.props.match.url}/spiele`} component={Spiele}/>
           <Route exact path={`${this.props.match.url}/noteListe`} component={NoteListe}/>
           <Route exact path={`${this.props.match.url}/allgemeineInformationen/professorenListe`} component={ProfessorenListe}/>
