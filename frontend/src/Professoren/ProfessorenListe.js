@@ -58,7 +58,13 @@ class ProfessorenListe extends Component{
     }
 
     showRoom(room){
-      this.props.history.push(`/home/altbau?room=${room}`);
+      if(room === 'Forum' || room === 'Mensa' || room === 'Café' || room === 'Bibliothek' || room === 'Tonlabore' || room === 'Lichtlabore' || room === 'Videolabore'){
+        this.props.history.push(`/home/neubau?room=${room}`);
+      } else if(room.charAt(1) === '.'){
+        this.props.history.push(`/home/neubau?room=${room}`);
+      } else {
+        this.props.history.push(`/home/altbau?room=${room}`);
+      }
     }
 
   render() {
