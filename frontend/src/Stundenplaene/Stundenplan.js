@@ -61,11 +61,11 @@ class Stundenplan extends Component{
   render(){
     return(
         <div>
-            <h1>Stundenplan</h1>
+            <h1>{this.state.studiengang}</h1>
           <div className="stundeplan-wrapper">
 
             <div className="stundenplan">
-              {this.state.studiengang}
+
               <div className="stundenplan__row stundenplan__header">
                 <div></div>
                 {this.state.semester.map((semester, index) =>
