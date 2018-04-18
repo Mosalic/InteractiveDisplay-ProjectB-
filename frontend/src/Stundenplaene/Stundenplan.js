@@ -64,7 +64,7 @@ class Stundenplan extends Component{
         <div className="backInfo"><Link to="/home/allgemeineInformationen/stundenplaene"><img className="backBtn" src={backLogo} /></Link></div>
             <h1>Stundenplan</h1>
           <div className="stundeplan-wrapper">
-            
+
             <div className="stundenplan">
               {this.state.studiengang}
               <div className="stundenplan__row stundenplan__header">
@@ -73,17 +73,6 @@ class Stundenplan extends Component{
                   <div className="stundenplan__cell" key={index}>
                     {semester}
                   </div>
-<<<<<<< HEAD
-                  {this.state.semester.map((semester, semesterIndex) =>
-                    <div key={semesterIndex} className="stundenplan__cell">
-                      {this.state.timetable[weekday.value][timeIndex].classes[semesterIndex] &&
-                        <div className="stundenplan__stunde">
-                          <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].veranstaltung}</span>
-                          <div className="stundenplan__stunde__information">
-                            <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].professor}</span>
-                            <span><button onClick={() => this.showRoom()}>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum}</button></span>
-                          </div>
-=======
                 )}
               </div>
               {this.state.weekdays.map((weekday, weekdayIndex) =>
@@ -105,7 +94,6 @@ class Stundenplan extends Component{
                               </div>
                             </div>
                           }
->>>>>>> 532893351b4da8f7fb0cabcefc3ab0460525c036
                         </div>
                       )}
                     </div>

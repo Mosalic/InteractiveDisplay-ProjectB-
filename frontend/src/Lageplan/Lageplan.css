@@ -19,8 +19,7 @@ input.search{
   font-size: 14px;
   border-radius: 3px;
   border: 1px solid #ccc;
-  width: 200px;
-  margin-right: 10px
+  width: 250px;
 }
 
 button.change-floor{
@@ -57,4 +56,29 @@ button.change-floor.active{
 
 .no-room{
     opacity: 0.5;
+}
+
+.lageplan-search{
+  position: relative;
+  margin-right: 10px;
+}
+
+.lageplan-search button{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  border: none;
+  background: rgb(0, 150, 210);
+  color: #fff;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.lageplan-top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

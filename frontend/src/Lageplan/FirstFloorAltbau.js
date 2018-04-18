@@ -13,6 +13,27 @@ class FirstFloorAltbau extends Component {
     };
   }
 
+  componentDidMount(){
+    if(this.props.search !== ''){
+      if(document.getElementById(this.props.search)){
+        if(this.state.selectedRoom){
+          this.state.selectedRoom.classList.remove('selected-room');
+        }
+        this.setState({
+          selectedRoom: document.getElementById(this.props.search),
+        });
+        document.getElementById(this.props.search).classList.toggle('selected-room');
+      } else {
+        if(this.state.selectedRoom){
+          this.state.selectedRoom.classList.remove('selected-room');
+          this.setState({
+            selectedRoom: null,
+          });
+        }
+      }
+    }
+  }
+
   componentWillReceiveProps(nextProps){
     if(nextProps.search !== this.props.search){
       if(document.getElementById(nextProps.search)){
