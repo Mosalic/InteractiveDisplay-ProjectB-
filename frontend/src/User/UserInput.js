@@ -71,7 +71,7 @@ class UserInput extends Component {
                     <h2>Pin erstellen</h2>
 
                     <form>
-                      <div className="input-fields">
+                      <div className="pinboard-input-fields">
                         Titel
                         <input value={this.state.name} name="name" type="text" placeholder="Gib dem Pin einen Title" onChange={(e) => this.handleChange(e)} />
                         Beschreibung

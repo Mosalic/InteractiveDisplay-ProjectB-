@@ -16,7 +16,7 @@
   margin-bottom: 20px;
 }
 
-input[type="text"]{
+.pinboard-input input[type="text"]{
   margin: 0px 0px 10px 0px;
 }
 
@@ -82,7 +82,7 @@ textarea::placeholder{
   margin-left: 5px;
 }
 
-.input-fields{
+.pinboard-input-fields{
   display: flex;
   flex-direction: column;
 }

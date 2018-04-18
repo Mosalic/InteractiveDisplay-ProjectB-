@@ -94,10 +94,10 @@ class AddNote extends Component{
     return(
       <div className="backdrop">
         <div className="modal">
-          <h2>Event hinzufügen</h2>
+          <h2>Pin bearbeiten</h2>
           <button className="btn-close" type="button" onClick={() => this.props.close()}>x</button>
           <form>
-            <div className="input-fields">
+            <div className="note-input-fields">
               Titel
               <input value={this.state.name} name="name" type="text" placeholder="Gib dem Pin einen Title" onChange={(e) => this.handleChange(e)} />
               Beschreibung

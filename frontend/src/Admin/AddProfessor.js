@@ -150,12 +150,12 @@ class AddProfessor extends Component {
                 <label htmlFor="foto"><div className="professor-foto" style={{backgroundImage: `url(${this.state.base64})`}}></div></label>
               </div>
               <div className="input-fields">
-                <input name="name" type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.handleChange(e)} />
-                <input name="funktion" type="text" placeholder="Funktion" value={this.state.funktion} onChange={(e) => this.handleChange(e)} />
-                <input name="raum" type="text" placeholder="Raum" value={this.state.raum} onChange={(e) => this.handleChange(e)} />
-                <input name="email" type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange(e)} />
-                <input name="telefonnummer" type="text" placeholder="Telefonnummer" value={this.state.telefonnummer} onChange={(e) => this.handleChange(e)} />
-                <input name="sprechzeiten" type="text" placeholder="sprechzeiten" value={this.state.sprechzeiten} onChange={(e) => this.handleChange(e)} />
+                <div className="row">Name <input name="name" type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.handleChange(e)} /></div>
+                <div className="row">Funktion <input name="funktion" type="text" placeholder="Funktion" value={this.state.funktion} onChange={(e) => this.handleChange(e)} /></div>
+                <div className="row">Raum <input name="raum" type="text" placeholder="Raum" value={this.state.raum} onChange={(e) => this.handleChange(e)} /></div>
+                <div className="row">E-Mail <input name="email" type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange(e)} /></div>
+                <div className="row">Telefonnummer <input name="telefonnummer" type="text" placeholder="Telefonnummer" value={this.state.telefonnummer} onChange={(e) => this.handleChange(e)} /></div>
+                <div className="row">Sprechzeiten <input name="sprechzeiten" type="text" placeholder="Sprechzeiten" value={this.state.sprechzeiten} onChange={(e) => this.handleChange(e)} /></div>
               </div>
             </form>
             <div className="button-footer">
