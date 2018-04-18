@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import './InputPinboard.css';
 import axios from 'axios';
+import Header from '../Header/Header';
 
 
 class UserInput extends Component {
@@ -63,7 +64,8 @@ class UserInput extends Component {
 
     render() {
         return (
-            <div >
+            <div>
+            <Header></Header>
               <div className="pinboard-input-wrapper">
                 <div className="pinboard-input">
                     <h2>Pin erstellen</h2>

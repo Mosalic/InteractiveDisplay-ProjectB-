@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './EventListe.css'
 import axios from 'axios';
 import Event from './Event';
+import { Link } from 'react-router-dom';
+import backLogo from '../backBtn.png';
 
 class EventListe extends Component{
  constructor(){
@@ -44,6 +46,7 @@ class EventListe extends Component{
   render() {
       return (
         <div>
+          <div className="backInfo"><Link to="/home/allgemeineInformationen"><img className="backBtn" src={backLogo} /></Link></div>
         <h1>Veranstaltungen</h1>
           <div className="event">
 

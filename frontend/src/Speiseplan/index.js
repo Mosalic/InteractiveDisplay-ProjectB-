@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Iframe from 'react-iframe';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import backLogo from '../backBtn.png';
+import '../App.css';
 
 class Speiseplan extends Component {
   constructor(){
@@ -16,10 +19,14 @@ class Speiseplan extends Component {
 
   render() {
     return (
-      <Iframe url={`http://speiseplan.studierendenwerk-hamburg.de/de/420/${this.state.link}`}
-        display="initial"
-        position="relative"
-        allowFullScreen/>
+        <div className="frameDiv">
+            <div className="backInfo"><Link to="/home/allgemeineInformationen"><img className="backBtn" src={backLogo} /></Link></div>
+            <h1>Speiseplan</h1>
+            <Iframe url={`http://speiseplan.studierendenwerk-hamburg.de/de/420/${this.state.link}`}
+            display="initial"
+            position="relative"
+            allowFullScreen/>
+        </div>
     );
   }
 }

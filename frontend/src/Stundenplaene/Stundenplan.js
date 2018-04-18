@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import backLogo from '../backBtn.png';
 
 class Stundenplan extends Component{
   constructor(){
@@ -59,25 +60,20 @@ class Stundenplan extends Component{
 
   render(){
     return(
-      <div className="stundeplan-wrapper">
-        <div className="stundenplan">
-          {this.state.studiengang}
-          <div className="stundenplan__row stundenplan__header">
-            <div></div>
-            {this.state.semester.map((semester, index) =>
-              <div className="stundenplan__cell" key={index}>
-                {semester}
-              </div>
-            )}
-          </div>
-          {this.state.weekdays.map((weekday, weekdayIndex) =>
-            <div key={weekdayIndex} className="stundenplan__group">
-              <div className="stundenplan__weekday"> {weekday.label}</div>
-              {this.state.timetable[weekday.value].map((time, timeIndex) =>
-                <div className="stundenplan__row" key={timeIndex}>
-                  <div className="stundenplan__cell">
-                    {time.start} - {time.end}
+        <div>
+        <div className="backInfo"><Link to="/home/allgemeineInformationen/stundenplaene"><img className="backBtn" src={backLogo} /></Link></div>
+            <h1>Stundenplan</h1>
+          <div className="stundeplan-wrapper">
+            
+            <div className="stundenplan">
+              {this.state.studiengang}
+              <div className="stundenplan__row stundenplan__header">
+                <div></div>
+                {this.state.semester.map((semester, index) =>
+                  <div className="stundenplan__cell" key={index}>
+                    {semester}
                   </div>
+<<<<<<< HEAD
                   {this.state.semester.map((semester, semesterIndex) =>
                     <div key={semesterIndex} className="stundenplan__cell">
                       {this.state.timetable[weekday.value][timeIndex].classes[semesterIndex] &&
@@ -87,16 +83,38 @@ class Stundenplan extends Component{
                             <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].professor}</span>
                             <span><button onClick={() => this.showRoom()}>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum}</button></span>
                           </div>
+=======
+                )}
+              </div>
+              {this.state.weekdays.map((weekday, weekdayIndex) =>
+                <div key={weekdayIndex} className="stundenplan__group">
+                  <div className="stundenplan__weekday"> {weekday.label}</div>
+                  {this.state.timetable[weekday.value].map((time, timeIndex) =>
+                    <div className="stundenplan__row" key={timeIndex}>
+                      <div className="stundenplan__cell">
+                        {time.start} - {time.end}
+                      </div>
+                      {this.state.semester.map((semester, semesterIndex) =>
+                        <div key={semesterIndex} className="stundenplan__cell">
+                          {this.state.timetable[weekday.value][timeIndex].classes[semesterIndex] &&
+                            <div className="stundenplan__stunde">
+                              <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].veranstaltung}</span>
+                              <div className="stundenplan__stunde__information">
+                                <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].professor}</span>
+                                <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum}</span>
+                              </div>
+                            </div>
+                          }
+>>>>>>> 532893351b4da8f7fb0cabcefc3ab0460525c036
                         </div>
-                      }
+                      )}
                     </div>
                   )}
                 </div>
               )}
             </div>
-          )}
+          </div>
         </div>
-      </div>
     );
   }
 }
