@@ -53,6 +53,10 @@ class Stundenplan extends Component{
     })
   }
 
+  showRoom(){
+    this.props.history.push('/home/altbau');
+  }
+
   render(){
     return(
       <div className="stundeplan-wrapper">
@@ -81,7 +85,7 @@ class Stundenplan extends Component{
                           <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].veranstaltung}</span>
                           <div className="stundenplan__stunde__information">
                             <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].professor}</span>
-                            <span>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum}</span>
+                            <span><button onClick={() => this.showRoom()}>{this.state.timetable[weekday.value][timeIndex].classes[semesterIndex].raum}</button></span>
                           </div>
                         </div>
                       }

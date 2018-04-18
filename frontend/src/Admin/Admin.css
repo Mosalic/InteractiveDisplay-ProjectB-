@@ -527,6 +527,7 @@ input[type="text"]:-moz-placeholder { /* Firefox 18- */
 
 .stundenplan__stunde{
   position: relative;
+  text-align: left;
 }
 
 .stundenplan__stunde__information{
