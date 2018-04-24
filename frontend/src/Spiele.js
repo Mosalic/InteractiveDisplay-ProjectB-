@@ -10,7 +10,7 @@ class Spiele extends Component{
             <div className="game__wrapper">
 
 
-              <Iframe url="https://miawoelm.com/game/"
+              <Iframe url="https://miaiam8.capella.uberspace.de/game/"
                 display="initial"
                 position="relative"
                 allowFullScreen/>
