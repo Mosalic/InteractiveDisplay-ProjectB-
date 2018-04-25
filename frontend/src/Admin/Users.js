@@ -12,10 +12,12 @@ class Users extends Component {
       users: [],
       editUser: '',
       username: '',
-      password: '',
+      password: '123456',
       email: '',
       role: '',
       addUserVisible: false,
+      newPassword: '',
+      changePasswordUserID: null,
     }
   }
 
@@ -36,7 +38,7 @@ class Users extends Component {
       editUser: id,
       addUserVisible: false,
       username,
-      password,
+      // password,
       email,
       role,
     });
@@ -67,7 +69,7 @@ class Users extends Component {
   saveChangedUser(id){
     axios.put(`http://localhost:3001/admin/user/${id}`, {
       username: this.state.username,
-      password: this.state.password,
+      // password: this.state.password,
       email: this.state.email,
       role: this.state.role,
     }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
@@ -129,6 +131,33 @@ class Users extends Component {
     })
   }
 
+  changePasswordOpen(id){
+    this.setState({
+      changePasswordVisible: true,
+      changePasswordUserID: id,
+    });
+  }
+
+  changePasswordClose(){
+    this.setState({
+      changePasswordVisible: false,
+      changePasswordUserID: null,
+    });
+  }
+
+  changePassword(){
+    axios.put(`http://localhost:3001/admin/changePassword/${this.state.changePasswordUserID}`, {
+      password: this.state.newPassword,
+    }, {headers:{ Authorization: localStorage.getItem('JWTToken')}})
+    .then((response) => {
+      this.changePasswordClose();
+      this.getUsers();
+    })
+    .catch((error) => {
+      console.log('error', error);
+    })
+  }
+
   render() {
     return (
         <div>
@@ -137,16 +166,16 @@ class Users extends Component {
             <div className="userlist__table">
               <div className="userlist__table__header">
                 <div>Username</div>
-                <div>Password</div>
+                <div>Passwort</div>
                 <div>E-Mail</div>
-                <div>Role</div>
+                <div>Rolle</div>
               </div>
               {this.state.users.map((user, index) => {
                 if(this.state.editUser === user.id){
                   return(
                     <div className="userlist__table__row edit" key={index}>
                       <input value={this.state.username} name="username" onChange={(e) => this.handleChange(e)}/>
-                      <input value={this.state.password} name="password" onChange={(e) => this.handleChange(e)}/>
+                      <input value={this.state.password} type="password" disabled name="password" onChange={(e) => this.handleChange(e)}/>
                       <input value={this.state.email} name="email" onChange={(e) => this.handleChange(e)}/>
                       <input value={this.state.role} name="role" onChange={(e) => this.handleChange(e)}/>
                       <div onClick={() => this.saveChangedUser(user.id)}><FontAwesome name="check-circle" className="icn-accept" /></div>
@@ -157,7 +186,8 @@ class Users extends Component {
                   return(
                     <div className="userlist__table__row" key={index}>
                       <div>{user.username}</div>
-                      <div>{user.password}</div>
+                      {/* <div>123456</div> */}
+                      <button className="btn" onClick={() => this.changePasswordOpen(user.id)}>Passwort ändern</button>
                       <div>{user.email}</div>
                       <div>{user.role}</div>
                       <button onClick={() => this.editUser(user.id, user.username, user.password, user.email, user.role)}><FontAwesome name="pencil-alt" className="icn-edit"/></button>
@@ -178,6 +208,26 @@ class Users extends Component {
               }
             </div>
           </div>
+          {this.state.changePasswordVisible &&
+            <div>
+              <div className="backdrop" />
+              <div className="userlist__changepassword">
+                <div className="userlist__changepassword__content">
+                  Passwort ändern
+                  <input
+                    placeholder="Neues Passwort eingeben"
+                    value={this.state.newPassword}
+                    onChange={(e) => this.handleChange(e)}
+                    name="newPassword"
+                  />
+                  <div className="userlist__changepassword__btnfooter">
+                    <button className="userlist__changepassword__btncancel" onClick={() => this.changePasswordClose()}>Cancel</button>
+                    <button className="userlist__changepassword__btnsave" onClick={() => this.changePassword()}>Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
         </div>
     );
   }
