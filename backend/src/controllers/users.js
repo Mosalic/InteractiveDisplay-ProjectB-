@@ -9,7 +9,7 @@ export const getUser = (req, res, next) => {
     // console.log(req.headers);
     if(err === null && doc.length !== 0){
       console.log(doc);
-      var token = jwt.sign({ role: doc[0].role }, 'shhhhh', { expiresIn: '1h' } );
+      var token = jwt.sign({ role: doc[0].role }, 'shhhhh', { expiresIn: '2h' } );
       // console.log(token);
       // res.writeHead(200, {'Content-Type': 'text/html'});
       res.json({token: token});
