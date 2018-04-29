@@ -1,3 +1,9 @@
+/*
+ *Admin-Bereich:
+ *Blaue obere Leiste. Header ist oben immer zu sehen.
+ *Enthält Angaben über Datum und Uhrzeit und leitet über einen Klick aufs Logo in den Home-Bereich zurück.
+*/
+
 import React, { Component } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';

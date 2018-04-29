@@ -1,3 +1,9 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier wird das Spiel über ein IFrame eingebunden.
+ *Spiel liegt auf einem eigenen Server.
+*/
+
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import Iframe from 'react-iframe';

@@ -1,3 +1,8 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier werden die aktuellen Notes vom Schwarzen Brett aus der Datenbank geholt und angezeigt.
+*/
+
 import React, {Component} from 'react';
 import axios from 'axios';
 import './NoteListe.css';

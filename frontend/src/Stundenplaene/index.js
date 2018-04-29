@@ -1,3 +1,10 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier werden die Namen aktuellen Stundenpläne aus der Datenbank geholt und angezeigt.
+ *Über Buttons gelangt man zu den weiteren Angaben zum Stundenplan.
+*/
+
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Stundenplan.css';

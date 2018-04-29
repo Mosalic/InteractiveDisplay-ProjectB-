@@ -1,3 +1,10 @@
+/*
+ *Admin-Bereich:
+ *Die Administratoren legen neue Events an.
+ *Die Eingaben des neu erstellten Events werden vom Formular in die 
+ *Datenbank-Collection "events" übernommen und gespeichert
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';

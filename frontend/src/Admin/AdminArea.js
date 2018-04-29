@@ -1,3 +1,11 @@
+/*
+ *Admin-Bereich:
+ *Nachdem sich die Administratoren eingeloggt haben, können sie von hier aus zu den Kategorien gelangen.
+ *Je nach Rolle können sie verschiedene Kategorien und ihre Daten
+ *bearbeiten.
+ *Hier wird zusätzlich auf die "Professoren", "Users", "Events", "Stundenplan" und "Notes" Komponenten zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';

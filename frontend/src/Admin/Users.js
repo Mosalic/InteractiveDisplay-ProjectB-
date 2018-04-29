@@ -1,3 +1,10 @@
+/*
+ *Admin-Bereich:
+ *Die Daten zu den aktuellen Usern werden aus der Datenbank geholt und angezeigt.
+ *Die Administratoren können die aktuellen User weiter bearbeiten, löschen und neue erstellen.
+ *Hier wird zusätzlich auf die "withAuth" Komponente zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Admin.css'

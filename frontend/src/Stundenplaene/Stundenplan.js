@@ -1,3 +1,9 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier werden die aktuellen Angaben zum passenden Stundenplan aus der Datenbank geholt und angezeigt.
+*/
+
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';

@@ -1,3 +1,10 @@
+/*
+ *Anwendungs-Bereich:
+ *Der Grundriss des Mediencampus ist importiert und wird angezeigt.
+ *Die Verlinkung zu den verschiedenen Gebäuden wir von hier navigiert (Altbau, Neubau).
+ *Implementierung der Suchfunktion: Eingegebener String wird mit Raumnummern der Gebäude verglichen.
+*/
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import campus from '../Mediencampus_Finkenau.png';

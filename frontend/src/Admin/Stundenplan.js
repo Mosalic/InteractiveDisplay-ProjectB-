@@ -1,3 +1,10 @@
+/*
+ *Admin-Bereich:
+ *Die Daten zu den aktuellen Stundenplänen werden aus der Datenbank geholt und angezeigt.
+ *Die Administratoren können die aktuellen Stundenpläne weiter bearbeiten.
+ *Hier wird zusätzlich auf die "AddStundenplan" und "withAuth" Komponenten zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';

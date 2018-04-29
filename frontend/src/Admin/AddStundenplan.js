@@ -1,3 +1,11 @@
+/*
+ *Admin-Bereich:
+ *Die Administratoren legen neue Stundenpläne an.
+ *Die Eingaben des neu erstellten Stundenplans werden vom Formular in die 
+ *Datenbank-Collection "stundenplaene" übernommen und gespeichert.
+ *Hier wird zusätzlich auf die "withAuth" Komponente zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';

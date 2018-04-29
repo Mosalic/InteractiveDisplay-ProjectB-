@@ -1,3 +1,10 @@
+/*
+ *Admin-Bereich:
+ *Die Daten zu den aktuellen Notes werden aus der Datenbank geholt und angezeigt.
+ *Die Administratoren können die aktuellen Notes am Schwarzen Brett bearbeiten.
+ *Hier wird zusätzlich auf die "AddNote" und "withAuth" Komponenten zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import withAuth from './withAuth';

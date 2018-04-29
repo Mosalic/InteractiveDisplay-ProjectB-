@@ -1,3 +1,9 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier werden die weiteren Unterkategorien dem User angezeigt.
+ *Verlinkungen zu diesen Kategorien sind hier implementiert.
+*/
+
 import React, { Component } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';

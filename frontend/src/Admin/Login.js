@@ -1,3 +1,10 @@
+/*
+ *Admin-Bereich:
+ *Die Administratoren können einloggen.
+ *Je nach zugewiesener Rolle werden sie zu unterschiedlichen Kategorien geleitet, 
+ *an denen die Daten ändern können.
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';

@@ -1,3 +1,8 @@
+/*
+ *Anwendungs-Bereich:
+ *Die Daten zu den aktuellen Events werden aus der Datenbank geholt und angezeigt.
+*/
+
 import React, {Component} from 'react';
 import './EventListe.css'
 import axios from 'axios';

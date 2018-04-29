@@ -1,3 +1,9 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier werden die aktuellen Notes vom Schwarzen Brett aus der Datenbank geholt und angezeigt.
+ *Zusätzlich auf die "AddProfessor" Komponente zugegriffen.
+*/
+
 import React, {Component} from 'react';
 import './List.css'
 import axios from 'axios';
