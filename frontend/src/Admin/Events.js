@@ -1,3 +1,9 @@
+/*
+ *Admin-Bereich:
+ *Die Daten zu den Events werden aus der Datenbank geholt und angezeigt.
+ *Hier wird zusätzlich auf die "AddEvent", "Event" und "withAuth" Komponenten zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';

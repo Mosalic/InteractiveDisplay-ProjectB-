@@ -1,3 +1,8 @@
+/*
+ *Admin-Bereich:
+ *Diese Komponente ist zum Bearbeiten der Einträge auf dem schwarzen Brett.
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import FontAwesome from 'react-fontawesome';

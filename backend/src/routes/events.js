@@ -1,3 +1,8 @@
+/*
+ *Backend:
+ *Routen zum Bearbeiten bzw Aufrufen von Event Daten aus der Datenbank werden hier definiert.
+*/
+
 import express, {Router} from 'express';
 import multer from 'multer';
 import { getEvents, postEvents, putEvents, deleteEvents, putEventsImage } from '../controllers/events';

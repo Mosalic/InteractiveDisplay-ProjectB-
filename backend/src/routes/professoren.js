@@ -1,3 +1,8 @@
+/*
+ *Backend:
+ *Routen zum Bearbeiten bzw Aufrufen von Professoren Daten aus der Datenbank werden hier definiert.
+*/
+
 import express, {Router} from 'express';
 import multer from 'multer';
 import { getProfessoren, postProfessoren, putProfessoren, getProfessorenById, deleteProfessoren, putProfessorenImage } from '../controllers/professoren';

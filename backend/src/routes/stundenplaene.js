@@ -1,3 +1,8 @@
+/*
+ *Backend:
+ *Routen zum Bearbeiten bzw Aufrufen von Stundenplan Daten aus der Datenbank werden hier definiert.
+*/
+
 import express, {Router} from 'express';
 import { postStundenplan, getStundenplan, putStundenplan, getStundenplanById, deleteStundenplan } from '../controllers/stundenplaene';
 

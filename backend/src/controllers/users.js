@@ -1,26 +1,11 @@
 import User from '../models/users';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 export const getUser = (req, res, next) => {
-  User.find({username: req.body.username, password: req.body.password}, (err, doc) => {
-    // jwt.verify(req.headers.authorization, 'shhhhh', function(err, decoded) {
-    //   console.log(err) // bar
-    // });
-    // console.log(req.headers);
+  User.find({username: req.body.username}, (err, doc) => {
     if(err === null && doc.length !== 0){
       console.log(doc);
-      var token = jwt.sign({ role: doc[0].role }, 'shhhhh', { expiresIn: '2h' } );
-      // console.log(token);
-      // res.writeHead(200, {'Content-Type': 'text/html'});
-      res.json({token: token});
-      res.end("foundUser");
-    } else if(err === null && doc.length === 0){
-      res.writeHead(400, {'Content-Type': 'text/html'});
-      res.end("forbidden");
-    } else {
-      res.writeHead(500, {'Content-Type': 'text/html'});
-      res.end(`${err}`);
-=======
       bcrypt.compare(req.body.password, doc[0].password, (err, passwordRight) => {
         if(passwordRight){
           var token = jwt.sign({ role: doc[0].role }, 'shhhhh', { expiresIn: '1h' } );
@@ -28,22 +13,15 @@ export const getUser = (req, res, next) => {
           // res.writeHead(200, {'Content-Type': 'text/html'});
           res.json({token: token});
           res.end("foundUser");
-        }
-        // jwt.verify(req.headers.authorization, 'shhhhh', function(err, decoded) {
-        //   console.log(err) // bar
-        // });
-        // console.log(req.headers);
-        else if(err === null && doc.length === 0){
+        } else {
           res.writeHead(400, {'Content-Type': 'text/html'});
           res.end("forbidden");
         }
       });
->>>>>>> d38c480be24157b11c20ed83af5e1c589f264fc4
+    } else {
+      res.writeHead(500, {'Content-Type': 'text/html'});
+      res.end(`${err}`);
     }
-    else {
-     res.writeHead(500, {'Content-Type': 'text/html'});
-     res.end(`${err}`);
-   }
   });
 };
 

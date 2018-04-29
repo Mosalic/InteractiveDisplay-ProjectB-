@@ -1,3 +1,7 @@
+/*
+ *Admin-Bereich:
+ *Hier werden die Pfade zum Login und zum eigentlichen Admin Bereich definiert.
+*/
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './Login';
