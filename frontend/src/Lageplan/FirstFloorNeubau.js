@@ -1,3 +1,10 @@
+/*
+ *Anwendungs-Bereich:
+ *Der Grundriss der 1.Etage ist importiert und wird angezeigt.
+ *Eingegebener String von der Suche muss mit der ID eines Rechtecks übereinstimmen.
+ *Gesuchter Raum wird dann markiert.
+*/
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firstFloor from './First_Floor_Neubau.png';

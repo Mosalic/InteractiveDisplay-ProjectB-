@@ -1,3 +1,10 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier wird der aktuelle Speiseplan angezeigt.
+ *Bestehender Speiseplan vom Studierendenwerk wird eingebunden. 
+ *Link stellt sich zusammen aus Mensa-ID, Woche und Jahr.
+*/
+
 import React, { Component } from 'react';
 import Iframe from 'react-iframe';
 import moment from 'moment';

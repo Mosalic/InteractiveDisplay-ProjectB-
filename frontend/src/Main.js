@@ -1,3 +1,11 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier sind alle Verlinkungen zu den Seiten implementiert.
+ *Dafür wird zusätzlich auf die "Home","index", "AllgemeineImformationen", "Header", "Altbau", "Neubau"
+ *"Spiele", "ProfessorenListe", "EventListe", "NoteListe", "Speiseplan", "Stundenplaene" und 
+ *"Stundenplan" Komponenten zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';

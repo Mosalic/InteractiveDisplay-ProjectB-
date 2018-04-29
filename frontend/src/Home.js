@@ -1,3 +1,12 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier werden die ersten Überkategorien dem User angezeigt.
+ *Verlinkungen zu diesen Kategorien sind hier implementiert.
+ *Dafür wird zusätzlich auf die "index", "AllgemeineImformationen", "Header", "Altbau", 
+ *"Spiele", "ProfessorenListe" und "EventListe" Komponenten zugegriffen.
+*/
+
+
 import React, { Component } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';

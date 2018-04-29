@@ -1,3 +1,12 @@
+/*
+ *Anwendungs-Bereich:
+ *Der Grundriss des Neubaus ist importiert und wird angezeigt.
+ *Die Verlinkung zu den verschiedenen Etagen wir von hier navigiert.
+ *Implementierung der Suchfunktion: Eingegebener String wird mit Raumnummern verglichen.
+ *Hier wird zusätzlich auf die "FirstFloorNeubau", "BasementFloorNeubau", "SecondFloorAltbau",
+ *"ThirdFloorAltbau" und "FourthFloorAltbau" Komponenten zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firstFloor from './first_floor.svg';

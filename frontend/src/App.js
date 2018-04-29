@@ -1,3 +1,12 @@
+/*
+ *Anwendungs-Bereich:
+ *Hier sind die Verlinkungen zu den drei verschiedenen Bereichen implementiert.
+ *"Main" für die Anwendung für den User, "Admin" für die Administratoren zum bearbeiten der Daten und 
+ *"UserInput" für die User zum hochladen von Aushängen ans Schwarze Brett.
+ *Dafür wird zusätzlich auf die "index", "AllgemeineImformationen", "Header", "Altbau", 
+ *"Spiele", "ProfessorenListe" und "EventListe" Komponenten zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import BrowserHistory from 'history/createBrowserHistory'

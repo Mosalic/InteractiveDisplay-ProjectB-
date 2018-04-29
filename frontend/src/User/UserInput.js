@@ -1,3 +1,9 @@
+/*
+ *Anwendungs-Bereich: 
+ *User kann Seite auf Smartphone öffnen und einen Aushang für das Schwarze Brett erstellen.
+ *Angaben zum Aushang werden in der Datenbank gespeichert.
+*/
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';

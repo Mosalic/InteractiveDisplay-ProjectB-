@@ -1,3 +1,10 @@
+/*
+ *Anwendungs-Bereich:
+ *Der Grundriss der 3.Etage ist importiert und wird angezeigt.
+ *Eingegebener String von der Suche muss mit der ID eines Rechtecks übereinstimmen.
+ *Gesuchter Raum wird dann markiert.
+*/
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import thirdFloor from './Third_Floor_Neubau.png';
