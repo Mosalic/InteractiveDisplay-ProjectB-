@@ -18,7 +18,7 @@ class NoteListe extends Component{
     axios.get('http://localhost:3001/notes')
     .then((response) => {
       this.setState({
-        notes: response.data.notes,
+        notes: response.data.notes.reverse(),
         nextNoteId: response.data.notes[response.data.notes.length - 1].id + 1,
       });
     })

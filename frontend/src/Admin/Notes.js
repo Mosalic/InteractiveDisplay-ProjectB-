@@ -26,7 +26,7 @@ class Notes extends Component {
     axios.get('http://localhost:3001/notes')
     .then((response) => {
       this.setState({
-        notes: response.data.notes,
+        notes: response.data.notes.reverse(),
       });
     })
     .catch((error) => {
