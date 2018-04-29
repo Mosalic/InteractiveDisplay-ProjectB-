@@ -1,3 +1,10 @@
+/*
+ *Admin-Bereich:
+ *Die Administratoren können neue Professoren anlegen.
+ *Die Eingaben der Erstellungsmaske werden vom Formular in die 
+ *Datenbank-Collection "professorens" übernommen und gespeichert
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Admin.css'

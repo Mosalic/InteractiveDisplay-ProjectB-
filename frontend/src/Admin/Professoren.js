@@ -1,3 +1,11 @@
+/*
+ *Admin-Bereich:
+ *Die Daten zu den Professoren werden aus der Datenbank geholt und angezeigt.
+ *Die Professoren werden alphabetisch sortiert und man kann diese bearbeiten oder löschen.
+ *Auch die Suchfunktion ist hier implementiert.
+ *Hier wird zusätzlich auf die "AddProfessor" und "withAuth" Komponenten zugegriffen.
+*/
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Admin.css'

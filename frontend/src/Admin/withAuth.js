@@ -1,3 +1,8 @@
+/*
+ *Admin-Bereich:
+ *Es wird überprüft, ob der Admin die Rechte zur Bearbeitung der Daten hat.
+*/
+
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 
